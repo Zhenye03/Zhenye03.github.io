@@ -3,63 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qian Zhenye's Homepage</title>
+    <title>Qian Zhenye - Mathematician</title>
     <style>
-        /* 全局样式 */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #8b0000;
+            --accent: #1a5276;
+            --background: #fef9e7;
+            --light-bg: #fffbf0;
+            --text: #333;
+            --light-text: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', 'Times New Roman', serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            color: var(--text);
+            background-color: var(--background);
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f8f9fa;
         }
         
-        /* 标题样式 */
-        h1 {
+        /* 头部样式 */
+        header {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #3498db;
-            font-weight: 600;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--secondary);
         }
         
-        /* 二级标题样式 */
-        h2 {
-            color: #e74c3c;
-            border-left: 4px solid #e74c3c;
-            padding-left: 10px;
-            margin-top: 30px;
+        h1 {
+            color: var(--primary);
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: var(--light-text);
+            font-size: 1.1em;
+        }
+        
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            margin: 0 15px;
+            color: var(--primary);
+            text-decoration: none;
             font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
-        /* 段落样式 */
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(44, 62, 80, 0.1);
+        }
+        
+        /* 内容区域样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
         p {
             margin-bottom: 15px;
-            text-align: justify;
         }
         
         /* 链接样式 */
         a {
-            color: #2980b9;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        
-        a:hover {
-            color: #e74c3c;
+            color: var(--accent);
             text-decoration: underline;
         }
         
-        /* 地址和邮箱样式 */
-        .contact-info {
-            background-color: #e8f4fc;
-            padding: 10px 15px;
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        /* 邮箱样式 */
+        .email {
+            margin: 10px 0;
+        }
+        
+        .email-note {
+            font-size: 0.9em;
+            color: var(--light-text);
+            font-style: italic;
+        }
+        
+        /* 建设中样式 */
+        .under-construction {
+            font-style: italic;
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px;
+            border: 1px dashed #bdc3c7;
             border-radius: 5px;
-            margin: 15px 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--light-text);
+            font-size: 0.9em;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
         }
         
         /* 响应式设计 */
@@ -71,27 +139,130 @@
             h1 {
                 font-size: 1.8em;
             }
+            
+            .nav-link {
+                margin: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Qian Zhenye's Homepage</h1>
-    
-    <h2>PERSONAL INFORMATION</h2>
-    <p>I was born in Zhejiang, China, and got my B.S in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a>, under the supervision of Professor Zhiyuan Xu.</p>
-    <div class="contact-info">
-        <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University</p>
-        <p><strong>Email:</strong> qianzhenye03@163.com</p>
-    </div>
-    
-    <h2>RESEARCH INTERESTS</h2>
-    <p>My research interests lie in partial differential equations and geometric analysis, including nonlinear elliptic PDEs, geometric measure theory. Recently, I was interested in the convergence of Allen-Cahn equation and some aspects about mean curvature flow.</p>
-    <p>Here is my <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">CV</a>.</p>
-    
-    <h2>UNPUBLISHED WORKS OR NOTES</h2>
-    <p>No unpublished works at the moment.</p>
-    
-    <h2>TEACHING</h2>
-    <p>No teaching experience to list currently.</p>
+    <header>
+        <h1>Qian Zhenye</h1>
+        <p class="subtitle">Mathematics Student | PDEs & Geometric Analysis</p>
+    </header>
+
+    <nav>
+        <a href="#about" class="nav-link active">About Me</a>
+        <a href="#research" class="nav-link">Research</a>
+        <a href="#teaching" class="nav-link">Teaching</a>
+        <a href="#notes" class="nav-link">Notes</a>
+    </nav>
+
+    <main>
+        <!-- About Me 部分 -->
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>I was born in Zhejiang, China, and obtained my B.S. in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a>, under the supervision of Professor Zhiyuan Xu.</p>
+            
+            <h3>Curriculum Vitae</h3>
+            <p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
+            
+            <h3>Contact Information</h3>
+            <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University</p>
+            
+            <div class="email">
+                <strong>Email:</strong> <a href="mailto:qianzhenye03@163.com">qianzhenye03@163.com</a>
+            </div>
+            
+            <div class="email">
+                <strong>Student Email:</strong> <a href="mailto:qianzhenye@stu.hznu.edu.cn">qianzhenye@stu.hznu.edu.cn</a>
+                <p class="email-note">(This student email will expire in July 2026)</p>
+            </div>
+        </section>
+
+        <!-- Research 部分 -->
+        <section id="research" class="section">
+            <h2>Research</h2>
+            <h3>Research Interests</h3>
+            <p>My research interests lie in <strong>partial differential equations</strong> and <strong>geometric analysis</strong>, including nonlinear elliptic PDEs, geometric measure theory. Recently, I was interested in the convergence of Allen-Cahn equation and some aspects about mean curvature flow.</p>
+            
+            <h3>Publications and Accepted Papers</h3>
+            <div class="under-construction">Under Construction</div>
+            
+            <h3>Talks</h3>
+            <div class="under-construction">Under Construction</div>
+        </section>
+
+        <!-- Teaching 部分 -->
+        <section id="teaching" class="section">
+            <h2>Teaching</h2>
+            <div class="under-construction">Under Construction</div>
+        </section>
+
+        <!-- Notes 部分 -->
+        <section id="notes" class="section">
+            <h2>Notes & Materials</h2>
+            <h3>Unpublished Works or Notes</h3>
+            <div class="under-construction">Under Construction</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Qian Zhenye. All rights reserved.</p>
+        <p>Department of Mathematics, Hangzhou Normal University</p>
+    </footer>
+
+    <script>
+        // 平滑滚动导航
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有活动类
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加活动类到当前链接
+                    this.classList.add('active');
+                    
+                    // 平滑滚动到目标部分
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // 根据滚动位置高亮当前部分
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('.section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= (sectionTop - 100)) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
