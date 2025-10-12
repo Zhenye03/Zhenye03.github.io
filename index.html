@@ -89,16 +89,6 @@
         /* 内容区域样式 */
         .section {
             margin-bottom: 70px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         h2 {
@@ -120,6 +110,13 @@
             background-color: var(--secondary);
         }
         
+        h3 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            font-size: 1.3em;
+            font-weight: 500;
+        }
+        
         p {
             margin-bottom: 20px;
             font-size: 1.1em;
@@ -129,7 +126,7 @@
         /* 链接样式 */
         a {
             color: var(--accent);
-            text-decoration: none;
+            text-decoration: underline;
             transition: color 0.3s;
         }
         
@@ -154,6 +151,48 @@
             margin-top: 5px;
         }
         
+        /* 列表样式 */
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        /* 学习经历样式 */
+        .study-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .study-item:last-child {
+            border-bottom: none;
+        }
+        
+        .study-date {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .study-course {
+            font-style: italic;
+            margin: 5px 0;
+        }
+        
+        /* 奖项样式 */
+        .award-item {
+            margin-bottom: 15px;
+        }
+        
+        .award-year {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
         /* 建设中样式 */
         .under-construction {
             font-style: italic;
@@ -163,7 +202,6 @@
             border: 1px dashed #bdc3c7;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.5);
-            font-size: 1.1em;
         }
         
         /* 页脚样式 */
@@ -228,7 +266,21 @@
         <!-- About Me 部分 -->
         <section id="about" class="section">
             <h2>About Me</h2>
-            <p>I was born in Zhejiang, China, and obtained my B.S. in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a>, under the supervision of Professor Zhiyuan Xu.</p>
+            <p>I was born in Zhejiang, China, and obtained my B.S. in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a> (2022-2026), under the supervision of Professor Zhiyuan Xu.</p>
+            
+            <h3>Personal Awards</h3>
+            <div class="award-item">
+                <span class="award-year">2025:</span> S.-T.Yau College Student Mathematics Contest: Individual Awards–Chern Award, for Geometry and Topology Bronze Medal
+            </div>
+            <div class="award-item">
+                <span class="award-year">2025:</span> S.-T.Yau College Student Mathematics Contest: Geometry and Topology (No.14)
+            </div>
+            <div class="award-item">
+                <span class="award-year">2024:</span> S.-T.Yau College Student Mathematics Contest: Analysis and Differential Equation (No.86)
+            </div>
+            <div class="award-item">
+                <span class="award-year">2022:</span> The Chinese Mathematics Competitions (CMC) (First Prize)
+            </div>
             
             <h3>Curriculum Vitae</h3>
             <p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
@@ -244,7 +296,7 @@
                     <p class="email-note">(Student email, expires July 2026)</p>
                 </div>
                 
-                <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University</p>
+                <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University, Yuhangtang Road, Yuhang District, Hangzhou, Zhejiang, P.R.China 311121</p>
             </div>
         </section>
 
@@ -252,31 +304,141 @@
         <section id="research" class="section">
             <h2>Research</h2>
             <h3>Research Interests</h3>
-            <p>My research interests lie in <strong>partial differential equations</strong> and <strong>geometric analysis</strong>, including nonlinear elliptic PDEs, geometric measure theory. Recently, I was interested in the convergence of Allen-Cahn equation and some aspects about mean curvature flow.</p>
+            <p>Partial Differential Equations and Geometric Analysis, including nonlinear elliptic PDEs, geometric measure theory.</p>
             
-            <h3>Publications and Accepted Papers</h3>
+            <h3>Publications</h3>
             <div class="under-construction">Under Construction</div>
             
-            <h3>Talks</h3>
-            <div class="under-construction">Under Construction</div>
+            <h3>Selected Talks</h3>
+            <div class="study-item">
+                <p class="study-date">August 2024</p>
+                <p class="study-course">The geometric topology of frontal surfaces</p>
+                <p>2024 International Workshop on Geometry, Topology of Singular Submanifolds and Related Topics</p>
+                <p>Northeast Normal University, Jilin, China</p>
+            </div>
+            
+            <h3>Study Experience</h3>
+            <div class="study-item">
+                <p class="study-date">July 2025</p>
+                <p class="study-course">USTC Institute of Geometry and Physics: <a href="https://igp.ustc.edu.cn/2025/0403/c28839a679308/page.htm">Summer School in Geometry and Analysis</a></p>
+                <ul>
+                    <li>Bernstein Problem for Minimal Surfaces and Beyond (Zhihan Wang, Cornell)</li>
+                </ul>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">June 2025</p>
+                <p class="study-course">ZJU: Partial Differential Equation Advanced Workshop</p>
+                <ul>
+                    <li>Minmax Methods in Geometric Analysis (Tristan Rivière, ETH-Zurich)</li>
+                </ul>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">August 2024</p>
+                <p class="study-course">PKU BICMR: <a href="https://bicmr.pku.edu.cn/cn/content/show/17-3335.html">Summer School on Differential Geometry</a></p>
+                <ul>
+                    <li>Riemannian Geometry (Chao Xia, XMU)</li>
+                    <li>Complex Geometry (Yalong Shi, NJU)</li>
+                    <li>Second order Elliptic Differential Equation (Jiakun Liu, UOW)</li>
+                </ul>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">July 2024</p>
+                <p class="study-course">USTC Institute of Geometry and Physics: <a href="https://igp.ustc.edu.cn/2024/0409/c28839a637608/page.htm">Summer School in Geometry</a></p>
+                <ul>
+                    <li>Some aspects of Ricci flow on non-compact manifolds (Eric Chen, UCB)</li>
+                    <li>Topics in mean curvature flow (Jinze Zhu, MIT)</li>
+                    <li>An introduction to decoupling inequalities in harmonic analysis (Shenwen Gan, WSCS)</li>
+                </ul>
+            </div>
+            
+            <h3>Seminars</h3>
+            <div class="study-item">
+                <p class="study-date">September 2025 - now</p>
+                <p class="study-course">Elliptic Partial Differential Equations Seminar (online)</p>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">June 2025 - now</p>
+                <p class="study-course">Minimal Surfaces Seminar (online) - <a href="https://www.bilibili.com/video/BV1PaKGzrEwU/?spm_id_from=333.1387.homepage.video_card.click">selected videos</a></p>
+                <p>Selected topics I have talked:</p>
+                <ul>
+                    <li>A simple survey of minimal surfaces and related aspects</li>
+                </ul>
+                <p>The whole talks:</p>
+                <ul>
+                    <li><a href="https://www.bilibili.com/video/BV1PaKGzrEwU/?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8">A simple survey of minimal surfaces and related aspects 6.24 (Zhenye Qian, HZNU)</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV1MJ3RzEEi4/?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections">The minimal surfaces equation and minimal submanifolds 7.5 (Haoyu Pan, HZNU)</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV15puUzNEAt?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections">Applications of the first variation and Bernstein problem in two dimension 7.18 (Tian Zeng, CQU)</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV1kvhWzvEgi?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections">The second Variation formula and Stability 8.1 (Tian Zeng, CQU)</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV1NttxzMEkn?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections">Bernstein problem I: The fundamental objects of Geometric Measure Theory 8.8 (Mutian Zhu, WU)</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV1ZcYezxEFL?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections">Bernstein problem II: Regularity theory in Geometric Measure theory 8.15 (Mutian Zhu, WU)</a></li>
+                </ul>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">August 2024 - March 2025</p>
+                <p class="study-course">Riemannian Geometry and Geometry Analysis, Hangzhou Normal University - <a href="https://www.bilibili.com/video/BV1UaqLYoE2g/?spm_id_from=333.1387.homepage.video_card.click">selected videos</a></p>
+                <p>Selected topics I have talked:</p>
+                <ul>
+                    <li>Riemannian Submanifold and Basic Equations, some aspects in Minimal Submanifolds in Euclidean space</li>
+                    <li>Comparison theorem in Riemannian Geometry (Rauch, Hessian and Laplacian, Volume)</li>
+                    <li>Cheeger-Gromov Convergence and Gromov's paracompactness theorem with some applications in lower bound Ricci curvature</li>
+                    <li>Bochner Technique on Riemannian Geometry and applications (Comparison theorems, Killing fields)</li>
+                    <li>Some aspects in CMC hypersurfaces: Alexandrov's theorem, Levy-Gromov Isoperimetric inequality</li>
+                    <li>Bernstein's theorem in Minimal surfaces and Plateau problem</li>
+                </ul>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">August 2024 - December 2024</p>
+                <p class="study-course">Algebraic Topology, Hangzhou Normal University</p>
+                <p>Selected topics I have talked:</p>
+                <ul>
+                    <li>An Introduction to Cohomology Ring: Universal coefficient theorem, Cup product and Examples</li>
+                    <li>Some Applications of Myers-Vietors Argument: Künneth formula, Leray-Hirsch theorem in fiber bundle, Poincaré's duality for manifolds</li>
+                    <li>Some aspects in homotopy theory: Freudenthal suspension and introduction to stable homotopy groups, Hurewicz-Whitehead theorem and Motivation in Poincaré's Conjecture of 3-dim manifolds</li>
+                </ul>
+            </div>
         </section>
 
         <!-- Teaching 部分 -->
         <section id="teaching" class="section">
             <h2>Teaching</h2>
-            <div class="under-construction">Under Construction</div>
+            
+            <h3>Teaching Assistant Experience</h3>
+            <div class="study-item">
+                <p class="study-date">Spring 2025</p>
+                <p class="study-course">Differential Geometry (Honor), Hangzhou Normal University</p>
+                <p>Instructor: Zhiyuan Xu</p>
+                <p>References: <a href="https://zhenye-math.github.io/2025春夏微分几何课堂练习_补充材料.pdf">exercises and supplementary materials</a></p>
+            </div>
+            
+            <div class="study-item">
+                <p class="study-date">Autumn 2024</p>
+                <p class="study-course">Analytic Geometry, Hangzhou Normal University</p>
+                <p>Instructor: Zhiyuan Xu</p>
+                <p>References: <a href="https://zhenye-math.github.io/2024秋冬解析几何课堂练习_补充材料.pdf">exercises and supplementary materials</a></p>
+            </div>
         </section>
 
         <!-- Notes 部分 -->
         <section id="notes" class="section">
             <h2>Notes & Materials</h2>
-            <h3>Unpublished Works or Notes</h3>
-            <div class="under-construction">Under Construction</div>
+            
+            <h3>Miscellaneous</h3>
+            <ul>
+                <li>My <strong>Homepage</strong>: <a href="https://zhenye-math.github.io/">https://zhenye-math.github.io/</a></li>
+                <li>Vlogs about studying: <a href="https://space.bilibili.com/700241420?spm_id_from=333.1007.0.0">Bilibili</a></li>
+                <li>Ideas and Discussions: <a href="https://www.zhihu.com/people/qzy-55-20">Zhihu</a></li>
+            </ul>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Qian Zhenye. All rights reserved.</p>
+        <p>&copy; 2023-2025 Qian Zhenye. All rights reserved.</p>
         <p>Department of Mathematics, Hangzhou Normal University</p>
     </footer>
 
@@ -284,12 +446,6 @@
         // 平滑滚动导航
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
-            
-            // 初始加载时显示所有部分，但只高亮About部分
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-            });
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -334,25 +490,6 @@
                         link.classList.add('active');
                     }
                 });
-            });
-            
-            // 添加滚动时的淡入效果
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
             });
         });
     </script>
