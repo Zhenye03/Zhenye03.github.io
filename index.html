@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qian Zhenye - Mathematician</title>
+    <title>Qian Zhenye | Mathematician</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -26,72 +26,111 @@
             line-height: 1.6;
             color: var(--text);
             background-color: var(--background);
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 30px;
         }
         
         /* 头部样式 */
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--secondary);
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
         }
         
         h1 {
             color: var(--primary);
-            font-size: 2.2em;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
         
         .subtitle {
             color: var(--light-text);
-            font-size: 1.1em;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
         
         /* 导航栏样式 */
         nav {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
+            margin: 40px 0 60px;
             flex-wrap: wrap;
         }
         
         .nav-link {
-            margin: 0 15px;
+            margin: 0 20px;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 8px 0;
+            position: relative;
+            font-size: 1.1em;
         }
         
-        .nav-link:hover, .nav-link.active {
-            background-color: rgba(44, 62, 80, 0.1);
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
         }
         
         /* 内容区域样式 */
         .section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 70px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         h2 {
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 1.5em;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
         }
         
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.7;
         }
         
         /* 链接样式 */
         a {
             color: var(--accent);
-            text-decoration: underline;
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
         a:hover {
@@ -99,14 +138,20 @@
         }
         
         /* 邮箱样式 */
+        .email-section {
+            margin: 30px 0;
+        }
+        
         .email {
-            margin: 10px 0;
+            margin: 15px 0;
+            font-size: 1.1em;
         }
         
         .email-note {
             font-size: 0.9em;
             color: var(--light-text);
             font-style: italic;
+            margin-top: 5px;
         }
         
         /* 建设中样式 */
@@ -114,26 +159,45 @@
             font-style: italic;
             color: var(--light-text);
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             border: 1px dashed #bdc3c7;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1em;
         }
         
         /* 页脚样式 */
         footer {
-            margin-top: 40px;
+            margin-top: 80px;
             text-align: center;
             color: var(--light-text);
             font-size: 0.9em;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
         
         /* 响应式设计 */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
+            
+            .nav-link {
+                margin: 5px 15px;
+            }
+            
+            .section {
+                margin-bottom: 50px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 15px;
             }
             
             h1 {
@@ -141,7 +205,8 @@
             }
             
             .nav-link {
-                margin: 5px;
+                margin: 5px 10px;
+                font-size: 1em;
             }
         }
     </style>
@@ -153,7 +218,7 @@
     </header>
 
     <nav>
-        <a href="#about" class="nav-link active">About Me</a>
+        <a href="#about" class="nav-link active">About</a>
         <a href="#research" class="nav-link">Research</a>
         <a href="#teaching" class="nav-link">Teaching</a>
         <a href="#notes" class="nav-link">Notes</a>
@@ -168,16 +233,18 @@
             <h3>Curriculum Vitae</h3>
             <p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
             
-            <h3>Contact Information</h3>
-            <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University</p>
-            
-            <div class="email">
-                <strong>Email:</strong> <a href="mailto:qianzhenye03@163.com">qianzhenye03@163.com</a>
-            </div>
-            
-            <div class="email">
-                <strong>Student Email:</strong> <a href="mailto:qianzhenye@stu.hznu.edu.cn">qianzhenye@stu.hznu.edu.cn</a>
-                <p class="email-note">(This student email will expire in July 2026)</p>
+            <div class="email-section">
+                <h3>Contact</h3>
+                <div class="email">
+                    <a href="mailto:qianzhenye03@163.com">qianzhenye03@163.com</a>
+                </div>
+                
+                <div class="email">
+                    <a href="mailto:qianzhenye@stu.hznu.edu.cn">qianzhenye@stu.hznu.edu.cn</a>
+                    <p class="email-note">(Student email, expires July 2026)</p>
+                </div>
+                
+                <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University</p>
             </div>
         </section>
 
@@ -218,6 +285,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             
+            // 初始加载时显示所有部分，但只高亮About部分
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            });
+            
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -233,7 +306,7 @@
                     const targetSection = document.querySelector(targetId);
                     
                     window.scrollTo({
-                        top: targetSection.offsetTop - 20,
+                        top: targetSection.offsetTop - 40,
                         behavior: 'smooth'
                     });
                 });
@@ -261,6 +334,25 @@
                         link.classList.add('active');
                     }
                 });
+            });
+            
+            // 添加滚动时的淡入效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
             });
         });
     </script>
