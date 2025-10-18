@@ -44,20 +44,22 @@
             border-bottom: 1px solid var(--border);
         }
         
-        /* 照片容器样式 */
+        /* 竖版照片容器样式 */
         .photo-container {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 120px; /* 竖版宽度 */
+            height: 160px; /* 竖版高度 */
             overflow: hidden;
             margin-right: 30px;
-            border: 2px solid var(--border);
-            background-color: #f0f0f0; /* 照片占位背景色 */
+            border: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light-text);
-            font-size: 0.9em;
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         /* 标题文本容器 */
@@ -237,6 +239,8 @@
             .photo-container {
                 margin-right: 0;
                 margin-bottom: 20px;
+                width: 100px; /* 移动设备上稍小一些 */
+                height: 140px;
             }
             
             h1 {
@@ -269,11 +273,11 @@
     </style>
 </head>
 <body>
-    <!-- 页面头部 - 包含照片和标题 -->
+    <!-- 页面头部 - 包含竖版照片和标题 -->
     <header>
-        <!-- 照片占位区 - 请替换为您的照片 -->
+        <!-- 竖版照片 -->
         <div class="photo-container">
-            [您的照片]
+            <img src="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/header.png" alt="Qian Zhenye" class="profile-photo">
         </div>
         
         <!-- 标题文本容器 -->
