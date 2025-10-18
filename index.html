@@ -6,13 +6,16 @@
     <title>Qian Zhenye | Mathematician</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #8b0000;
-            --accent: #1a5276;
-            --background: #fef9e7;
-            --light-bg: #fffbf0;
-            --text: #333;
-            --light-text: #7f8c8d;
+            --primary: #222;
+            --secondary: #444;
+            --accent: #0000EE; /* 传统蓝色链接 */
+            --background: #fef9e7; /* 米黄色护眼背景 */
+            --light-bg: #f8efe8;
+            --text: #222;
+            --light-text: #666;
+            --border: #ddd;
+            --section-spacing: 60px; /* 部分间距 */
+            --subsection-spacing: 30px; /* 子部分间距 */
         }
         
         * {
@@ -22,151 +25,159 @@
         }
         
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.6;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
             color: var(--text);
             background-color: var(--background);
             max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 30px;
+            padding: 30px 20px;
+            font-size: 16px;
         }
         
         /* 头部样式 */
         header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        /* 照片容器样式 */
+        .photo-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 30px;
+            border: 2px solid var(--border);
+            background-color: #f0f0f0; /* 照片占位背景色 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-size: 0.9em;
+        }
+        
+        /* 标题文本容器 */
+        .title-container {
+            flex: 1;
         }
         
         h1 {
             color: var(--primary);
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 400;
-            letter-spacing: 1px;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            font-weight: 600;
         }
         
         .subtitle {
             color: var(--light-text);
-            font-size: 1.2em;
-            margin-top: 10px;
+            font-size: 1.1em;
+            margin-top: 5px;
         }
         
         /* 导航栏样式 */
         nav {
             display: flex;
             justify-content: center;
-            margin: 40px 0 60px;
+            margin: 30px 0 40px;
             flex-wrap: wrap;
         }
         
         .nav-link {
-            margin: 0 20px;
+            margin: 0 15px;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 0;
-            position: relative;
-            font-size: 1.1em;
+            padding: 5px 0;
+            font-size: 1em;
+            border-bottom: 2px solid transparent;
         }
         
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
+        .nav-link:hover, .nav-link.active {
+            border-bottom: 2px solid var(--primary);
         }
         
-        .nav-link:hover:after, .nav-link.active:after {
-            width: 100%;
-        }
-        
-        /* 内容区域样式 */
+        /* 内容区域样式 - 部分间距 */
         .section {
-            margin-bottom: 70px;
+            margin-bottom: var(--section-spacing);
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        /* 最后一个部分不加底部边框 */
+        .section:last-child {
+            border-bottom: none;
         }
         
         h2 {
             color: var(--primary);
-            margin-bottom: 25px;
-            font-size: 1.8em;
-            font-weight: 400;
-            position: relative;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
         }
         
-        h2:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-        }
-        
+        /* 子部分间距小于部分间距 */
         h3 {
             color: var(--primary);
-            margin: 25px 0 15px;
-            font-size: 1.3em;
-            font-weight: 500;
+            margin: var(--subsection-spacing) 0 10px;
+            font-size: 1.2em;
+            font-weight: 600;
         }
         
         p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1em;
+            line-height: 1.5;
         }
         
-        /* 链接样式 */
+        /* 链接样式 - 传统蓝色带下划线 */
         a {
             color: var(--accent);
             text-decoration: underline;
-            transition: color 0.3s;
         }
         
         a:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
         
         /* 邮箱样式 */
         .email-section {
-            margin: 30px 0;
+            margin: 25px 0;
         }
         
         .email {
-            margin: 15px 0;
-            font-size: 1.1em;
+            margin: 10px 0;
+            font-size: 1em;
         }
         
         .email-note {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: var(--light-text);
             font-style: italic;
-            margin-top: 5px;
+            margin-top: 3px;
         }
         
         /* 列表样式 */
         ul {
-            padding-left: 20px;
-            margin-bottom: 20px;
+            padding-left: 18px;
+            margin-bottom: 15px;
         }
         
         li {
-            margin-bottom: 8px;
-            line-height: 1.6;
+            margin-bottom: 6px;
+            line-height: 1.4;
         }
         
-        /* 学习经历样式 */
+        /* 学习经历样式 - 减小间距 */
         .study-item {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 15px; /* 减小间距 */
+            padding-bottom: 10px; /* 减小间距 */
+            border-bottom: 1px solid var(--border);
         }
         
         .study-item:last-child {
@@ -175,22 +186,21 @@
         
         .study-date {
             font-weight: bold;
-            color: var(--secondary);
+            color: var(--primary);
         }
         
         .study-course {
-            font-style: italic;
-            margin: 5px 0;
+            margin: 3px 0;
         }
         
         /* 奖项样式 */
         .award-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .award-year {
             font-weight: bold;
-            color: var(--secondary);
+            color: var(--primary);
         }
         
         /* 建设中样式 */
@@ -198,44 +208,35 @@
             font-style: italic;
             color: var(--light-text);
             text-align: center;
-            padding: 40px 20px;
-            border: 1px dashed #bdc3c7;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.5);
+            padding: 30px 15px;
+            border: 1px dashed var(--border);
+            background-color: var(--light-bg);
         }
         
         /* 页脚样式 */
         footer {
-            margin-top: 80px;
+            margin-top: 60px;
             text-align: center;
             color: var(--light-text);
-            font-size: 0.9em;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.85em;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
             body {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 2.2em;
-            }
-            
-            .nav-link {
-                margin: 5px 15px;
-            }
-            
-            .section {
-                margin-bottom: 50px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
                 padding: 20px 15px;
+            }
+            
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .photo-container {
+                margin-right: 0;
+                margin-bottom: 20px;
             }
             
             h1 {
@@ -244,17 +245,45 @@
             
             .nav-link {
                 margin: 5px 10px;
-                font-size: 1em;
+            }
+            
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            h1 {
+                font-size: 1.6em;
+            }
+            
+            .nav-link {
+                margin: 3px 8px;
+                font-size: 0.95em;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 页面头部 - 包含照片和标题 -->
     <header>
-        <h1>Qian Zhenye</h1>
-        <p class="subtitle">Mathematics Student | PDEs & Geometric Analysis</p>
+        <!-- 照片占位区 - 请替换为您的照片 -->
+        <div class="photo-container">
+            [您的照片]
+        </div>
+        
+        <!-- 标题文本容器 -->
+        <div class="title-container">
+            <h1>Qian Zhenye</h1>
+            <p class="subtitle">Mathematics Student | PDEs & Geometric Analysis</p>
+        </div>
     </header>
 
+    <!-- 主导航 -->
     <nav>
         <a href="#about" class="nav-link active">About</a>
         <a href="#research" class="nav-link">Research</a>
@@ -262,24 +291,23 @@
         <a href="#notes" class="nav-link">Notes</a>
     </nav>
 
+    <!-- 主要内容区域 -->
     <main>
         <!-- About Me 部分 -->
         <section id="about" class="section">
             <h2>About Me</h2>
-            <p>I was born in Zhejiang, China, and obtained my B.S. in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a> (2022-2026), under the supervision of Professor Zhiyuan Xu.</p>
+            <p>I was born in Zhejiang, China, and obtained my B.S. in Mathematics at <a href="https://english.hznu.edu.cn">Hangzhou Normal University</a> (2022-2026), under the supervision of Professor <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml">Zhiyuan Xu</a>.</p>
             
             <h3>Personal Awards</h3>
             <div class="award-item">
-                <span class="award-year">2025:</span> S.-T.Yau College Student Mathematics Contest: Individual Awards–Chern Award, for Geometry and Topology Bronze Medal
+                <span class="award-year">2025:</span> <a href="http://yau-contest.com">S.-T.Yau College Student Mathematics Contest</a>: Individual Awards–Chern Award, for Geometry and Topology Bronze Medal
+            </div>
+            <!-- 已删除几何14名 -->
+            <div class="award-item">
+                <span class="award-year">2024:</span> <a href="http://yau-contest.com">S.-T.Yau College Student Mathematics Contest</a>: Analysis and Differential Equation (No.86)
             </div>
             <div class="award-item">
-                <span class="award-year">2025:</span> S.-T.Yau College Student Mathematics Contest: Geometry and Topology (No.14)
-            </div>
-            <div class="award-item">
-                <span class="award-year">2024:</span> S.-T.Yau College Student Mathematics Contest: Analysis and Differential Equation (No.86)
-            </div>
-            <div class="award-item">
-                <span class="award-year">2022:</span> The Chinese Mathematics Competitions (CMC) (First Prize)
+                <span class="award-year">2022:</span> <a href="http://www.cmathc.cn">The Chinese Mathematics Competitions (CMC)</a> (First Prize)
             </div>
             
             <h3>Curriculum Vitae</h3>
@@ -318,6 +346,7 @@
             </div>
             
             <h3>Study Experience</h3>
+            <!-- 已减小Study Experience内部间距 -->
             <div class="study-item">
                 <p class="study-date">July 2025</p>
                 <p class="study-course">USTC Institute of Geometry and Physics: <a href="https://igp.ustc.edu.cn/2025/0403/c28839a679308/page.htm">Summer School in Geometry and Analysis</a></p>
@@ -412,14 +441,14 @@
             <div class="study-item">
                 <p class="study-date">Spring 2025</p>
                 <p class="study-course">Differential Geometry (Honor), Hangzhou Normal University</p>
-                <p>Instructor: Zhiyuan Xu</p>
+                <p>Instructor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml">Zhiyuan Xu</a></p>
                 <p>References: <a href="https://zhenye-math.github.io/2025春夏微分几何课堂练习_补充材料.pdf">exercises and supplementary materials</a></p>
             </div>
             
             <div class="study-item">
                 <p class="study-date">Autumn 2024</p>
                 <p class="study-course">Analytic Geometry, Hangzhou Normal University</p>
-                <p>Instructor: Zhiyuan Xu</p>
+                <p>Instructor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml">Zhiyuan Xu</a></p>
                 <p>References: <a href="https://zhenye-math.github.io/2024秋冬解析几何课堂练习_补充材料.pdf">exercises and supplementary materials</a></p>
             </div>
         </section>
@@ -437,6 +466,7 @@
         </section>
     </main>
 
+    <!-- 页脚 -->
     <footer>
         <p>&copy; 2023-2025 Qian Zhenye. All rights reserved.</p>
         <p>Department of Mathematics, Hangzhou Normal University</p>
