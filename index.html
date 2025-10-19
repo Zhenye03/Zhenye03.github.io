@@ -8,15 +8,15 @@
         :root {
             --primary: #222;
             --secondary: #444;
-            --accent: #0000EE; /* 传统蓝色链接 */
-            --background: #ffffff; /* 改为白色背景，更朴素 */
+            --accent: #0000EE;
+            --background: #ffffff;
             --light-bg: #f8f8f8;
             --text: #222;
             --light-text: #666;
             --border: #ddd;
-            --section-spacing: 25px; /* 减小部分间距 */
-            --subsection-spacing: 15px; /* 减小子部分间距 */
-            --section-color: #0040FF; /* 大标题蓝色 */
+            --section-spacing: 25px;
+            --subsection-spacing: 15px;
+            --section-color: #0040FF;
         }
         
         * {
@@ -26,17 +26,17 @@
         }
         
         body {
-            font-family: 'Times New Roman', Times, serif; /* 改为衬线字体，更学术 */
-            line-height: 1.4; /* 减小行高 */
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.4;
             color: var(--text);
             background-color: var(--background);
-            max-width: 1100px; /* 增加最大宽度以适应两栏布局 */
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px 15px; /* 减小内边距 */
-            font-size: 14px; /* 减小字体大小 */
+            padding: 20px 15px;
+            font-size: 14px;
             display: grid;
-            grid-template-columns: 1fr 2fr; /* 左右两栏布局 */
-            gap: 30px; /* 两栏之间的间距 */
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
         }
         
         /* 左侧栏样式 */
@@ -50,16 +50,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 25px; /* 减小底部间距 */
-            padding-bottom: 15px; /* 减小内边距 */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--border);
             text-align: center;
         }
         
         /* 竖版照片容器样式 */
         .photo-container {
-            width: 160px; /* 增加竖版宽度 */
-            height: 200px; /* 增加竖版高度 */
+            width: 160px;
+            height: 200px;
             overflow: hidden;
             margin-bottom: 15px;
             border: 1px solid var(--border);
@@ -81,14 +81,14 @@
         
         h1 {
             color: var(--primary);
-            font-size: 1.8em; /* 减小标题大小 */
+            font-size: 1.8em;
             margin-bottom: 5px;
             font-weight: 600;
         }
         
         .subtitle {
             color: var(--light-text);
-            font-size: 1em; /* 减小副标题大小 */
+            font-size: 1em;
             margin-top: 5px;
         }
         
@@ -111,23 +111,49 @@
         nav {
             display: flex;
             flex-direction: column;
-            margin: 20px 0; /* 减小边距 */
+            margin: 20px 0;
         }
         
         .nav-link {
-            margin: 5px 0; /* 垂直排列 */
+            margin: 5px 0;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 12px; /* 增加内边距 */
-            font-size: 0.95em; /* 减小字体大小 */
-            border-left: 3px solid transparent; /* 左侧边框 */
+            padding: 8px 12px;
+            font-size: 0.95em;
+            border-left: 3px solid transparent;
             transition: all 0.2s;
         }
         
         .nav-link:hover, .nav-link.active {
-            border-left: 3px solid var(--section-color); /* 激活状态左侧边框 */
+            border-left: 3px solid var(--section-color);
             background-color: rgba(0, 64, 255, 0.05);
+        }
+        
+        /* 子导航样式 */
+        .sub-nav {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+        
+        .sub-nav.active {
+            display: block;
+        }
+        
+        .sub-nav-link {
+            display: block;
+            padding: 5px 12px;
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.85em;
+            border-left: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .sub-nav-link:hover, .sub-nav-link.active {
+            color: var(--primary);
+            border-left: 2px solid var(--section-color);
         }
         
         /* 主要内容区域样式 */
@@ -138,7 +164,7 @@
         /* 内容区域样式 - 部分间距 */
         .section {
             margin-bottom: var(--section-spacing);
-            padding-bottom: 15px; /* 减小内边距 */
+            padding-bottom: 15px;
         }
         
         /* 最后一个部分不加底部边框 */
@@ -147,26 +173,26 @@
         }
         
         h2 {
-            color: var(--section-color); /* 使用蓝色 */
-            margin-bottom: 15px; /* 减小底部间距 */
-            font-size: 1.5em; /* 增加字体大小 */
+            color: var(--section-color);
+            margin-bottom: 15px;
+            font-size: 1.5em;
             font-weight: 600;
-            padding-bottom: 8px; /* 增加内边距 */
-            border-bottom: 2px solid var(--section-color); /* 更明显的底部边框 */
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--section-color);
         }
         
         /* 子部分间距小于部分间距 */
         h3 {
             color: var(--primary);
-            margin: var(--subsection-spacing) 0 8px; /* 调整边距 */
-            font-size: 1.2em; /* 增加字体大小 */
+            margin: var(--subsection-spacing) 0 8px;
+            font-size: 1.2em;
             font-weight: 600;
         }
         
         p {
-            margin-bottom: 12px; /* 减小底部间距 */
-            font-size: 0.95em; /* 减小字体大小 */
-            line-height: 1.4; /* 减小行高 */
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            line-height: 1.4;
         }
         
         /* 链接样式 - 传统蓝色带下划线 */
@@ -183,7 +209,7 @@
         .paper-link {
             color: inherit;
             text-decoration: none;
-            font-weight: normal; /* 移除加粗 */
+            font-weight: normal;
         }
         
         .paper-link:hover {
@@ -192,37 +218,37 @@
         
         /* 邮箱样式 */
         .email-section {
-            margin: 20px 0; /* 减小边距 */
+            margin: 20px 0;
         }
         
         .email {
-            margin: 8px 0; /* 减小边距 */
-            font-size: 0.95em; /* 减小字体大小 */
+            margin: 8px 0;
+            font-size: 0.95em;
         }
         
         .email-note {
-            font-size: 0.8em; /* 减小字体大小 */
+            font-size: 0.8em;
             color: var(--light-text);
             font-style: italic;
-            margin-top: 2px; /* 减小边距 */
+            margin-top: 2px;
         }
         
         /* 列表样式 */
         ul, ol {
-            padding-left: 18px; /* 增加内边距 */
-            margin-bottom: 12px; /* 减小底部间距 */
+            padding-left: 18px;
+            margin-bottom: 12px;
         }
         
         li {
-            margin-bottom: 4px; /* 减小底部间距 */
-            line-height: 1.3; /* 减小行高 */
-            font-size: 0.95em; /* 减小字体大小 */
+            margin-bottom: 4px;
+            line-height: 1.3;
+            font-size: 0.95em;
         }
         
         /* 学习经历样式 - 减小间距 */
         .study-item {
-            margin-bottom: 15px; /* 增加间距 */
-            padding-bottom: 12px; /* 增加间距 */
+            margin-bottom: 15px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
         }
         
@@ -236,7 +262,7 @@
         }
         
         .study-course {
-            margin: 2px 0; /* 减小边距 */
+            margin: 2px 0;
         }
         
         /* 预印本和笔记条目样式 */
@@ -252,7 +278,7 @@
         
         .paper-title {
             margin-bottom: 5px;
-            font-weight: normal; /* 移除加粗 */
+            font-weight: normal;
         }
         
         .paper-date {
@@ -263,7 +289,7 @@
         
         /* 奖项样式 */
         .award-item {
-            margin-bottom: 10px; /* 减小底部间距 */
+            margin-bottom: 10px;
         }
         
         .award-year {
@@ -276,37 +302,37 @@
             font-style: italic;
             color: var(--light-text);
             text-align: center;
-            padding: 20px 12px; /* 减小内边距 */
+            padding: 20px 12px;
             border: 1px dashed var(--border);
             background-color: var(--light-bg);
-            font-size: 0.9em; /* 减小字体大小 */
+            font-size: 0.9em;
         }
         
         /* 页脚样式 */
         footer {
-            margin-top: 40px; /* 减小顶部间距 */
+            margin-top: 40px;
             text-align: center;
             color: var(--light-text);
-            font-size: 0.8em; /* 减小字体大小 */
-            padding-top: 15px; /* 减小内边距 */
+            font-size: 0.8em;
+            padding-top: 15px;
             border-top: 1px solid var(--border);
-            grid-column: 1 / -1; /* 页脚横跨两栏 */
+            grid-column: 1 / -1;
         }
         
         /* 响应式设计 */
         @media (max-width: 900px) {
             body {
-                grid-template-columns: 1fr; /* 单栏布局 */
-                padding: 15px 10px; /* 减小内边距 */
-                font-size: 13px; /* 移动设备上更小字体 */
+                grid-template-columns: 1fr;
+                padding: 15px 10px;
+                font-size: 13px;
             }
             
             .sidebar {
-                order: 2; /* 侧边栏在移动设备上放在底部 */
+                order: 2;
             }
             
             .main-content {
-                order: 1; /* 主要内容在移动设备上放在顶部 */
+                order: 1;
             }
             
             header {
@@ -316,36 +342,36 @@
             
             .photo-container {
                 margin-right: 0;
-                margin-bottom: 15px; /* 减小底部间距 */
-                width: 140px; /* 移动设备上稍小一些 */
+                margin-bottom: 15px;
+                width: 140px;
                 height: 180px;
             }
             
             h1 {
-                font-size: 1.6em; /* 减小标题大小 */
+                font-size: 1.6em;
             }
             
             .nav-link {
-                margin: 3px 8px; /* 减小边距 */
+                margin: 3px 8px;
             }
             
             .section {
-                margin-bottom: 30px; /* 减小底部间距 */
+                margin-bottom: 30px;
             }
         }
         
         @media (max-width: 480px) {
             body {
-                padding: 10px 8px; /* 减小内边距 */
+                padding: 10px 8px;
             }
             
             h1 {
-                font-size: 1.4em; /* 减小标题大小 */
+                font-size: 1.4em;
             }
             
             .nav-link {
-                margin: 2px 6px; /* 减小边距 */
-                font-size: 0.9em; /* 减小字体大小 */
+                margin: 2px 6px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -385,7 +411,17 @@
         <!-- 主导航 -->
         <nav>
             <a href="#about" class="nav-link active">About</a>
-            <a href="#research" class="nav-link">Research</a>
+            
+            <a href="#research" class="nav-link" id="research-nav">Research</a>
+            <div class="sub-nav" id="research-subnav">
+                <a href="#research-interests" class="sub-nav-link">Research Interests</a>
+                <a href="#preprints" class="sub-nav-link">Preprints</a>
+                <a href="#publications" class="sub-nav-link">Publications</a>
+                <a href="#selected-talks" class="sub-nav-link">Selected Talks</a>
+                <a href="#study-experience" class="sub-nav-link">Study Experience</a>
+                <a href="#seminars" class="sub-nav-link">Seminars</a>
+            </div>
+            
             <a href="#teaching" class="nav-link">Teaching</a>
             <a href="#notes" class="nav-link">Notes</a>
         </nav>
@@ -410,13 +446,14 @@
             </div>
             
             <h3>Curriculum Vitae</h3>
-            <p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
+            <p>You can view and download my complete CV here: <a href="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
         </section>
 
         <!-- Research 部分 -->
         <section id="research" class="section">
             <h2>Research</h2>
-            <h3>Research Interests</h3>
+            
+            <h3 id="research-interests">Research Interests</h3>
             <p>Partial Differential Equations and Geometric Analysis, including nonlinear elliptic PDEs, geometric measure theory.</p>
             
             <p>Recently, I was interested in following topics:</p>
@@ -426,7 +463,7 @@
                 <li>Nonlinear instability of Navier-Stokes equations and Bootstrap method</li>
             </ul>
             
-            <h3>Preprints</h3>
+            <h3 id="preprints">Preprints</h3>
             <div class="preprint-item">
                 <div class="paper-title">
                     <a href="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/papers/A_Short_Review_of_Qualitative_Properties_for_Semilinear_Elliptic_Equations.pdf" class="paper-link">
@@ -436,10 +473,10 @@
                 <div class="paper-date">October 18, 2025 (unpublished)</div>
             </div>
             
-            <h3>Publications</h3>
+            <h3 id="publications">Publications</h3>
             <div class="under-construction">Under Construction</div>
             
-            <h3>Selected Talks</h3>
+            <h3 id="selected-talks">Selected Talks</h3>
             <div class="study-item">
                 <p class="study-date">October 2025</p>
                 <p class="study-course"><a href="https://www.bilibili.com/video/BV1K6swzcEFH/?spm_id_from=333.1387.homepage.video_card.click&vd_source=6f9be697e4f7f3e4863ea519e09ea8a8">A Short Review of Qualitative Properties for Semilinear Elliptic Equations</a></p>
@@ -454,7 +491,7 @@
                 <p>Northeast Normal University, Jilin, China</p>
             </div>
             
-            <h3>Study Experience</h3>
+            <h3 id="study-experience">Study Experience</h3>
             <div class="study-item">
                 <p class="study-date">July 2025</p>
                 <p class="study-course">USTC Institute of Geometry and Physics: <a href="https://igp.ustc.edu.cn/2025/0403/c28839a679308/page.htm">Summer School in Geometry and Analysis</a></p>
@@ -491,7 +528,7 @@
                 </ul>
             </div>
             
-            <h3>Seminars</h3>
+            <h3 id="seminars">Seminars</h3>
             <div class="study-item">
                 <p class="study-date">September 2025 - now</p>
                 <p class="study-course">Elliptic Partial Differential Equations Seminar</p>
@@ -596,13 +633,32 @@
         // 平滑滚动导航
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
+            const subNavLinks = document.querySelectorAll('.sub-nav-link');
+            const researchNav = document.getElementById('research-nav');
+            const researchSubnav = document.getElementById('research-subnav');
             
-            navLinks.forEach(link => {
+            // 点击Research主链接时切换子导航显示
+            researchNav.addEventListener('click', function(e) {
+                e.preventDefault();
+                researchSubnav.classList.toggle('active');
+                
+                // 平滑滚动到目标部分
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 40,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 点击子导航链接
+            subNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
                     // 移除所有活动类
-                    navLinks.forEach(l => l.classList.remove('active'));
+                    subNavLinks.forEach(l => l.classList.remove('active'));
                     
                     // 添加活动类到当前链接
                     this.classList.add('active');
@@ -618,12 +674,40 @@
                 });
             });
             
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this !== researchNav) {
+                        e.preventDefault();
+                        
+                        // 移除所有活动类
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        
+                        // 添加活动类到当前链接
+                        this.classList.add('active');
+                        
+                        // 隐藏Research子导航
+                        researchSubnav.classList.remove('active');
+                        
+                        // 平滑滚动到目标部分
+                        const targetId = this.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 40,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
             // 根据滚动位置高亮当前部分
             window.addEventListener('scroll', function() {
                 const sections = document.querySelectorAll('.section');
                 const navLinks = document.querySelectorAll('.nav-link');
+                const subNavLinks = document.querySelectorAll('.sub-nav-link');
                 
                 let currentSection = '';
+                let currentSubSection = '';
                 
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
@@ -632,11 +716,32 @@
                     if (window.scrollY >= (sectionTop - 100)) {
                         currentSection = '#' + section.getAttribute('id');
                     }
+                    
+                    // 检查子部分
+                    const subsections = section.querySelectorAll('h3');
+                    subsections.forEach(subsection => {
+                        const subsectionTop = subsection.offsetTop;
+                        if (window.scrollY >= (subsectionTop - 120)) {
+                            currentSubSection = '#' + subsection.getAttribute('id');
+                        }
+                    });
                 });
                 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                        
+                        // 如果当前部分是Research，显示子导航
+                        if (currentSection === '#research') {
+                            researchSubnav.classList.add('active');
+                        }
+                    }
+                });
+                
+                subNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSubSection) {
                         link.classList.add('active');
                     }
                 });
