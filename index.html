@@ -14,8 +14,8 @@
             --text: #222;
             --light-text: #666;
             --border: #ddd;
-            --section-spacing: 40px; /* 减小部分间距 */
-            --subsection-spacing: 20px; /* 减小子部分间距 */
+            --section-spacing: 25px; /* 减小部分间距 */
+            --subsection-spacing: 15px; /* 减小子部分间距 */
             --section-color: #0040FF; /* 大标题蓝色 */
         }
         
@@ -30,27 +30,38 @@
             line-height: 1.4; /* 减小行高 */
             color: var(--text);
             background-color: var(--background);
-            max-width: 900px; /* 减小最大宽度 */
+            max-width: 1100px; /* 增加最大宽度以适应两栏布局 */
             margin: 0 auto;
             padding: 20px 15px; /* 减小内边距 */
             font-size: 14px; /* 减小字体大小 */
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* 左右两栏布局 */
+            gap: 30px; /* 两栏之间的间距 */
+        }
+        
+        /* 左侧栏样式 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
         }
         
         /* 头部样式 */
         header {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            margin-bottom: 30px; /* 减小底部间距 */
+            margin-bottom: 25px; /* 减小底部间距 */
             padding-bottom: 15px; /* 减小内边距 */
             border-bottom: 1px solid var(--border);
+            text-align: center;
         }
         
         /* 竖版照片容器样式 */
         .photo-container {
-            width: 100px; /* 减小竖版宽度 */
-            height: 130px; /* 减小竖版高度 */
+            width: 160px; /* 增加竖版宽度 */
+            height: 200px; /* 增加竖版高度 */
             overflow: hidden;
-            margin-right: 20px; /* 减小右边距 */
+            margin-bottom: 15px;
             border: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -81,33 +92,53 @@
             margin-top: 5px;
         }
         
+        /* 联系信息样式 */
+        .contact-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light-bg);
+            border-radius: 5px;
+        }
+        
+        .contact-info h3 {
+            margin-top: 0;
+            color: var(--section-color);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+        
         /* 导航栏样式 */
         nav {
             display: flex;
-            justify-content: center;
-            margin: 20px 0 30px; /* 减小边距 */
-            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 20px 0; /* 减小边距 */
         }
         
         .nav-link {
-            margin: 0 12px; /* 减小边距 */
+            margin: 5px 0; /* 垂直排列 */
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            padding: 3px 0; /* 减小内边距 */
+            padding: 8px 12px; /* 增加内边距 */
             font-size: 0.95em; /* 减小字体大小 */
-            border-bottom: 1px solid transparent; /* 减小边框粗细 */
+            border-left: 3px solid transparent; /* 左侧边框 */
+            transition: all 0.2s;
         }
         
         .nav-link:hover, .nav-link.active {
-            border-bottom: 1px solid var(--primary); /* 减小边框粗细 */
+            border-left: 3px solid var(--section-color); /* 激活状态左侧边框 */
+            background-color: rgba(0, 64, 255, 0.05);
+        }
+        
+        /* 主要内容区域样式 */
+        .main-content {
+            padding-top: 10px;
         }
         
         /* 内容区域样式 - 部分间距 */
         .section {
             margin-bottom: var(--section-spacing);
             padding-bottom: 15px; /* 减小内边距 */
-            border-bottom: 1px solid var(--border);
         }
         
         /* 最后一个部分不加底部边框 */
@@ -118,17 +149,17 @@
         h2 {
             color: var(--section-color); /* 使用蓝色 */
             margin-bottom: 15px; /* 减小底部间距 */
-            font-size: 1.4em; /* 减小字体大小 */
+            font-size: 1.5em; /* 增加字体大小 */
             font-weight: 600;
-            padding-bottom: 5px; /* 减小内边距 */
-            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px; /* 增加内边距 */
+            border-bottom: 2px solid var(--section-color); /* 更明显的底部边框 */
         }
         
         /* 子部分间距小于部分间距 */
         h3 {
             color: var(--primary);
             margin: var(--subsection-spacing) 0 8px; /* 调整边距 */
-            font-size: 1.1em; /* 减小字体大小 */
+            font-size: 1.2em; /* 增加字体大小 */
             font-weight: 600;
         }
         
@@ -166,8 +197,8 @@
         }
         
         /* 列表样式 */
-        ul {
-            padding-left: 15px; /* 减小内边距 */
+        ul, ol {
+            padding-left: 18px; /* 增加内边距 */
             margin-bottom: 12px; /* 减小底部间距 */
         }
         
@@ -179,8 +210,8 @@
         
         /* 学习经历样式 - 减小间距 */
         .study-item {
-            margin-bottom: 12px; /* 减小间距 */
-            padding-bottom: 8px; /* 减小间距 */
+            margin-bottom: 15px; /* 增加间距 */
+            padding-bottom: 12px; /* 增加间距 */
             border-bottom: 1px solid var(--border);
         }
         
@@ -226,13 +257,23 @@
             font-size: 0.8em; /* 减小字体大小 */
             padding-top: 15px; /* 减小内边距 */
             border-top: 1px solid var(--border);
+            grid-column: 1 / -1; /* 页脚横跨两栏 */
         }
         
         /* 响应式设计 */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             body {
+                grid-template-columns: 1fr; /* 单栏布局 */
                 padding: 15px 10px; /* 减小内边距 */
                 font-size: 13px; /* 移动设备上更小字体 */
+            }
+            
+            .sidebar {
+                order: 2; /* 侧边栏在移动设备上放在底部 */
+            }
+            
+            .main-content {
+                order: 1; /* 主要内容在移动设备上放在顶部 */
             }
             
             header {
@@ -243,8 +284,8 @@
             .photo-container {
                 margin-right: 0;
                 margin-bottom: 15px; /* 减小底部间距 */
-                width: 90px; /* 移动设备上稍小一些 */
-                height: 120px;
+                width: 140px; /* 移动设备上稍小一些 */
+                height: 180px;
             }
             
             h1 {
@@ -277,30 +318,48 @@
     </style>
 </head>
 <body>
-    <!-- 页面头部 - 包含竖版照片和标题 -->
-    <header>
-        <!-- 竖版照片 -->
-        <div class="photo-container">
-            <img src="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/fa1d069fc8071ee250392c1eff59cb75.png" alt="Qian Zhenye" class="profile-photo">
-        </div>
-        
-        <!-- 标题文本容器 -->
-        <div class="title-container">
-            <h1>Qian Zhenye</h1>
-            <p class="subtitle">Mathematics Student | PDEs & Geometric Analysis</p>
-        </div>
-    </header>
+    <!-- 左侧栏 -->
+    <div class="sidebar">
+        <!-- 页面头部 - 包含竖版照片和标题 -->
+        <header>
+            <!-- 竖版照片 -->
+            <div class="photo-container">
+                <img src="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/fa1d069fc8071ee250392c1eff59cb75.png" alt="Qian Zhenye" class="profile-photo">
+            </div>
+            
+            <!-- 标题文本容器 -->
+            <div class="title-container">
+                <h1>Qian Zhenye</h1>
+                <p class="subtitle">Mathematics Student | PDEs & Geometric Analysis</p>
+            </div>
+        </header>
 
-    <!-- 主导航 -->
-    <nav>
-        <a href="#about" class="nav-link active">About</a>
-        <a href="#research" class="nav-link">Research</a>
-        <a href="#teaching" class="nav-link">Teaching</a>
-        <a href="#notes" class="nav-link">Notes</a>
-    </nav>
+        <!-- 联系信息 -->
+        <div class="contact-info">
+            <h3>Contact</h3>
+            <div class="email">
+                <a href="mailto:qianzhenye03@163.com">qianzhenye03@163.com</a>
+            </div>
+            
+            <div class="email">
+                <a href="mailto:qianzhenye@stu.hznu.edu.cn">qianzhenye@stu.hznu.edu.cn</a>
+                <p class="email-note">(Student email, expires July 2026)</p>
+            </div>
+            
+            <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University, Yuhangtang Road, Yuhang District, Hangzhou, Zhejiang, P.R.China 311121</p>
+        </div>
+
+        <!-- 主导航 -->
+        <nav>
+            <a href="#about" class="nav-link active">About</a>
+            <a href="#research" class="nav-link">Research</a>
+            <a href="#teaching" class="nav-link">Teaching</a>
+            <a href="#notes" class="nav-link">Notes</a>
+        </nav>
+    </div>
 
     <!-- 主要内容区域 -->
-    <main>
+    <div class="main-content">
         <!-- About Me 部分 -->
         <section id="about" class="section">
             <h2>About Me</h2>
@@ -319,20 +378,6 @@
             
             <h3>Curriculum Vitae</h3>
             <p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
-            
-            <div class="email-section">
-                <h3>Contact</h3>
-                <div class="email">
-                    <a href="mailto:qianzhenye03@163.com">qianzhenye03@163.com</a>
-                </div>
-                
-                <div class="email">
-                    <a href="mailto:qianzhenye@stu.hznu.edu.cn">qianzhenye@stu.hznu.edu.cn</a>
-                    <p class="email-note">(Student email, expires July 2026)</p>
-                </div>
-                
-                <p><strong>Address:</strong> Department of Mathematics, Hangzhou Normal University, Yuhangtang Road, Yuhang District, Hangzhou, Zhejiang, P.R.China 311121</p>
-            </div>
         </section>
 
         <!-- Research 部分 -->
@@ -367,7 +412,6 @@
             </div>
             
             <h3>Study Experience</h3>
-            <!-- 已减小Study Experience内部间距 -->
             <div class="study-item">
                 <p class="study-date">July 2025</p>
                 <p class="study-course">USTC Institute of Geometry and Physics: <a href="https://igp.ustc.edu.cn/2025/0403/c28839a679308/page.htm">Summer School in Geometry and Analysis</a></p>
@@ -409,17 +453,13 @@
                 <p class="study-date">September 2025 - now</p>
                 <p class="study-course">Elliptic Partial Differential Equations Seminar</p>
                 <p>Sunday 14:00-17:00, Room 101, Building 2, Hainayuan, Zhejiang University (School of Mathematical Sciences)</p>
-                <p>with H.J. Chen (ZJU), Z.J. Hu (ZJU), M.T. Zhu (WU)</p>
+                <p>with H.J. Chen (ZJU), Z.J. Hu (ZJU), M.T. Zhu (WU), T.Y. Shen (<a href="https://tianyi686.github.io">ShanghaiTech</a>), T.L. Wang (AMSS)</p>
                 <p>Selected videos: <a href="https://www.bilibili.com/video/BV1K6swzcEFH/?spm_id_from=333.1387.homepage.video_card.click&vd_source=6f9be697e4f7f3e4863ea519e09ea8a8">A Short Review of Qualitative Properties for Semilinear Elliptic Equations</a></p>
             </div>
             
             <div class="study-item">
                 <p class="study-date">June 2025 - now</p>
                 <p class="study-course">Minimal Surfaces Seminar (online) - <a href="https://www.bilibili.com/video/BV1PaKGzrEwU/?spm_id_from=333.1387.homepage.video_card.click">selected videos</a></p>
-                <p>Selected topics I have talked:</p>
-                <ul>
-                    <li>A simple survey of minimal surfaces and related aspects</li>
-                </ul>
                 <p>The whole talks:</p>
                 <ul>
                     <li><a href="https://www.bilibili.com/video/BV1PaKGzrEwU/?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8">A simple survey of minimal surfaces and related aspects 6.24 (Zhenye Qian, HZNU)</a></li>
@@ -491,7 +531,7 @@
                 <li>Ideas and Discussions: <a href="https://www.zhihu.com/people/qzy-55-20">Zhihu</a></li>
             </ul>
         </section>
-    </main>
+    </div>
 
     <!-- 页脚 -->
     <footer>
