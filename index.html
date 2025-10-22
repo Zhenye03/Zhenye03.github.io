@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qian Zhenye | Mathematics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #222;
             --secondary: #444;
-            --accent: #1a73e8; /* 更舒适的浅蓝色 */
+            --accent: #1a73e8; /* 舒适的浅蓝色 */
+            --title-color: #1a73e8; /* 标题使用同样的浅蓝色 */
             --visited-link: #8a2be2; /* 舒适的紫色 */
             --background: #ffffff;
             --light-bg: #f8f8f8;
             --text: #222;
             --light-text: #666;
             --border: #ddd;
-            --section-spacing: 25px;
-            --subsection-spacing: 15px;
-            --section-color: #0040FF;
+            --section-spacing: 20px; /* 减少间距 */
+            --subsection-spacing: 12px; /* 减少子部分间距 */
         }
         
         * {
@@ -27,66 +28,17 @@
         }
         
         body {
-            font-family: 'Times New Roman', Times, serif;
-            line-height: 1.4;
+            font-family: 'Merriweather', Georgia, serif; /* 更优雅的衬线字体 */
+            line-height: 1.5;
             color: var(--text);
             background-color: var(--background);
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px 15px;
-            font-size: 14px;
+            font-size: 15px;
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 30px;
-        }
-        
-        /* 左侧栏样式 */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* 头部样式 */
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qian Zhenye | Mathematics</title>
-    <style>
-        :root {
-            --primary: #222;
-            --secondary: #444;
-            --accent: #1a73e8; /* 更舒适的浅蓝色 */
-            --visited-link: #8a2be2; /* 舒适的紫色 */
-            --background: #ffffff;
-            --light-bg: #f8f8f8;
-            --text: #222;
-            --light-text: #666;
-            --border: #ddd;
-            --section-spacing: 25px;
-            --subsection-spacing: 15px;
-            --section-color: #0040FF;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            line-height: 1.4;
-            color: var(--text);
-            background-color: var(--background);
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 15px;
-            font-size: 14px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
+            gap: 25px; /* 减少主内容区域间距 */
         }
         
         /* 左侧栏样式 */
@@ -100,8 +52,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
             text-align: center;
         }
@@ -131,41 +83,45 @@
         
         h1 {
             color: var(--primary);
-            font-size: 1.8em;
+            font-size: 2em; /* 增大标题 */
             margin-bottom: 5px;
-            font-weight: 600;
+            font-weight: 700;
+            font-family: 'Source Sans Pro', sans-serif; /* 无衬线字体用于标题 */
         }
         
         .subtitle {
             color: var(--light-text);
-            font-size: 1em;
+            font-size: 1.1em;
             margin-top: 5px;
+            font-weight: 300;
         }
         
         /* 联系信息样式 */
         .contact-info {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 12px;
             background-color: var(--light-bg);
             border-radius: 5px;
         }
         
         .contact-info h3 {
             margin-top: 0;
-            color: var(--section-color);
+            color: var(--title-color);
             border-bottom: 1px solid var(--border);
             padding-bottom: 5px;
+            font-size: 1.2em;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         /* 导航栏样式 */
         nav {
             display: flex;
             flex-direction: column;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .nav-link {
-            margin: 5px 0;
+            margin: 4px 0;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
@@ -174,44 +130,46 @@
             border-left: 3px solid transparent;
             transition: all 0.2s;
             cursor: pointer;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .nav-link:hover, .nav-link.active {
-            border-left: 3px solid var(--section-color);
-            background-color: rgba(0, 64, 255, 0.05);
+            border-left: 3px solid var(--title-color);
+            background-color: rgba(26, 115, 232, 0.05);
         }
         
         /* 子导航样式 */
         .sub-nav {
-            display: block; /* 改为一直显示 */
+            display: block;
             padding-left: 20px;
-            margin-top: 5px;
+            margin-top: 3px;
         }
         
         .sub-nav-link {
             display: block;
-            padding: 5px 12px;
+            padding: 4px 12px;
             color: var(--light-text);
             text-decoration: none;
             font-size: 0.85em;
             border-left: 2px solid transparent;
             transition: all 0.2s;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .sub-nav-link:hover, .sub-nav-link.active {
             color: var(--primary);
-            border-left: 2px solid var(--section-color);
+            border-left: 2px solid var(--title-color);
         }
         
         /* 主要内容区域样式 */
         .main-content {
-            padding-top: 10px;
+            padding-top: 5px;
         }
         
         /* 内容区域样式 - 部分间距 */
         .section {
             margin-bottom: var(--section-spacing);
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         
         /* 最后一个部分不加底部边框 */
@@ -220,26 +178,28 @@
         }
         
         h2 {
-            color: var(--section-color);
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            font-weight: 600;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--section-color);
+            color: var(--title-color);
+            margin-bottom: 12px;
+            font-size: 1.8em; /* 增大主标题 */
+            font-weight: 700;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--title-color);
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         /* 子部分间距小于部分间距 */
         h3 {
             color: var(--primary);
-            margin: var(--subsection-spacing) 0 8px;
-            font-size: 1.2em;
+            margin: var(--subsection-spacing) 0 6px;
+            font-size: 1.4em; /* 增大子标题 */
             font-weight: 600;
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         p {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-size: 0.95em;
-            line-height: 1.4;
+            line-height: 1.5;
         }
         
         /* 链接样式 - 舒适的浅蓝色带下划线 */
@@ -270,11 +230,11 @@
         
         /* 邮箱样式 */
         .email-section {
-            margin: 20px 0;
+            margin: 15px 0;
         }
         
         .email {
-            margin: 8px 0;
+            margin: 6px 0;
             font-size: 0.95em;
         }
         
@@ -288,29 +248,29 @@
         /* 列表样式 */
         ul, ol {
             padding-left: 18px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         li {
-            margin-bottom: 4px;
-            line-height: 1.3;
+            margin-bottom: 3px;
+            line-height: 1.4;
             font-size: 0.95em;
         }
         
         /* 学习经历样式 - 减小间距，移除横线 */
         .study-item {
-            margin-bottom: 8px;
-            padding-bottom: 6px;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
         }
         
         /* 预印本和笔记条目样式 */
         .preprint-item, .note-item {
-            margin-bottom: 8px;
-            padding-bottom: 6px;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
         }
         
         .paper-title {
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: normal;
         }
         
@@ -322,7 +282,7 @@
         
         /* 奖项样式 */
         .award-item {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         .award-year {
@@ -335,7 +295,7 @@
             font-style: italic;
             color: var(--light-text);
             text-align: center;
-            padding: 20px 12px;
+            padding: 15px 10px;
             border: 1px dashed var(--border);
             background-color: var(--light-bg);
             font-size: 0.9em;
@@ -343,20 +303,21 @@
         
         /* 近期想法样式 */
         .thought-month {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .thought-month-title {
-            font-size: 1.3em;
-            color: var(--section-color);
-            margin-bottom: 12px;
-            padding-bottom: 5px;
+            font-size: 1.4em;
+            color: var(--title-color);
+            margin-bottom: 10px;
+            padding-bottom: 4px;
             border-bottom: 1px solid var(--border);
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .thought-item {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
             border-bottom: 1px solid var(--border);
         }
         
@@ -365,16 +326,17 @@
         }
         
         .thought-title {
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             color: var(--primary);
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .thought-meta {
             font-size: 0.85em;
             color: var(--light-text);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         
         .thought-tag {
@@ -393,11 +355,11 @@
         
         /* 页脚样式 */
         footer {
-            margin-top: 40px;
+            margin-top: 30px;
             text-align: center;
             color: var(--light-text);
             font-size: 0.8em;
-            padding-top: 15px;
+            padding-top: 12px;
             border-top: 1px solid var(--border);
             grid-column: 1 / -1;
         }
@@ -407,7 +369,8 @@
             body {
                 grid-template-columns: 1fr;
                 padding: 15px 10px;
-                font-size: 13px;
+                font-size: 14px;
+                gap: 20px;
             }
             
             .sidebar {
@@ -431,6 +394,10 @@
             }
             
             h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
                 font-size: 1.6em;
             }
             
@@ -439,16 +406,21 @@
             }
             
             .section {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
             }
         }
         
         @media (max-width: 480px) {
             body {
                 padding: 10px 8px;
+                font-size: 13px;
             }
             
             h1 {
+                font-size: 1.6em;
+            }
+            
+            h2 {
                 font-size: 1.4em;
             }
             
@@ -456,6 +428,15 @@
                 margin: 2px 6px;
                 font-size: 0.9em;
             }
+        }
+
+        /* MathJax 公式样式优化 */
+        .MathJax {
+            font-size: 1.1em !important;
+        }
+        
+        mjx-container[jax="CHTML"] {
+            outline: none;
         }
     </style>
     <!-- MathJax配置 -->
@@ -469,6 +450,9 @@
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            chtml: {
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
             }
         };
     </script>
@@ -526,7 +510,9 @@
             <!-- Recent Thoughts导航 - 子项目一直显示 -->
             <a href="#thoughts" class="nav-link">Recent Thoughts</a>
             <div class="sub-nav" id="thoughts-subnav">
-                <a href="#november-2025" class="sub-nav-link">October 2025 (1)</a>
+                <a href="#november-2025" class="sub-nav-link">November 2025 (3 thoughts)</a>
+                <a href="#october-2025" class="sub-nav-link">October 2025 (2 thoughts)</a>
+                <a href="#september-2025" class="sub-nav-link">September 2025 (1 thought)</a>
             </div>
         </nav>
     </div>
@@ -732,6 +718,72 @@
         <section id="thoughts" class="section">
             <h2>Recent Thoughts</h2>
             
+            <!-- November 2025 -->
+            <div class="thought-month" id="november-2025">
+                <h3 class="thought-month-title">November 2025</h3>
+                
+                <div class="thought-item">
+                    <div class="thought-title">Double-Exponential Growth in 2D Euler Equations</div>
+                    <div class="thought-meta">
+                        15 November 2025 • 
+                        <span class="thought-tag">Fluid Dynamics</span>
+                        <span class="thought-tag">Euler Equations</span>
+                        <span class="thought-tag">Small-Scale Creation</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>While studying the double-exponential growth in 2D Euler equations, I've been thinking about how the small-scale creation mechanism introduced by Kiselev-Sverak might be generalized to other fluid models. The key insight seems to be the interplay between the advection term $u \cdot \nabla \omega$ and the vortex stretching mechanism, though in 2D the vorticity is conserved along particle paths.</p>
+                        
+                        <p>The recent work by Zlatos extends this to unbounded domains, which raises interesting questions about boundary effects. In bounded domains, the no-slip boundary condition creates additional challenges for establishing double-exponential growth. Perhaps one could consider the Navier slip boundary condition as an intermediate case:</p>
+                        
+                        <p>$$ u \cdot n = 0, \quad (D(u)n + \alpha u)_{tan} = 0 $$</p>
+                        
+                        <p>where $D(u)$ is the deformation tensor and $\alpha$ is a slip coefficient. This might allow for some boundary effects while still permitting the small-scale creation mechanism to operate.</p>
+                    </div>
+                </div>
+
+                <div class="thought-item">
+                    <div class="thought-title">Schauder Estimates Through Campanato Spaces</div>
+                    <div class="thought-meta">
+                        12 November 2025 • 
+                        <span class="thought-tag">Elliptic PDEs</span>
+                        <span class="thought-tag">Regularity Theory</span>
+                        <span class="thought-tag">Schauder Estimate</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>Today I revisited the classical Schauder estimates for elliptic equations. The standard approach through potential theory is elegant, but I've been thinking about alternative proofs using Campanato spaces and Morrey's lemma. The key inequality:</p>
+                        
+                        <p>$$ [u]_{C^{2,\alpha}(\Omega)} \leq C(\|f\|_{C^\alpha(\Omega)} + \|u\|_{L^\infty(\Omega)}) $$</p>
+                        
+                        <p>for solutions of $\Delta u = f$ can be established by showing that the Campanato seminorm</p>
+                        
+                        <p>$$ \mathcal{L}^{2,\lambda}(u) = \sup_{x_0 \in \Omega, \rho > 0} \rho^{-\lambda} \inf_{P \in \mathcal{P}_1} \int_{B_\rho(x_0)} |u - P|^2 dx $$</p>
+                        
+                        <p>is equivalent to the Hölder seminorm when $\lambda = n + 2\alpha$. This approach has the advantage of being more flexible for nonlinear problems.</p>
+                    </div>
+                </div>
+
+                <div class="thought-item">
+                    <div class="thought-title">Min-Max Theory for Minimal Surfaces</div>
+                    <div class="thought-meta">
+                        8 November 2025 • 
+                        <span class="thought-tag">Geometric Analysis</span>
+                        <span class="thought-tag">Minimal Surfaces</span>
+                        <span class="thought-tag">Min-Max Theory</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>Working through the min-max theory for minimal surfaces, I've been considering the relationship between the width (as defined by Almgren-Pitts) and the existence of multiple minimal surfaces. In a manifold with positive Ricci curvature, one expects the area-minimizing surface to be unique, but what about higher index critical points?</p>
+                        
+                        <p>The Morse theory for the area functional is complicated by its lack of properness, but the min-max approach provides a way to construct critical points. I wonder if there's a connection between the number of min-max minimal surfaces and the topology of the ambient manifold. For a 3-sphere, we know there are infinitely many embedded minimal surfaces (by the work of Marques-Neves), but the situation in higher dimensions is less clear.</p>
+                        
+                        <p>The key estimate in the regularity theory is the $\varepsilon$-regularity theorem: if a stationary varifold $V$ satisfies</p>
+                        
+                        <p>$$ \|V\|(B_r(x)) \leq (1+\delta) \omega_n r^n $$</p>
+                        
+                        <p>for some small $\delta > 0$, then $V$ is a smooth minimal surface in $B_{r/2}(x)$. This reminds me of similar results in harmonic maps and Yang-Mills theory.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- October 2025 -->
             <div class="thought-month" id="october-2025">
                 <h3 class="thought-month-title">October 2025</h3>
