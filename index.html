@@ -251,35 +251,16 @@
             font-size: 0.95em;
         }
         
-        /* 学习经历样式 - 减小间距 */
+        /* 学习经历样式 - 减小间距，移除横线 */
         .study-item {
-            margin-bottom: 15px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .study-item:last-child {
-            border-bottom: none;
-        }
-        
-        .study-date {
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        .study-course {
-            margin: 2px 0;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
         }
         
         /* 预印本和笔记条目样式 */
         .preprint-item, .note-item {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .preprint-item:last-child, .note-item:last-child {
-            border-bottom: none;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
         }
         
         .paper-title {
@@ -295,7 +276,7 @@
         
         /* 奖项样式 */
         .award-item {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .award-year {
@@ -315,6 +296,18 @@
         }
         
         /* 近期想法样式 */
+        .thought-month {
+            margin-bottom: 25px;
+        }
+        
+        .thought-month-title {
+            font-size: 1.3em;
+            color: var(--section-color);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border);
+        }
+        
         .thought-item {
             margin-bottom: 20px;
             padding-bottom: 15px;
@@ -325,10 +318,27 @@
             border-bottom: none;
         }
         
-        .thought-date {
-            font-weight: bold;
-            color: var(--section-color);
+        .thought-title {
+            font-size: 1.1em;
+            font-weight: 600;
             margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .thought-meta {
+            font-size: 0.85em;
+            color: var(--light-text);
+            margin-bottom: 10px;
+        }
+        
+        .thought-tag {
+            display: inline-block;
+            background-color: var(--light-bg);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            color: var(--secondary);
         }
         
         .thought-content {
@@ -466,7 +476,13 @@
             
             <a href="#teaching" class="nav-link">Teaching</a>
             <a href="#notes" class="nav-link">Notes</a>
-            <a href="#thoughts" class="nav-link">Recent Thoughts</a>
+            
+            <a href="#thoughts" class="nav-link" id="thoughts-nav">Recent Thoughts</a>
+            <div class="sub-nav" id="thoughts-subnav">
+                <a href="#november-2025" class="sub-nav-link">November 2025 (3 thoughts)</a>
+                <a href="#october-2025" class="sub-nav-link">October 2025 (2 thoughts)</a>
+                <a href="#september-2025" class="sub-nav-link">September 2025 (1 thought)</a>
+            </div>
         </nav>
     </div>
 
@@ -670,9 +686,19 @@
         <!-- Recent Thoughts 部分 -->
         <section id="thoughts" class="section">
             <h2>Recent Thoughts</h2>
-            <div id="thoughts-container">
+            
+            <!-- November 2025 -->
+            <div class="thought-month" id="november-2025">
+                <h3 class="thought-month-title">November 2025</h3>
+                
                 <div class="thought-item">
-                    <div class="thought-date">November 15, 2025</div>
+                    <div class="thought-title">Double-Exponential Growth in 2D Euler Equations</div>
+                    <div class="thought-meta">
+                        15 November 2025 • 
+                        <span class="thought-tag">Fluid Dynamics</span>
+                        <span class="thought-tag">Euler Equations</span>
+                        <span class="thought-tag">Small-Scale Creation</span>
+                    </div>
                     <div class="thought-content">
                         <p>While studying the double-exponential growth in 2D Euler equations, I've been thinking about how the small-scale creation mechanism introduced by Kiselev-Sverak might be generalized to other fluid models. The key insight seems to be the interplay between the advection term $u \cdot \nabla \omega$ and the vortex stretching mechanism, though in 2D the vorticity is conserved along particle paths.</p>
                         
@@ -685,7 +711,13 @@
                 </div>
 
                 <div class="thought-item">
-                    <div class="thought-date">November 12, 2025</div>
+                    <div class="thought-title">Schauder Estimates Through Campanato Spaces</div>
+                    <div class="thought-meta">
+                        12 November 2025 • 
+                        <span class="thought-tag">Elliptic PDEs</span>
+                        <span class="thought-tag">Regularity Theory</span>
+                        <span class="thought-tag">Schauder Estimate</span>
+                    </div>
                     <div class="thought-content">
                         <p>Today I revisited the classical Schauder estimates for elliptic equations. The standard approach through potential theory is elegant, but I've been thinking about alternative proofs using Campanato spaces and Morrey's lemma. The key inequality:</p>
                         
@@ -700,7 +732,13 @@
                 </div>
 
                 <div class="thought-item">
-                    <div class="thought-date">November 8, 2025</div>
+                    <div class="thought-title">Min-Max Theory for Minimal Surfaces</div>
+                    <div class="thought-meta">
+                        8 November 2025 • 
+                        <span class="thought-tag">Geometric Analysis</span>
+                        <span class="thought-tag">Minimal Surfaces</span>
+                        <span class="thought-tag">Min-Max Theory</span>
+                    </div>
                     <div class="thought-content">
                         <p>Working through the min-max theory for minimal surfaces, I've been considering the relationship between the width (as defined by Almgren-Pitts) and the existence of multiple minimal surfaces. In a manifold with positive Ricci curvature, one expects the area-minimizing surface to be unique, but what about higher index critical points?</p>
                         
@@ -711,6 +749,67 @@
                         <p>$$ \|V\|(B_r(x)) \leq (1+\delta) \omega_n r^n $$</p>
                         
                         <p>for some small $\delta > 0$, then $V$ is a smooth minimal surface in $B_{r/2}(x)$. This reminds me of similar results in harmonic maps and Yang-Mills theory.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- October 2025 -->
+            <div class="thought-month" id="october-2025">
+                <h3 class="thought-month-title">October 2025</h3>
+                
+                <div class="thought-item">
+                    <div class="thought-title">Qualitative Properties of Semilinear Equations</div>
+                    <div class="thought-meta">
+                        25 October 2025 • 
+                        <span class="thought-tag">Semilinear PDEs</span>
+                        <span class="thought-tag">Symmetry</span>
+                        <span class="thought-tag">Liouville Theorem</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>Exploring the symmetry properties of solutions to semilinear elliptic equations has been fascinating. The moving plane method, introduced by Serrin and further developed by Gidas-Ni-Nirenberg, provides a powerful tool for establishing radial symmetry of positive solutions.</p>
+                        
+                        <p>However, the method relies heavily on the maximum principle and the specific structure of the equation. I've been wondering if there are more robust approaches that could handle more general nonlinearities or domains with less symmetry. The recent work on nonlocal equations suggests that fractional Laplacians might offer an interesting direction.</p>
+                        
+                        <p>The connection between symmetry and stability is also intriguing. When does a symmetric solution necessarily imply its stability? And conversely, can instability force symmetry breaking in certain contexts?</p>
+                    </div>
+                </div>
+
+                <div class="thought-item">
+                    <div class="thought-title">Nonlinear Instability in Fluid Dynamics</div>
+                    <div class="thought-meta">
+                        18 October 2025 • 
+                        <span class="thought-tag">Navier-Stokes</span>
+                        <span class="thought-tag">Instability</span>
+                        <span class="thought-tag">Bootstrap Method</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>The bootstrap method established by Strauss and Guo provides an elegant framework for studying nonlinear instability in PDEs. The key idea is to combine linear instability with careful energy estimates to show that small perturbations can grow substantially.</p>
+                        
+                        <p>In the context of Navier-Stokes equations, this approach has been successfully applied to show instability of certain shear flows. However, the extension to more complex geometries or boundary conditions remains challenging. The interplay between the linearized operator's spectrum and the nonlinear terms seems crucial.</p>
+                        
+                        <p>I'm particularly interested in how these methods might apply to the Euler equations, where the lack of viscosity changes the nature of both the linear analysis and the energy estimates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- September 2025 -->
+            <div class="thought-month" id="september-2025">
+                <h3 class="thought-month-title">September 2025</h3>
+                
+                <div class="thought-item">
+                    <div class="thought-title">Convergence of Minimal Surfaces</div>
+                    <div class="thought-meta">
+                        12 September 2025 • 
+                        <span class="thought-tag">Minimal Surfaces</span>
+                        <span class="thought-tag">Convergence</span>
+                        <span class="thought-tag">Geometric Measure Theory</span>
+                    </div>
+                    <div class="thought-content">
+                        <p>The theory of convergence for minimal surfaces has deep connections with geometric measure theory and calculus of variations. The compactness theorems for sequences of minimal surfaces with bounded area and genus are fundamental, but the analysis of singular limits remains subtle.</p>
+                        
+                        <p>I've been studying the work of Colding and Minicozzi on the structure of limits of minimal surfaces. Their notion of "chord-arc" properties and the classification of tangent cones provide powerful tools for understanding the singular set.</p>
+                        
+                        <p>The min-max theory offers another perspective, constructing minimal surfaces as critical points of the area functional. The relationship between the Morse index of these surfaces and their stability under convergence is particularly interesting - when does a sequence of unstable minimal surfaces converge to a stable one?</p>
                     </div>
                 </div>
             </div>
@@ -730,11 +829,30 @@
             const subNavLinks = document.querySelectorAll('.sub-nav-link');
             const researchNav = document.getElementById('research-nav');
             const researchSubnav = document.getElementById('research-subnav');
+            const thoughtsNav = document.getElementById('thoughts-nav');
+            const thoughtsSubnav = document.getElementById('thoughts-subnav');
             
             // 点击Research主链接时切换子导航显示
             researchNav.addEventListener('click', function(e) {
                 e.preventDefault();
                 researchSubnav.classList.toggle('active');
+                thoughtsSubnav.classList.remove('active');
+                
+                // 平滑滚动到目标部分
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 40,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 点击Thoughts主链接时切换子导航显示
+            thoughtsNav.addEventListener('click', function(e) {
+                e.preventDefault();
+                thoughtsSubnav.classList.toggle('active');
+                researchSubnav.classList.remove('active');
                 
                 // 平滑滚动到目标部分
                 const targetId = this.getAttribute('href');
@@ -770,7 +888,7 @@
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    if (this !== researchNav) {
+                    if (this !== researchNav && this !== thoughtsNav) {
                         e.preventDefault();
                         
                         // 移除所有活动类
@@ -779,8 +897,9 @@
                         // 添加活动类到当前链接
                         this.classList.add('active');
                         
-                        // 隐藏Research子导航
+                        // 隐藏子导航
                         researchSubnav.classList.remove('active');
+                        thoughtsSubnav.classList.remove('active');
                         
                         // 平滑滚动到目标部分
                         const targetId = this.getAttribute('href');
@@ -797,6 +916,7 @@
             // 根据滚动位置高亮当前部分
             window.addEventListener('scroll', function() {
                 const sections = document.querySelectorAll('.section');
+                const thoughtMonths = document.querySelectorAll('.thought-month');
                 const navLinks = document.querySelectorAll('.nav-link');
                 const subNavLinks = document.querySelectorAll('.sub-nav-link');
                 
@@ -821,6 +941,14 @@
                     });
                 });
                 
+                // 检查想法月份部分
+                thoughtMonths.forEach(month => {
+                    const monthTop = month.offsetTop;
+                    if (window.scrollY >= (monthTop - 120)) {
+                        currentSubSection = '#' + month.getAttribute('id');
+                    }
+                });
+                
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === currentSection) {
@@ -829,6 +957,15 @@
                         // 如果当前部分是Research，显示子导航
                         if (currentSection === '#research') {
                             researchSubnav.classList.add('active');
+                            thoughtsSubnav.classList.remove('active');
+                        }
+                        // 如果当前部分是Thoughts，显示子导航
+                        else if (currentSection === '#thoughts') {
+                            thoughtsSubnav.classList.add('active');
+                            researchSubnav.classList.remove('active');
+                        } else {
+                            researchSubnav.classList.remove('active');
+                            thoughtsSubnav.classList.remove('active');
                         }
                     }
                 });
