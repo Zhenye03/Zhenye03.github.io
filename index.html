@@ -8,7 +8,8 @@
         :root {
             --primary: #222;
             --secondary: #444;
-            --accent: #0000EE;
+            --accent: #1a73e8; /* 更舒适的浅蓝色 */
+            --visited-link: #8a2be2; /* 舒适的紫色 */
             --background: #ffffff;
             --light-bg: #f8f8f8;
             --text: #222;
@@ -195,7 +196,7 @@
             line-height: 1.4;
         }
         
-        /* 链接样式 - 传统蓝色带下划线 */
+        /* 链接样式 - 舒适的浅蓝色带下划线 */
         a {
             color: var(--accent);
             text-decoration: underline;
@@ -203,6 +204,11 @@
         
         a:hover {
             color: var(--primary);
+        }
+        
+        /* 已访问链接样式 - 舒适的紫色 */
+        a:visited {
+            color: var(--visited-link);
         }
         
         /* 预印本和笔记链接样式 - 保持原色 */
@@ -447,7 +453,6 @@
         <!-- 主导航 -->
         <nav>
             <a href="#about" class="nav-link active">About</a>
-            <a href="#thoughts" class="nav-link">Recent Thoughts</a>
             
             <a href="#research" class="nav-link" id="research-nav">Research</a>
             <div class="sub-nav" id="research-subnav">
@@ -461,6 +466,7 @@
             
             <a href="#teaching" class="nav-link">Teaching</a>
             <a href="#notes" class="nav-link">Notes</a>
+            <a href="#thoughts" class="nav-link">Recent Thoughts</a>
         </nav>
     </div>
 
@@ -484,55 +490,6 @@
             
             <h3>Curriculum Vitae</h3>
             <p>You can view and download my complete CV here: <a href="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/personal-files/Qian_Zhenye_s_Long_CV.pdf">Qian Zhenye's CV (PDF)</a></p>
-        </section>
-
-        <!-- Recent Thoughts 部分 - 已移到更醒目的位置 -->
-        <section id="thoughts" class="section">
-            <h2>Recent Thoughts</h2>
-            <div id="thoughts-container">
-                <div class="thought-item">
-                    <div class="thought-date">November 15, 2025</div>
-                    <div class="thought-content">
-                        <p>While studying the double-exponential growth in 2D Euler equations, I've been thinking about how the small-scale creation mechanism introduced by Kiselev-Sverak might be generalized to other fluid models. The key insight seems to be the interplay between the advection term $u \cdot \nabla \omega$ and the vortex stretching mechanism, though in 2D the vorticity is conserved along particle paths.</p>
-                        
-                        <p>The recent work by Zlatos extends this to unbounded domains, which raises interesting questions about boundary effects. In bounded domains, the no-slip boundary condition creates additional challenges for establishing double-exponential growth. Perhaps one could consider the Navier slip boundary condition as an intermediate case:</p>
-                        
-                        <p>$$ u \cdot n = 0, \quad (D(u)n + \alpha u)_{tan} = 0 $$</p>
-                        
-                        <p>where $D(u)$ is the deformation tensor and $\alpha$ is a slip coefficient. This might allow for some boundary effects while still permitting the small-scale creation mechanism to operate.</p>
-                    </div>
-                </div>
-
-                <div class="thought-item">
-                    <div class="thought-date">November 12, 2025</div>
-                    <div class="thought-content">
-                        <p>Today I revisited the classical Schauder estimates for elliptic equations. The standard approach through potential theory is elegant, but I've been thinking about alternative proofs using Campanato spaces and Morrey's lemma. The key inequality:</p>
-                        
-                        <p>$$ [u]_{C^{2,\alpha}(\Omega)} \leq C(\|f\|_{C^\alpha(\Omega)} + \|u\|_{L^\infty(\Omega)}) $$</p>
-                        
-                        <p>for solutions of $\Delta u = f$ can be established by showing that the Campanato seminorm</p>
-                        
-                        <p>$$ \mathcal{L}^{2,\lambda}(u) = \sup_{x_0 \in \Omega, \rho > 0} \rho^{-\lambda} \inf_{P \in \mathcal{P}_1} \int_{B_\rho(x_0)} |u - P|^2 dx $$</p>
-                        
-                        <p>is equivalent to the Hölder seminorm when $\lambda = n + 2\alpha$. This approach has the advantage of being more flexible for nonlinear problems.</p>
-                    </div>
-                </div>
-
-                <div class="thought-item">
-                    <div class="thought-date">November 8, 2025</div>
-                    <div class="thought-content">
-                        <p>Working through the min-max theory for minimal surfaces, I've been considering the relationship between the width (as defined by Almgren-Pitts) and the existence of multiple minimal surfaces. In a manifold with positive Ricci curvature, one expects the area-minimizing surface to be unique, but what about higher index critical points?</p>
-                        
-                        <p>The Morse theory for the area functional is complicated by its lack of properness, but the min-max approach provides a way to construct critical points. I wonder if there's a connection between the number of min-max minimal surfaces and the topology of the ambient manifold. For a 3-sphere, we know there are infinitely many embedded minimal surfaces (by the work of Marques-Neves), but the situation in higher dimensions is less clear.</p>
-                        
-                        <p>The key estimate in the regularity theory is the $\varepsilon$-regularity theorem: if a stationary varifold $V$ satisfies</p>
-                        
-                        <p>$$ \|V\|(B_r(x)) \leq (1+\delta) \omega_n r^n $$</p>
-                        
-                        <p>for some small $\delta > 0$, then $V$ is a smooth minimal surface in $B_{r/2}(x)$. This reminds me of similar results in harmonic maps and Yang-Mills theory.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Research 部分 -->
@@ -708,6 +665,55 @@
                 <li>Vlogs about studying: <a href="https://space.bilibili.com/700241420?spm_id_from=333.1007.0.0">Bilibili</a></li>
                 <li>Ideas and Discussions: <a href="https://www.zhihu.com/people/qzy-55-20">Zhihu</a></li>
             </ul>
+        </section>
+
+        <!-- Recent Thoughts 部分 -->
+        <section id="thoughts" class="section">
+            <h2>Recent Thoughts</h2>
+            <div id="thoughts-container">
+                <div class="thought-item">
+                    <div class="thought-date">November 15, 2025</div>
+                    <div class="thought-content">
+                        <p>While studying the double-exponential growth in 2D Euler equations, I've been thinking about how the small-scale creation mechanism introduced by Kiselev-Sverak might be generalized to other fluid models. The key insight seems to be the interplay between the advection term $u \cdot \nabla \omega$ and the vortex stretching mechanism, though in 2D the vorticity is conserved along particle paths.</p>
+                        
+                        <p>The recent work by Zlatos extends this to unbounded domains, which raises interesting questions about boundary effects. In bounded domains, the no-slip boundary condition creates additional challenges for establishing double-exponential growth. Perhaps one could consider the Navier slip boundary condition as an intermediate case:</p>
+                        
+                        <p>$$ u \cdot n = 0, \quad (D(u)n + \alpha u)_{tan} = 0 $$</p>
+                        
+                        <p>where $D(u)$ is the deformation tensor and $\alpha$ is a slip coefficient. This might allow for some boundary effects while still permitting the small-scale creation mechanism to operate.</p>
+                    </div>
+                </div>
+
+                <div class="thought-item">
+                    <div class="thought-date">November 12, 2025</div>
+                    <div class="thought-content">
+                        <p>Today I revisited the classical Schauder estimates for elliptic equations. The standard approach through potential theory is elegant, but I've been thinking about alternative proofs using Campanato spaces and Morrey's lemma. The key inequality:</p>
+                        
+                        <p>$$ [u]_{C^{2,\alpha}(\Omega)} \leq C(\|f\|_{C^\alpha(\Omega)} + \|u\|_{L^\infty(\Omega)}) $$</p>
+                        
+                        <p>for solutions of $\Delta u = f$ can be established by showing that the Campanato seminorm</p>
+                        
+                        <p>$$ \mathcal{L}^{2,\lambda}(u) = \sup_{x_0 \in \Omega, \rho > 0} \rho^{-\lambda} \inf_{P \in \mathcal{P}_1} \int_{B_\rho(x_0)} |u - P|^2 dx $$</p>
+                        
+                        <p>is equivalent to the Hölder seminorm when $\lambda = n + 2\alpha$. This approach has the advantage of being more flexible for nonlinear problems.</p>
+                    </div>
+                </div>
+
+                <div class="thought-item">
+                    <div class="thought-date">November 8, 2025</div>
+                    <div class="thought-content">
+                        <p>Working through the min-max theory for minimal surfaces, I've been considering the relationship between the width (as defined by Almgren-Pitts) and the existence of multiple minimal surfaces. In a manifold with positive Ricci curvature, one expects the area-minimizing surface to be unique, but what about higher index critical points?</p>
+                        
+                        <p>The Morse theory for the area functional is complicated by its lack of properness, but the min-max approach provides a way to construct critical points. I wonder if there's a connection between the number of min-max minimal surfaces and the topology of the ambient manifold. For a 3-sphere, we know there are infinitely many embedded minimal surfaces (by the work of Marques-Neves), but the situation in higher dimensions is less clear.</p>
+                        
+                        <p>The key estimate in the regularity theory is the $\varepsilon$-regularity theorem: if a stationary varifold $V$ satisfies</p>
+                        
+                        <p>$$ \|V\|(B_r(x)) \leq (1+\delta) \omega_n r^n $$</p>
+                        
+                        <p>for some small $\delta > 0$, then $V$ is a smooth minimal surface in $B_{r/2}(x)$. This reminds me of similar results in harmonic maps and Yang-Mills theory.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
