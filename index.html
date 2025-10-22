@@ -716,9 +716,9 @@
         <section id="thoughts" class="section">
             <h2>Recent Thoughts</h2>
             
-            <!-- November 2025 -->
+            <!-- October 2025 -->
             <div class="thought-month" id="november-2025">
-                <h3 class="thought-month-title">November 2025</h3>
+                <h3 class="thought-month-title">October 2025</h3>
                 
                 <div class="thought-item">
                     <div class="thought-title">Usage of the maximum principle to linear elliptic PDEs | B-C-N's new idea</div>
@@ -729,7 +729,21 @@
                         <span class="thought-tag">Moving plane method and sliding method</span>
                     </div>
                     <div class="thought-content">
-                    
+                    <p>For a given linear elliptic operator $L:=\sum a_{ij}(x)\partial_{ij}+\sum_ib_i(x)\partial_i+c(x)$ - where we omit certain (uniform) elliptical properties - and a bounded domain $\Omega\subset\mathbb{R}^n$, we say that the <strong>maximum principle</strong>, simply say m.p. holds for $L$ in $\Omega$, if
+\[
+\begin{cases}
+    Lz\ge 0,& \text{in}\ \Omega\\
+    \limsup_{x\to \partial\Omega}z\le 0,& \text{on}\ \partial\Omega
+\end{cases}\Longrightarrow z\le 0\ \text{in}\ \Omega,\quad \text{where $z$ is a function on $\Omega$}
+\]
+A simple philosophy of the m.p. is that the boundary value dominates the supremum of the interior value, which is equivalent to a certain <strong>comparison principle</strong>, say c.p., however, we regard it as m.p. in this version; for example, let $z=u-v$, where $u,v$ are two given functions to be compared. Hence, the m.p. may be used to show certain <strong>monotonicity</strong> relation.</p>
+
+<p>Unfortunately, we have known that there are three sufficient conditions of m.p. for $L$, see   <a href="https://link.springer.com/article/10.1007/BF01244896">Berestycki-Nirenberg's statement in 1991</a> (also in <a href="https://bookstore.ams.org/cln-1-r/">Han-Lin's note in 2011</a>),</p>
+<ul>
+<li> [i)] "The free term" $c(x)\le 0$. See any elliptic PDEs book, such as <a href="https://link.springer.com/book/10.1007/978-3-642-61798-0">Gilbarg-Trudinger's well-known book in 1978</a>.</li>
+<li> [ii)] </li>
+<li> [iii)] </li>
+</ul>
                     </div>
                 </div>
         </section>
