@@ -47,6 +47,55 @@
         }
         
         /* 头部样式 */
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qian Zhenye | Mathematics</title>
+    <style>
+        :root {
+            --primary: #222;
+            --secondary: #444;
+            --accent: #1a73e8; /* 更舒适的浅蓝色 */
+            --visited-link: #8a2be2; /* 舒适的紫色 */
+            --background: #ffffff;
+            --light-bg: #f8f8f8;
+            --text: #222;
+            --light-text: #666;
+            --border: #ddd;
+            --section-spacing: 25px;
+            --subsection-spacing: 15px;
+            --section-color: #0040FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.4;
+            color: var(--text);
+            background-color: var(--background);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            font-size: 14px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        /* 左侧栏样式 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 头部样式 */
         header {
             display: flex;
             flex-direction: column;
@@ -134,13 +183,9 @@
         
         /* 子导航样式 */
         .sub-nav {
-            display: none;
+            display: block; /* 改为一直显示 */
             padding-left: 20px;
             margin-top: 5px;
-        }
-        
-        .sub-nav.active {
-            display: block;
         }
         
         .sub-nav-link {
@@ -478,7 +523,8 @@
             <a href="#teaching" class="nav-link">Teaching</a>
             <a href="#notes" class="nav-link">Notes</a>
             
-            <a href="#thoughts" class="nav-link" id="thoughts-nav">Recent Thoughts</a>
+            <!-- Recent Thoughts导航 - 子项目一直显示 -->
+            <a href="#thoughts" class="nav-link">Recent Thoughts</a>
             <div class="sub-nav" id="thoughts-subnav">
                 <a href="#november-2025" class="sub-nav-link">November 2025 (3 thoughts)</a>
                 <a href="#october-2025" class="sub-nav-link">October 2025 (2 thoughts)</a>
@@ -830,30 +876,11 @@
             const subNavLinks = document.querySelectorAll('.sub-nav-link');
             const researchNav = document.getElementById('research-nav');
             const researchSubnav = document.getElementById('research-subnav');
-            const thoughtsNav = document.getElementById('thoughts-nav');
-            const thoughtsSubnav = document.getElementById('thoughts-subnav');
             
             // 点击Research主链接时切换子导航显示
             researchNav.addEventListener('click', function(e) {
                 e.preventDefault();
                 researchSubnav.classList.toggle('active');
-                thoughtsSubnav.classList.remove('active');
-                
-                // 平滑滚动到目标部分
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetSection.offsetTop - 40,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // 点击Thoughts主链接时切换子导航显示
-            thoughtsNav.addEventListener('click', function(e) {
-                e.preventDefault();
-                thoughtsSubnav.classList.toggle('active');
-                researchSubnav.classList.remove('active');
                 
                 // 平滑滚动到目标部分
                 const targetId = this.getAttribute('href');
@@ -889,7 +916,7 @@
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    if (this !== researchNav && this !== thoughtsNav) {
+                    if (this !== researchNav) {
                         e.preventDefault();
                         
                         // 移除所有活动类
@@ -898,9 +925,8 @@
                         // 添加活动类到当前链接
                         this.classList.add('active');
                         
-                        // 隐藏子导航
+                        // 隐藏Research子导航
                         researchSubnav.classList.remove('active');
-                        thoughtsSubnav.classList.remove('active');
                         
                         // 平滑滚动到目标部分
                         const targetId = this.getAttribute('href');
@@ -958,15 +984,6 @@
                         // 如果当前部分是Research，显示子导航
                         if (currentSection === '#research') {
                             researchSubnav.classList.add('active');
-                            thoughtsSubnav.classList.remove('active');
-                        }
-                        // 如果当前部分是Thoughts，显示子导航
-                        else if (currentSection === '#thoughts') {
-                            thoughtsSubnav.classList.add('active');
-                            researchSubnav.classList.remove('active');
-                        } else {
-                            researchSubnav.classList.remove('active');
-                            thoughtsSubnav.classList.remove('active');
                         }
                     }
                 });
