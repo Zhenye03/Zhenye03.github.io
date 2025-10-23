@@ -754,10 +754,40 @@ A simple philosophy of the m.p. is that the boundary value dominates the supremu
                         <span class="thought-tag">Elliptic PDEs</span>
                         <span class="thought-tag">Probability theory</span>
                         <span class="thought-tag">Geometric variational</span>
-                        <span class="thought-tag">Monge-Ampere equation</span>
+                        <span class="thought-tag">Monge–Ampère equation</span>
                     </div>
                     <div class="thought-content">
-                    
+                    <p>I listened an interesting talk by professor <a href="https://researchportal.helsinki.fi/en/persons/xiao-zhong/">Xiao Zhong</a> about the <a href="https://en.wikipedia.org/wiki/Domino_tiling">Dimer models</a> and <a href="https://en.wikipedia.org/wiki/Beltrami_equation">Beltrami equation</a> from <a href="https://arxiv.org/abs/2004.02599">his seminal work in 2025</a> joint with Astala, Duse and Prause.</p>
+
+<p>A simple model of Random tilings is that, one may tile a <a href="https://en.wikipedia.org/wiki/Hexagon">hexagon</a> (with unit edges) with different <a href="https://web.lfzhang.com/slides/TilingCusp.pdf">lozenges</a> (3 different orientations, denoted by different colors, say yellow, red and blue) with side length $1/n$, which can be equivalently regarded as cutting a <a href="https://en.wikipedia.org/wiki/Cube">cube</a> (3D) to a steped surface (view from $(1,1,1)$-direction). We express this surface by a <strong>height function</strong>, say $h$, which is piecewice linear (<a href="https://en.wikipedia.org/wiki/Lipschitz_continuity">Lipschitz continuous</a>) and $\nabla h\in \{(0,\sqrt{3}),\ (1,0),\ (-1,0)\}$. A natural question is that,</p>
+
+<div style="text-align: center;">
+    Is there an almost sure limit surface, as $n\to \infty$ in certain probability convergence?
+</div>
+
+<p>Indeed, the question is related to an interesting theorem (conjecture), called <a href="https://en.wikipedia.org/wiki/Aztec_diamond"><strong>The Arctic Circle Theorem</strong></a>, established by <a href="https://ieeexplore.ieee.org/document/365700">Jockusch-Propp-Shor in 1994</a> and <a href="https://arxiv.org/pdf/math/9801059">Cohn-Larsen-Propp in 1998</a>.</p>
+
+<p>Why we guess that there exists a sure surface as the limitation of certain convergence? Indeed, the conjecture was motivated by some necessary tiling method - for example, if you want to tile the bottom angle of hexagon, the probabilities of different choice are different for the sake of the orientation of angle and lozenges. Hence, we expect certain geometric and combinational shape of limited surface.</p>
+
+<p>We present the <strong>limit shape theorem</strong>, by several seminal works by Chon-Kenyon-Propp-Okounkov-Sheffield, namely,</p>
+
+<div style="margin: 1em 0; padding: 1em; border-left: 3px solid #ccc;">
+    <strong>Theorem.</strong> For a fixed boundary height $h_0$, the random surfaces almost surely converge uniformly, as mesh size goes to zero, to a deterministic surface, called <strong>limit shape</strong>.
+</div>
+
+<p>On the other hand, the convergence problem is related to minimizers of certain variational. Indeed, the asymptotic height function $h(z)$ minimizes
+\[
+\inf\left\{\int_\Omega \sigma(\nabla v):\ v\ \text{is Lipschitz,}\ \nabla v\in N,\ v=h_0\ \text{on}\ \partial \Omega\right\}
+\]
+where the <a href="https://en.wikipedia.org/wiki/Surface_tension">surface tension</a> $\sigma$ is convex in a convex <a href="https://en.wikipedia.org/wiki/Polygon">polygon</a> $N$ and satisfies the following <a href="https://en.wikipedia.org/wiki/Monge–Ampère_equation">Monge–Ampère equation</a>,
+\[
+\begin{cases}
+    \mathrm{det} D^2\sigma=1,& \text{in}\ N\\
+    \sigma=0,& \text{on}\ \partial N
+\end{cases}
+\]</p>
+
+<p>Additionally, De Silva and <a href="https://www.math.columbia.edu/~savin/">Savin</a> showed the $C^1$-regularity of the minimizer of functional above in 2D, see their paper <a href="https://projecteuclid.org/journals/duke-mathematical-journal/volume-151/issue-3/Minimizers-of-convex-functionals-arising-in-random-surfaces/10.1215/00127094-2010-004.short">Minimizers of convex functionals arising in random surfaces</a>.</p>
                     </div>
                 </div>
         </section>
