@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent works on my thesis | Qian Zhenye</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #222;
+            --secondary: #444;
+            --accent: #1a73e8;
+            --title-color: #1a73e8;
+            --visited-link: #8a2be2;
+            --background: #ffffff;
+            --light-bg: #f8f8f8;
+            --text: #222;
+            --light-text: #666;
+            --border: #ddd;
+            --section-spacing: 20px;
+            --subsection-spacing: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            line-height: 1.5;
+            color: var(--text);
+            background-color: var(--background);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            font-size: 15px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        h1 {
+            color: var(--title-color);
+            font-size: 2em;
+            font-weight: 700;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        h2 {
+            color: var(--title-color);
+            margin: 30px 0 12px;
+            font-size: 1.8em;
+            font-weight: 700;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--title-color);
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin: 20px 0 6px;
+            font-size: 1.4em;
+            font-weight: 600;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        a:visited {
+            color: var(--visited-link);
+        }
+        
+        ul, ol {
+            padding-left: 18px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 3px;
+            line-height: 1.4;
+            font-size: 0.95em;
+        }
+        
+        .section {
+            margin-bottom: var(--section-spacing);
+            padding-bottom: 12px;
+        }
+        
+        .conjecture, .problem, .remark {
+            margin: 1em 0;
+            padding: 1em;
+            border-left: 3px solid #ccc;
+        }
+        
+        .remark {
+            background-color: var(--light-bg);
+            padding: 1em;
+        }
+        
+        .center {
+            text-align: center;
+            margin: 1em 0;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--light-text);
+            font-size: 0.8em;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        
+        /* MathJax 公式样式优化 */
+        .MathJax {
+            font-size: 1.1em !important;
+        }
+        
+        mjx-container[jax="CHTML"] {
+            outline: none;
+        }
+    </style>
+    <!-- MathJax配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            },
+            chtml: {
+                fontURL: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Recent works on my thesis</h1>
+    </div>
+
+    <div class="section">
+        <p>The main topic of my thesis lies on the convergence of semi-linear elliptic partial differential equations, mainly the <a href="https://en.wikipedia.org/wiki/Allen–Cahn_equation"><strong>Allen-Cahn equation</strong> (ACE)</a> and its applications to the <a href="https://en.wikipedia.org/wiki/Mean_curvature_flow"><strong>mean curvature flow</strong></a>. Firstly, we are going to classify the solutions of semi-linear elliptic equations (not only the ACE) under some necessary and technical conditions such as <em>monotonicity</em> and <em>boundedness</em> by <em>the moving plane method</em> established by <a href="https://stevanovichcenter.uchicago.edu/henri-berestycki/">Berestycki</a>, <a href="https://web.ma.utexas.edu/users/caffarel/">Cafarelli</a> and <a href="https://web.ma.utexas.edu/users/caffarel/">Nirenberg</a> in 1990s (in lower dimensions); and secondly, we will present the modified <em>convergence method</em> established by <a href="https://web.mat.upc.edu/xavier.cabre/">Cabré</a> and <a href="https://www.math.columbia.edu/~savin/">Savin</a> in 2000s to show certain rigidity of ACE (in higher dimensions), which is related to the <a href="https://www.math.cuhk.edu.hk/~wei/DGsurvey-2017-11-24.pdf"><strong>De Giorgi conjecture</strong></a> (We refer readers to Professor Wei's survey to see more details and recent works on De Giorgi's conjecture); Finally, we will study the convergence of Allen-Cahn equation under the mean curvature flow with further methods with the <a href="https://en.wikipedia.org/wiki/Harmonic_map"><em>harmonic map</em></a>.</p>
+
+        <p>To be simple, the solution <em>u</em> is always assumed to be monotone along <em>x<sub>n</sub></em>-axis and be bounded in [-1,1].</p>
+    </div>
+
+    <div class="section">
+        <h2>Background</h2>
+
+        <p>The semi-linear elliptic equation Δ<em>u</em>-<em>F'</em>(<em>u</em>)=0 may be regarded as a critical point of the following functional <em>E</em> with <a href="https://simple.wikipedia.org/wiki/Kinetic_energy"><em>kinetic energy</em></a> |∇<em>u</em>|<sup>2</sup> and <a href="https://simple.wikipedia.org/wiki/Potential_energy"><em>potential energy</em></a> <em>F</em>(<em>u</em>)</p>
+
+        <div class="center">
+            <em>E</em>(<em>u</em>,Ω) := ∫<sub>Ω</sub> ½|∇<em>u</em>|<sup>2</sup> + <em>F</em>(<em>u</em>) d<em>x</em>,
+        </div>
+
+        <p>where <em>u</em> is a function defined on Ω ⊂ ℝ<sup><em>n</em></sup> and <em>F</em> is a nonnegative function in <em>C</em><sup>2</sup>. Particularly, in our work, we focus on the potential <em>F</em> with double-well property, called the <em>double-well potential</em>, denoted by <em>W</em>, namely</p>
+
+        <div class="center">
+            <em>W</em>(±1) = <em>W'</em>(±1) = 0, <em>W''</em>(±1) > 0.
+        </div>
+
+        <p>A well-known model is <em>W</em>(<em>s</em>) = ¼(1-<em>s</em><sup>2</sup>)<sup>2</sup>, which is related to the so-called Allen-Cahn equation, i.e.,</p>
+
+        <div class="center">
+            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0.
+        </div>
+
+        <p>In this case, the functional above, called <a href="https://link.springer.com/book/10.1007/978-3-540-68008-6"><em>Ginzburg-Landau energy functional</em></a>, denoted by <em>J</em>, is related to the <a href="https://simple.wikipedia.org/wiki/Phase_change"><strong>phase transition</strong></a> theory, in particular, the <a href="https://www.appliedpolymertechnology.org/uploads/1/0/8/8/108867241/cahnhilliard_1958_jchemphys_28_258.pdf"><em>van der Walls-Cahn-Hilliard theory</em></a>. Intuitionally, one may imagine that there is a cup of ice-water mixture, where the functional <em>J</em> can be regarded as the energy of the mixture and <em>u</em> is the density of ice (or water) with respect to the mixture. Thanks to the <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle"><em>Hamilton's principle of least action</em></a>, the ice-water system tends to stay at the least level of such energy; and then we obtain the critical equation written above.</p>
+
+        <p>In our paper, inspired many previous seminal works in previous about six decades, we are interested the <a href="https://link.springer.com/article/10.1007/BF01244896"><strong>symmetry</strong></a> (depend on merely on variable) of critical points of such functional <em>J</em> - or solutions of equations, equivalently - and furthermore, the <strong>convergence</strong> (in <em><a href="https://en.wikipedia.org/wiki/Γ-convergence">Γ-convergence</a></em> or mean curvature flow sense) of equations.</p>
+    </div>
+
+    <div class="section">
+        <h2>Statement of the Main Problem/Conjecture</h2>
+
+        <p>In 1978, <a href="https://en.wikipedia.org/wiki/Ennio_De_Giorgi">De Giorgi</a> guessed that the monotone and bounded entire solution <em>u</em> to the Allen-Cahn equation</p>
+
+        <div class="center">
+            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>
+        </div>
+
+        <p>is dependent of merely <strong>ONE</strong> variable as <em>n</em> ≤ 8. Noting that all level sets of <em>u</em>, say {<em>u</em>=<em>s</em>}<sub>1≤<em>s</em>≤1</sub> are graphs evidently, since <em>u</em> is monotone, we will illustrate the reason that De Giorgi believe the level sets are <em>flat</em>, which is equivalent to depending on one variable up to <em>n</em> ≤ 8 later. Firstly, we state the conjecture formally.</p>
+
+        <div class="conjecture">
+            <strong>Conjecture (De Giorgi, 1978)</strong><br>
+            Let <em>u</em> be a bounded entire solution of Allen-Cahn equation<br>
+            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>,<br>
+            which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Equivalently, all the level sets of <em>u</em> are hyperplanes.
+        </div>
+
+        <p>To understand this conjecture, we now present a more intuitional and geometric problem, which was completely solved in the previous century, called the <a href="https://en.wikipedia.org/wiki/Bernstein%27s_problem"><strong>Bernstein problem</strong></a>.</p>
+
+        <div class="problem">
+            <strong>Problem (Bernstein, 1914)</strong><br>
+            Let Σ be an entire minimal graph in ℝ<sup><em>N</em></sup>, then Σ is a hyperplane.
+        </div>
+
+        <p>The problem was named and solved as <em>n</em> ≤ 3 by <a href="https://en.wikipedia.org/wiki/Sergei_Bernstein">Bernstein</a>. Indeed, the surface Σ is the graph of entire solution <em>v</em> to following <em>minimal surfaces equation</em> (MSE),</p>
+
+        <div class="center">
+            div(∇<em>v</em>/√(1+|<em>v</em>|<sup>2</sup>)) = 0, in ℝ<sup><em>N</em></sup>,
+        </div>
+
+        <p>where derives from the variational of the area functional, i.e.,</p>
+
+        <div class="center">
+            <em>A</em>(<em>v</em>,ℝ<sup><em>N</em></sup>) = ∫<sub>ℝ<sup><em>N</em></sup></sub> √(1+|∇<em>v</em>|<sup>2</sup>) d<em>x</em>
+        </div>
+
+        <p>However, unfortunately, one may encounter some difficulties when apply Bernstein's cutoff method in higher dimensions. After about fifty years, <a href="https://en.wikipedia.org/wiki/Wendell_Fleming">Fleming</a> established a ground-breaking method called <em>blowing-down</em> and <em>minimal cone</em> to solve this problem in the same dimension, nevertheless, which not only motivated the following works in 1960s to solve this problem completely but also created a seminal field, namely so-called <a href="https://en.wikipedia.org/wiki/Geometric_measure_theory"><strong>geometric measure theory</strong></a>. Subsequently, De Giorgi discovered a "one-dimensional gap" of minimal cone (If there is no non-flat minimal cone in ℝ<sup><em>N</em>-1</sup> then the analogue of Bernstein's theorem is true for graphs in ℝ<sup><em>N</em></sup>), which implies the Bernstein problem in ℝ<sup>4</sup>. Then, from 1966 to 1968, <a href="https://en.wikipedia.org/wiki/Frederick_J._Almgren_Jr.">Almgren</a> and <a href="https://en.wikipedia.org/wiki/Jim_Simons">Simons</a> proved it as <em>N</em>=5 and <em>N</em>≤7 respectively. Finally, in 1969, <a href="https://en.wikipedia.org/wiki/Enrico_Bombieri">Bombieri</a>, De Giorgi and Simons showed there exists non-flat minimal cones in ℝ<sup><em>N</em></sup>, as <em>N</em>≥9 by so-called <a href="https://en.wikipedia.org/wiki/Simons_cone"><em>Simons cone</em></a>. Hence, the Bernstein problem was solved perfectly.</p>
+
+        <p>Back to De Giorgi's conjecture, we rewrite the Ginzburg-Landau energy</p>
+
+        <div class="center">
+            <em>J</em>(<em>u</em>,Ω) = ∫<sub>Ω</sub> ½|∇<em>u</em>|<sup>2</sup> + <em>W</em>(<em>u</em>) d<em>x</em>
+        </div>
+
+        <p>where <em>W</em> is a double-well potential. We say <em>u</em> is a <em>minimizer</em> of <em>J</em>(·,Ω), if</p>
+
+        <div class="center">
+            <em>J</em>(<em>u</em>,Ω) ≤ <em>J</em>(<em>u</em>+<em>φ</em>,Ω), ∀ <em>φ</em> ∈ <em>C</em><sup>∞</sup><sub>c</sub>(Ω),
+        </div>
+
+        <p>particularly, saying a global minimizer, if Ω=ℝ<sup><em>n</em></sup>.</p>
+
+        <p>To simplify, let Ω=<em>B</em><sub>1</sub>={<em>x</em>∈ℝ<sup><em>n</em></sup>:|<em>x</em>|<1}. Introduce the <em>rescaling</em> of <em>u</em>, say <em>u<sub>ε</sub></em>(<em>x</em>):=<em>u</em>(<em>x</em>/<em>ε</em>), <em>x</em>∈<em>B</em><sub>1</sub>,<em>ε</em>>0. If <em>u</em> minimizes <em>J</em>(·,<em>B</em><sub><em>ε</em><sup>-1</sup></sub>), then <em>u<sub>ε</sub></em> minimizes the rescaling functional <em>J<sub>ε</sub></em> in <em>B</em><sub>1</sub>, namely</p>
+
+        <div class="center">
+            <em>J<sub>ε</sub></em>(<em>v</em>,<em>B</em><sub>1</sub>) = ∫<sub><em>B</em><sub>1</sub></sub> <em>ε</em>/2 |∇<em>v</em>|<sup>2</sup> + 1/<em>ε</em> <em>W</em>(<em>v</em>) d<em>x</em>.
+        </div>
+
+        <p>Intuitionally, fixing <em>v</em>, the main contribution in <em>J<sub>ε</sub></em> comes from the potential <em>W</em>(<em>v</em>) as <em>ε</em>↘0<sup>+</sup>, which assumes the minimum when <em>v</em> equals either 1 or -1. Hence, <em>v</em> may jump from the region of <em>v</em>=1 to <em>v</em>=-1 through the <em>interface</em> dramatically.</p>
+
+        <p>Let Σ<sub><em>s</em></sub>:={<em>v</em>=<em>s</em>}, by Cauchy-Schwarz inequality and co-area formula, we obtain</p>
+
+        <div class="center">
+            <em>J<sub>ε</sub></em>(<em>v</em>,<em>B</em><sub>1</sub>) ≥ ∫<sub><em>B</em><sub>1</sub></sub> √(2<em>W</em>(<em>v</em>))·|∇<em>v</em>| d<em>x</em> = ∫<sub>-1</sub><sup>1</sup> √(2<em>W</em>(<em>v</em>))·<em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>) d<em>s</em>,
+        </div>
+
+        <p>where <em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>) is <em>n</em>-1 dimensional Hausdorff measure of the level set {<em>v</em>=<em>s</em>}=Σ<sub><em>s</em></sub>. We hope that <em>J<sub>ε</sub></em> is minimized, which requires every level sets of <em>v</em> are minimal surfaces that minimizes the term <em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>). Therefore, it is reasonable to guess that all level sets of <em>u</em> are flat at least <em>n</em> ≤ 8.</p>
+
+        <p>Furthermore, we have the equality from the inequality above, i.e., <em>ε</em>|∇<em>v</em>|=√(2<em>W</em>(<em>v</em>)). Let</p>
+
+        <div class="center">
+            <em>g</em><sub>0</sub>(<em>d</em><sub>Σ<sub>0</sub></sub>(<em>x</em>)/<em>ε</em>) := <em>v</em>(<em>x</em>),
+        </div>
+
+        <p>where <em>d</em><sub>Σ<sub>0</sub></sub>:<em>B</em><sub>1</sub>→ℝ<sub>≥0</sub> is the distance function from <em>x</em> to the level set Σ<sub>0</sub>. Clearly</p>
+
+        <div class="center">
+            <em>g</em><sub>0</sub>' = √(2<em>W</em>(<em>g</em><sub>0</sub>)), <em>g</em><sub>0</sub>(0) = 0,
+        </div>
+
+        <p>where <em>g</em><sub>0</sub> is actually the unique minimizer of <em>J<sub>ε</sub></em> in 1 dimension and is increasing. It is also useful to note that <em>g</em><sub>0</sub> is bounded since <em>W</em> is double-well. Particularly, if <em>W</em>=¼(1-<em>s</em><sup>2</sup>)<sup>2</sup>,<em>ε</em>=1, then <em>g</em><sub>0</sub>=tanh(<em>x</em>/√2), which is exactly the particular solution of Allen-Cahn equation in 1 dimension, namely</p>
+
+        <div class="center">
+            <em>g</em><sub>0</sub>'' + <em>g</em><sub>0</sub> - <em>g</em><sub>0</sub><sup>3</sup> = 0.
+        </div>
+
+        <p>Thus, one may rewrite the conjecture more precisely.</p>
+
+        <div class="conjecture">
+            <strong>Conjecture (De Giorgi, 1978)</strong><br>
+            Let <em>u</em> be a bounded entire solution of Allen-Cahn equation<br>
+            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>,<br>
+            which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Furthermore, precisely, <em>u</em> must have the form<br>
+            <em>u</em>(<em>x</em>) = tanh((<em>a</em>·<em>x</em>-<em>b</em>)/√2),<br>
+            where <em>a</em>∈ℝ<sup><em>n</em></sup> is unit vector and <em>b</em>∈ℝ.
+        </div>
+
+        <div class="remark">
+            <strong>Remark</strong><br>
+            Indeed, by the argument above, one may ask a analogous but more general question for any double-well potential <em>W</em>, which are much more difficult.
+            <div class="conjecture" style="margin-top: 1em;">
+                <strong>Conjecture (General case)</strong><br>
+                Let <em>u</em> be a bounded entire solution of semi-linear elliptic equation<br>
+                Δ<em>u</em> - <em>W'</em>(<em>u</em>) = 0, in ℝ<sup><em>n</em></sup>, where <em>W</em> is double-well,<br>
+                which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Furthermore, precisely, <em>u</em> must have the form<br>
+                <em>v</em>(<em>x</em>) = <em>g</em><sub>0</sub>(<em>d</em><sub>Σ<sub>0</sub></sub>(<em>x</em>)),<br>
+                where <em>g</em><sub>0</sub>' = √(2<em>W</em>(<em>g</em><sub>0</sub>)), <em>g</em><sub>0</sub>(0) = 0.
+            </div>
+        </div>
+
+        <p>Now, we present several milestone works on the De Giorgi conjecture. Firstly, inspired by the methods established by Berestycki, Caffarelli and Nirenberg, <a href="https://en.wikipedia.org/wiki/Nassif_Ghoussoub">Ghoussoub</a> and <a href="https://www.fst.um.edu.mo/people/changfenggui/">Gui</a> proved it for general <em>W</em> in <em>n</em>=2. Subsequently, by observing "one dimensional gap" of energy estimate in previous work, <a href="https://www.sns.it/en/persona/luigi-ambrosio">Ambrosio</a> and Cabré proved it in <em>n</em>=3; and furthermore, <a href="https://pagine.dm.unipi.it/alberti/">Alberti</a>, Ambrosio and Cabré proved it for general <em>W</em> in the same dimension by the argument of <em>calibration</em>. Motivated by the argument of <em>asymptotic flatness</em>, Savin solved it as 4≤<em>n</em>≤8 under a technical assumption,</p>
+
+        <div class="center">
+            lim<sub><em>x<sub>n</sub></em>→±∞</sub> <em>u</em>(<em>x</em>) = ±1, in pointwise sense,
+        </div>
+
+        <p>by modifying a flatness convergence theorem from De Giorgi. Finally, <a href="https://samba.ac.uk/staff/manuel-del-pino/">del Pino</a>, <a href="https://www.math.kent.edu/~kowalcyk/">Kowalczyk</a> and <a href="https://personal.math.ubc.ca/~jcwei/">Wei</a> established a counterexample as <em>n</em>≥9 which was long believed to exist, based on Bombieri, De Giorgi and Simons' work. Up to this day, the conjecture is still <strong>OPEN</strong> as 4≤<em>n</em>≤8 for dropping the technical condition above.</p>
+
+        <p>However, one may ask a weaker question by strengthening the technical assumption to <em>uniform</em> convergence, which is called the <strong>Gibbons conjecture</strong> that was solved completely by <a href="https://www.lamfa.u-picardie.fr/farina/">Farina</a> and <a href="https://personal.math.ubc.ca/~barlow/">Barlow</a>, <a href="https://r-bass.scholar.uconn.edu">Bass</a> and Gui and Berestycki, <a href="https://www.i2m.univ-amu.fr/perso/francois.hamel/">Hamel</a>, and <a href="https://cermics.enpc.fr/~monneau/">Monneau</a>, independently.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2023-2025 Qian Zhenye. All rights reserved.</p>
+        <p>Department of Mathematics, Hangzhou Normal University</p>
+    </footer>
+</body>
+</html>
