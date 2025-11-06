@@ -9,16 +9,16 @@
         :root {
             --primary: #222;
             --secondary: #444;
-            --accent: #1a73e8; /* 舒适的浅蓝色 */
-            --title-color: #1a73e8; /* 标题使用同样的浅蓝色 */
-            --visited-link: #8a2be2; /* 舒适的紫色 */
+            --accent: #1a73e8;
+            --title-color: #1a73e8;
+            --visited-link: #8a2be2;
             --background: #ffffff;
             --light-bg: #f8f8f8;
             --text: #222;
             --light-text: #666;
             --border: #ddd;
-            --section-spacing: 20px; /* 减少间距 */
-            --subsection-spacing: 12px; /* 减少子部分间距 */
+            --section-spacing: 20px;
+            --subsection-spacing: 12px;
         }
         
         * {
@@ -28,7 +28,7 @@
         }
         
         body {
-            font-family: 'Merriweather', Georgia, serif; /* 更优雅的衬线字体 */
+            font-family: 'Merriweather', Georgia, serif;
             line-height: 1.5;
             color: var(--text);
             background-color: var(--background);
@@ -38,7 +38,7 @@
             font-size: 15px;
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 25px; /* 减少主内容区域间距 */
+            gap: 25px;
         }
         
         /* 左侧栏样式 */
@@ -83,10 +83,10 @@
         
         h1 {
             color: var(--primary);
-            font-size: 2em; /* 增大标题 */
+            font-size: 2em;
             margin-bottom: 5px;
             font-weight: 700;
-            font-family: 'Source Sans Pro', sans-serif; /* 无衬线字体用于标题 */
+            font-family: 'Source Sans Pro', sans-serif;
         }
         
         .subtitle {
@@ -180,7 +180,7 @@
         h2 {
             color: var(--title-color);
             margin-bottom: 12px;
-            font-size: 1.8em; /* 增大主标题 */
+            font-size: 1.8em;
             font-weight: 700;
             padding-bottom: 6px;
             border-bottom: 2px solid var(--title-color);
@@ -191,7 +191,7 @@
         h3 {
             color: var(--primary);
             margin: var(--subsection-spacing) 0 6px;
-            font-size: 1.4em; /* 增大子标题 */
+            font-size: 1.4em;
             font-weight: 600;
             font-family: 'Source Sans Pro', sans-serif;
         }
@@ -514,7 +514,7 @@
             </div>
             
             <!-- 新增：Recent works on my thesis -->
-            <a href="thesis.html" class="nav-link">Recent works on my thesis</a>
+            <a href="thesis.html" class="nav-link" target="_blank">Recent works on my thesis</a>
         </nav>
     </div>
 
@@ -850,6 +850,13 @@ A simple philosophy of the m.p. is that the boundary value dominates the supremu
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
+                    // 检查是否是外部链接（包含.html或http）
+                    const href = this.getAttribute('href');
+                    if (href.includes('.html') || href.startsWith('http')) {
+                        // 外部链接，允许默认行为（跳转）
+                        return;
+                    }
+                    
                     if (this !== researchNav) {
                         e.preventDefault();
                         
@@ -911,6 +918,12 @@ A simple philosophy of the m.p. is that the boundary value dominates the supremu
                 });
                 
                 navLinks.forEach(link => {
+                    // 跳过外部链接
+                    const href = link.getAttribute('href');
+                    if (href.includes('.html') || href.startsWith('http')) {
+                        return;
+                    }
+                    
                     link.classList.remove('active');
                     if (link.getAttribute('href') === currentSection) {
                         link.classList.add('active');
