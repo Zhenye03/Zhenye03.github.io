@@ -125,10 +125,25 @@
             padding-bottom: 12px;
         }
         
-        .conjecture, .problem, .remark {
+        .theorem, .proposition, .conjecture, .problem, .remark {
             margin: 1em 0;
             padding: 1em;
             border-left: 3px solid #ccc;
+        }
+        
+        .theorem {
+            background-color: #f0f8ff;
+            border-left-color: #1a73e8;
+        }
+        
+        .proposition {
+            background-color: #f9f9f9;
+            border-left-color: #4CAF50;
+        }
+        
+        .conjecture {
+            background-color: #fff8e1;
+            border-left-color: #ff9800;
         }
         
         .remark {
@@ -175,6 +190,40 @@
         mjx-container[jax="CHTML"] {
             outline: none;
         }
+        
+        /* Footnote style */
+        .footnote {
+            font-size: 0.85em;
+            color: var(--light-text);
+            margin-top: 5px;
+        }
+        
+        .footnote-ref {
+            vertical-align: super;
+            font-size: 0.75em;
+        }
+        
+        /* Italic and bold text */
+        em, i {
+            font-style: italic;
+        }
+        
+        strong, b {
+            font-weight: bold;
+        }
+        
+        /* Color text */
+        .text-red {
+            color: red;
+        }
+        
+        .text-blue {
+            color: blue;
+        }
+        
+        .text-purple {
+            color: purple;
+        }
     </style>
     <!-- MathJax配置 -->
     <script>
@@ -183,7 +232,8 @@
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
                 processEscapes: true,
-                processEnvironments: true
+                processEnvironments: true,
+                tags: 'ams'
             },
             options: {
                 skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
@@ -202,328 +252,496 @@
     </div>
 
     <div class="section">
-        <p>The main topic of my thesis lies on the convergence of semilinear elliptic partial differential equations, mainly the <a href="https://en.wikipedia.org/wiki/Allen–Cahn_equation"><strong>Allen-Cahn equation</strong> (ACE)</a> and its applications to the <a href="https://en.wikipedia.org/wiki/Mean_curvature_flow"><strong>mean curvature flow</strong></a>. Firstly, we are going to classify the solutions of semilinear elliptic equations (not only the ACE) under some necessary and technical conditions such as <em>monotonicity</em> and <em>boundedness</em> by <em>the moving plane method</em> established by <a href="https://stevanovichcenter.uchicago.edu/henri-berestycki/">Berestycki</a>, <a href="https://web.ma.utexas.edu/users/caffarel/">Cafarelli</a> and <a href="https://web.ma.utexas.edu/users/caffarel/">Nirenberg</a> in 1990s (in lower dimensions); and secondly, we will present the modified <em>convergence method</em> established by <a href="https://web.mat.upc.edu/xavier.cabre/">Cabré</a> and <a href="https://www.math.columbia.edu/~savin/">Savin</a> in 2000s to show certain rigidity of ACE (in higher dimensions), which is related to the <a href="https://www.math.cuhk.edu.hk/~wei/DGsurvey-2017-11-24.pdf"><strong>De Giorgi conjecture</strong></a> (We refer readers to Professor Wei's survey <a href="#ref-chan2018giorgi">[Chan18]</a> to see more details and recent works on De Giorgi's conjecture); Finally, we will study the convergence of Allen-Cahn equation (and <em>vector-valued</em> version) under the mean curvature flow with further methods with the <a href="https://en.wikipedia.org/wiki/Harmonic_map"><em>harmonic map</em></a>.</p>
-
-        <p>To be simple, the solution <em>u</em> is always assumed to be monotone along <em>x<sub>n</sub></em>-axis and be bounded in [-1,1].</p>
+        <p>The study of <em>semilinear</em> elliptic partial differential equations over the past 50 years, as well as the main focus of my thesis, can be broadly divided into two main areas: the <em>static</em> profile and the <em>dynamical</em> model. The former originated from the seminal works of Caffarelli, Gidas, and Spruck in the 1980s on the classification of semilinear equations, particularly <em>Lane-Emden</em> equations in the whole space $\mathbb{R}^N$ and the half-space $\mathbb{R}_+^N$. These studies have significantly influenced the development of semilinear equation theory and often reduce to the so-called <em>Liouville-type</em> theorems, which are typically concerned with unbounded domains<span class="footnote-ref">1</span>, representing a major area of research. Although there has been substantial progress in this extensive program, the question remains unresolved even for the "simplest" model, the Lane-Emden equation. The second direction focuses on dynamic models featuring <em>double-well</em> potentials, known as the <em>Cahn-Hilliard</em> model, including their vector-valued versions. These were studied by Rubinstein, Stenberg, and Keller in the 1990s. Their work suggested that the convergence properties of parabolic Allen-Cahn-type equations are connected to a geometric profiles known as <em>mean curvature flow</em>. Subsequently, this connection was established for the scalar case and some special vector-valued cases using various methodologies. However, the general vector-valued case remains unresolved.</p>
+        
+        <div class="footnote">1 This explains the emphasis on $\mathbb{R}^N$ and $\mathbb{R}_+^N$.</div>
+        
+        <p>The following three major problems constitute the central focus of my work.</p>
     </div>
 
     <div class="section">
-        <h2>Background</h2>
-
-        <h3>Static model</h3>
-        <p>The semilinear elliptic equation Δ<em>u</em>-<em>F'</em>(<em>u</em>)=0 may be regarded as a critical point of the following functional <em>E</em> with <a href="https://simple.wikipedia.org/wiki/Kinetic_energy"><em>kinetic energy</em></a> |∇<em>u</em>|<sup>2</sup> and <a href="https://simple.wikipedia.org/wiki/Potential_energy"><em>potential energy</em></a> <em>F</em>(<em>u</em>)</p>
-
+        <h2>Liouville-type theorem and BCN conjecture</h2>
+        
+        <p>The Liouville theorem in elliptic PDEs is well-known and fundamental. It asserts that any bounded entire harmonic function—i.e., a solution of $\Delta u=0$—must be constant, a result that extends to general uniformly elliptic equations $a_{ij}D_{ij}u=0$; see <a href="#ref-qian2025note">[Qian25]</a>. Indeed, various so-called <em>Liouville-type</em> theorems exist in elliptic PDEs and are instrumental in classifying solutions to certain types of elliptic equations; for details, see monographs <a href="#ref-dupaigne2011stable">[Dupaigne11]</a>, <a href="#ref-quittner2019superlinear">[Quittner19]</a> and surveys <a href="#ref-chan2018giorgi">[Chan18]</a>, <a href="#ref-wang2021recent">[Wang21]</a>. Our focus lies on Liouville-type theorems<span class="footnote-ref">2</span> for the semilinear equations in unbounded domains:</p>
+        
         <div class="center">
-            <em>E</em>(<em>u</em>,Ω) := ∫<sub>Ω</sub> ½|∇<em>u</em>|<sup>2</sup> + <em>F</em>(<em>u</em>) d<em>x</em>,
+            $\Delta u+f(u)=0,\quad \text{in}\ \Omega.$
         </div>
-
-        <p>where <em>u</em> is a function defined on Ω ⊂ ℝ<sup><em>n</em></sup> and <em>F</em> is a nonnegative function in <em>C</em><sup>2</sup>. Particularly, in our work, we focus on the potential <em>F</em> with double-well property, called the <em>double-well potential</em>, denoted by <em>W</em>, namely</p>
-
-        <div class="center">
-            <em>W</em>(±1) = <em>W'</em>(±1) = 0, <em>W''</em>(±1) > 0.
+        
+        <div class="footnote">2 which can be viewed as <em>Bernstein-type</em> problems in geometry or <em>De Giorgi-type</em> problems.</div>
+        
+        <p>We first recall a classic model established by Gidas and Spruck <a href="#ref-gidas1981priori">[Gidas81]</a>, <a href="#ref-gidas1981global">[Gidas81b]</a> and Caffarelli, Gidas, and Spruck <a href="#ref-caffarelli1989asymptotic">[Caffarelli89]</a>, which states some results about the positive solutions to Lane-Emden equation in entire space and half-spaces.</p>
+        
+        <div class="theorem">
+            <strong>Theorem (Gidas-Spruck, 1981; Caffarelli-Gidas-Spruck, 1989)</strong><br>
+            Let $\Omega=\mathbb{R}^N$ and $p>1$, the Lane-Emden equation
+            <div class="center">
+                $\Delta u+u^p=0,\quad\text{in}\ \mathbb{R}^N,$
+            </div>
+            <ol>
+                <li>(i) does <strong>not</strong> possess any <em>positive</em> classical solution if, $p<p_S:=\frac{N+2}{N-2}$;</li>
+                <li>(ii) any positive classical solution is radially symmetric with respect to some point. Precisely, it must be of the form of the <em>Talenti</em> solutions
+                <div class="center">
+                    $u(x)=\left(\frac{\lambda}{\lambda^2+|x-x_0|^2}\right)^{\frac{N-2}{2}},\quad \lambda>0,\ x_0\in\mathbb{R}^N.$
+                </div>
+                </li>
+            </ol>
+            Let $\Omega=\partial\mathbb{R}_+^N$ and $1<p\le p_S$, then problem
+            <div class="center">
+                $\begin{cases}
+                \Delta u+u^p=0,&\text{in}\ \mathbb{R}_+^N\\
+                u=0,&\text{on}\ \partial\mathbb{R}_+^N
+                \end{cases}$
+            </div>
+            does <strong>not</strong> possess any <em>positive</em> classical solution.
         </div>
-
-        <p>A well-known model is <em>W</em>(<em>s</em>) = ¼(1-<em>s</em><sup>2</sup>)<sup>2</sup>, which is related to the so-called Allen-Cahn equation, i.e.,</p>
-
-        <div class="center">
-            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0.
-        </div>
-
-        <p>In this case, the functional above, called <a href="https://link.springer.com/book/10.1007/978-3-540-68008-6"><em>Ginzburg-Landau energy functional</em></a>, denoted by <em>J</em>, is related to the <a href="https://simple.wikipedia.org/wiki/Phase_change"><strong>phase transition</strong></a> theory <a href="#ref-braides2002gamma">[Braides02]</a>, in particular, the <a href="https://www.appliedpolymertechnology.org/uploads/1/0/8/8/108867241/cahnhilliard_1958_jchemphys_28_258.pdf"><em>van der Walls-Cahn-Hilliard theory</em></a> <a href="#ref-cahn1958free">[Cahn58]</a><a href="#ref-allen1979microscopic">[Allen79]</a>. Intuitionally, one may imagine that there is a cup of ice-water mixture, where the functional <em>J</em> can be regarded as the energy of the mixture and <em>u</em> is the density of ice (or water) with respect to the mixture. Thanks to the <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle"><em>Hamilton's principle of least action</em></a>, the ice-water system tends to stay at the least level of such energy; and then we obtain the critical equation written above.</p>
-
-        <h3>Dynamical model</h3>
-        <p>We now turn to the dynamical model from the static case by adding the assumption of <a href="https://en.wikipedia.org/wiki/Thermal_energy"><em>thermal energy</em></a>, which accelerates the ice to melt. On the other hand, we obtain the dynamical equation, introduced by Allen and Cahn <a href="#ref-allen1979microscopic">[Allen79]</a>, i.e.,</p>
-
-        <div class="center">
-            ∂<sub><em>t</em></sub><em>u</em> = Δ<em>u</em> - <em>W'</em>(<em>u</em>) = Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup>,
-        </div>
-
-        <p>which is in fact the <a href="https://en.wikipedia.org/wiki/Gradient_vector_flow"><em>gradient flow</em></a> of Ginzburg-Landau functional <em>J</em>, when <em>W</em>=¼(1-<em>s</em><sup>2</sup>)<sup>2</sup>, namely</p>
-
-        <div class="center">
-            ∂<sub><em>t</em></sub><em>u</em> = -δ<em>J</em>(<em>u</em>)/δ<em>u</em>.
-        </div>
-
-        <p>It is evident that the Allen-Cahn equation is the steady equation of the dynamical version. Hence, one may be interested in the limitation of such <em>flow</em>, which will be illustrated with more details in the next part after we introduce the <em>blow-down</em>. In fact, geometrically, through the <em>ε</em>↘0<sup>+</sup> blow-down, the asymptotic behavior converges like the <strong>mean curvature flow</strong>.</p>
-
-        <p>Furthermore, the <em>vector-value</em> Allen-Cahn equation</p>
-
-        <div class="center">
-            ∂<sub><em>t</em></sub><em>u</em> = Δ<em>u</em> - <em>W'</em>(<em>u</em>), <em>u</em>:Ω ⊂ ℝ<sup><em>n</em></sup> → ℝ<sup><em>m</em></sup>,
-        </div>
-
-        <p>where <em>W</em>(<em>u</em>):ℝ<sup><em>m</em></sup>→ℝ is a nonnegative radial function that vanishes precisely on two concentric spheres, which extends the definition of double-well potential to higher dimensions, was introduced, such as <a href="https://math.mcmaster.ca/~bronsard/">Bronsard</a> and Stoth <a href="#ref-bronsard1998singular">[Bronsard98]</a>, who established the case for <em>m</em>=2. On the other hand, it also can be regarded as a typical example of so-called <a href="https://en.wikipedia.org/wiki/Reaction–diffusion_system"><em>reaction-diffusion system</em></a> introduced by <a href="https://en.wikipedia.org/wiki/J._Hyam_Rubinstein">Rubinstein</a>, <a href="https://math.indiana.edu/about/faculty/sternberg-peter.html">Sternberg</a> and <a href="https://en.wikipedia.org/wiki/Joseph_Keller">Keller</a> <a href="#ref-rubinstein1989fast">[Rubinstein89]</a><a href="#ref-rubinstein1989reaction">[Rubinstein89b]</a>.</p>
-
-        <h3>Organization</h3>
-        <p>In our paper, inspired many previous seminal works in previous about six decades, we are interested the <a href="https://link.springer.com/article/10.1007/BF01244896"><strong>symmetry</strong></a> (depend on merely on variable <a href="#ref-berestycki1991method">[Berestycki91]</a>) of critical points of such functional <em>J</em> - or solutions of equations, equivalently - and furthermore, the <strong>convergence</strong> (in <em><a href="https://en.wikipedia.org/wiki/Γ-convergence">Γ-convergence</a></em> <a href="#ref-braides2002gamma">[Braides02]</a> and mean curvature flow sense) of equations.</p>
-    </div>
-
-    <div class="section">
-        <h2>Statement of the Main Problem/Conjecture</h2>
-
-        <h3>De Giorgi conjecture, minimal surfaces and phase transition</h3>
-        <p>In 1978, <a href="https://en.wikipedia.org/wiki/Ennio_De_Giorgi">De Giorgi</a> <a href="#ref-de1979convergence">[DeGiorgi79]</a> guessed that the monotone and bounded entire solution <em>u</em> to the Allen-Cahn equation</p>
-
-        <div class="center">
-            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>
-        </div>
-
-        <p>is dependent of merely <strong>ONE</strong> variable as <em>n</em> ≤ 8. Noting that all level sets of <em>u</em>, say {<em>u</em>=<em>s</em>}<sub>1≤<em>s</em>≤1</sub> are graphs evidently, since <em>u</em> is monotone, we will illustrate the reason that De Giorgi believe the level sets are <em>flat</em>, which is equivalent to depending on one variable up to <em>n</em> ≤ 8 later. Firstly, we state the conjecture formally.</p>
-
-        <div class="conjecture">
-            <strong>Conjecture (De Giorgi, 1978)</strong><br>
-            Let <em>u</em> be a bounded entire solution of Allen-Cahn equation<br>
-            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>,<br>
-            which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Equivalently, all the level sets of <em>u</em> are hyperplanes.
-        </div>
-
-        <p>To understand this conjecture, we now present a more intuitional and geometric problem, which was completely solved in the previous century, called the <a href="https://en.wikipedia.org/wiki/Bernstein%27s_problem"><strong>Bernstein problem</strong></a>.</p>
-
-        <div class="problem">
-            <strong>Problem (Bernstein, 1914)</strong><br>
-            Let Σ be an entire minimal graph in ℝ<sup><em>N</em></sup>, then Σ is a hyperplane.
-        </div>
-
-        <p>The problem was named and solved as <em>n</em> ≤ 3 by <a href="https://en.wikipedia.org/wiki/Sergei_Bernstein">Bernstein</a> <a href="#ref-bernstein1927geometrisches">[Bernstein27]</a>. Indeed, the surface Σ is the graph of entire solution <em>v</em> to following <em>minimal surfaces equation</em> (MSE),</p>
-
-        <div class="center">
-            div(∇<em>v</em>/√(1+|<em>v</em>|<sup>2</sup>)) = 0, in ℝ<sup><em>N</em></sup>,
-        </div>
-
-        <p>where derives from the variational of the area functional, i.e.,</p>
-
-        <div class="center">
-            <em>A</em>(<em>v</em>,ℝ<sup><em>N</em></sup>) = ∫<sub>ℝ<sup><em>N</em></sup></sub> √(1+|∇<em>v</em>|<sup>2</sup>) d<em>x</em>.
-        </div>
-
-        <p>However, unfortunately, one may encounter some difficulties when apply Bernstein's cutoff method in higher dimensions. After about fifty years, <a href="https://en.wikipedia.org/wiki/Wendell_Fleming">Fleming</a> <a href="#ref-fleming1962oriented">[Fleming62]</a> established a ground-breaking method called <em>blowing-down</em> and <em>minimal cone</em> to solve this problem in the same dimension, nevertheless, which not only motivated the following works in 1960s to solve this problem completely but also created a seminal field, namely so-called <a href="https://en.wikipedia.org/wiki/Geometric_measure_theory"><strong>geometric measure theory</strong></a>. Subsequently, De Giorgi <a href="#ref-de1965estensione">[DeGiorgi65]</a> discovered a "one-dimensional gap" of minimal cone (If there is no non-flat minimal cone in ℝ<sup><em>N</em>-1</sup> then the analogue of Bernstein's theorem is true for graphs in ℝ<sup><em>N</em></sup>), which implies the Bernstein problem in ℝ<sup>4</sup>. Then, from 1966 to 1968, <a href="https://en.wikipedia.org/wiki/Frederick_J._Almgren_Jr.">Almgren</a> <a href="#ref-almgren1966some">[Almgren66]</a> and <a href="https://en.wikipedia.org/wiki/Jim_Simons">Simons</a> <a href="#ref-simons1968minimal">[Simons68]</a> proved it as <em>N</em>=5 and <em>N</em>≤7 respectively. Finally, in 1969, <a href="https://en.wikipedia.org/wiki/Enrico_Bombieri">Bombieri</a>, De Giorgi and Simons <a href="#ref-bombieri1969minimal">[Bombieri69]</a> showed there exists non-flat minimal cones in ℝ<sup><em>N</em></sup>, as <em>N</em>≥9 by so-called <a href="https://en.wikipedia.org/wiki/Simons_cone"><em>Simons cone</em></a>. Hence, the Bernstein problem was solved perfectly. We refer the readers to <a href="#ref-giusti1984minimal">[Giusti84]</a> for more detailed historical viewpoints and discussions.</p>
-
-        <p>Back to De Giorgi's conjecture, we rewrite the Ginzburg-Landau energy</p>
-
-        <div class="center">
-            <em>J</em>(<em>u</em>,Ω) = ∫<sub>Ω</sub> ½|∇<em>u</em>|<sup>2</sup> + <em>W</em>(<em>u</em>) d<em>x</em>
-        </div>
-
-        <p>where <em>W</em> is a double-well potential. We say <em>u</em> is a <em>minimizer</em> of <em>J</em>(·,Ω), if</p>
-
-        <div class="center">
-            <em>J</em>(<em>u</em>,Ω) ≤ <em>J</em>(<em>u</em>+<em>φ</em>,Ω), ∀ <em>φ</em> ∈ <em>C</em><sup>∞</sup><sub>c</sub>(Ω),
-        </div>
-
-        <p>particularly, saying a global minimizer, if Ω=ℝ<sup><em>n</em></sup>.</p>
-
-        <p>To simplify, let Ω=<em>B</em><sub>1</sub>={<em>x</em>∈ℝ<sup><em>n</em></sup>:|<em>x</em>|<1}. Introduce the <em>rescaling</em> of <em>u</em>, say <em>u<sub>ε</sub></em>(<em>x</em>):=<em>u</em>(<em>x</em>/<em>ε</em>), <em>x</em>∈<em>B</em><sub>1</sub>,<em>ε</em>>0. If <em>u</em> minimizes <em>J</em>(·,<em>B</em><sub><em>ε</em><sup>-1</sup></sub>), then <em>u<sub>ε</sub></em> minimizes the rescaling functional <em>J<sub>ε</sub></em> in <em>B</em><sub>1</sub>, namely</p>
-
-        <div class="center">
-            <em>J<sub>ε</sub></em>(<em>v</em>,<em>B</em><sub>1</sub>) = ∫<sub><em>B</em><sub>1</sub></sub> <em>ε</em>/2 |∇<em>v</em>|<sup>2</sup> + 1/<em>ε</em> <em>W</em>(<em>v</em>) d<em>x</em>.
-        </div>
-
-        <p>Intuitionally, fixing <em>v</em>, the main contribution in <em>J<sub>ε</sub></em> comes from the potential <em>W</em>(<em>v</em>) as <em>ε</em>↘0<sup>+</sup>, which assumes the minimum when <em>v</em> equals either 1 or -1. Hence, <em>v</em> may jump from the region of <em>v</em>=1 to <em>v</em>=-1 through the <em>interface</em> dramatically.</p>
-
-        <p>Let Σ<sub><em>s</em></sub>:={<em>v</em>=<em>s</em>}, by Cauchy-Schwarz inequality and co-area formula, we obtain</p>
-
-        <div class="center">
-            <em>J<sub>ε</sub></em>(<em>v</em>,<em>B</em><sub>1</sub>) ≥ ∫<sub><em>B</em><sub>1</sub></sub> √(2<em>W</em>(<em>v</em>))·|∇<em>v</em>| d<em>x</em> = ∫<sub>-1</sub><sup>1</sup> √(2<em>W</em>(<em>v</em>))·<em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>) d<em>s</em>,
-        </div>
-
-        <p>where <em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>) is <em>n</em>-1 dimensional Hausdorff measure of the level set {<em>v</em>=<em>s</em>}=Σ<sub><em>s</em></sub>. We hope that <em>J<sub>ε</sub></em> is minimized, which requires every level sets of <em>v</em> are minimal surfaces that minimizes the term <em>H</em><sup><em>n</em>-1</sup>(Σ<sub><em>s</em></sub>). Therefore, it is reasonable to guess that all level sets of <em>u</em> are flat at least <em>n</em> ≤ 8.</p>
-
-        <p>Furthermore, we have the equality from the inequality above, i.e., <em>ε</em>|∇<em>v</em>|=√(2<em>W</em>(<em>v</em>)). Let</p>
-
-        <div class="center">
-            <em>g</em><sub>0</sub>(<em>d</em><sub>Σ<sub>0</sub></sub>(<em>x</em>)/(√2<em>ε</em>)) := <em>v</em>(<em>x</em>),
-        </div>
-
-        <p>where <em>d</em><sub>Σ<sub>0</sub></sub>:<em>B</em><sub>1</sub>→ℝ<sub>≥0</sub> is the <em>signed</em> distance function from <em>x</em> to the level set Σ<sub>0</sub>. Clearly</p>
-
-        <div class="center">
-            <em>g</em><sub>0</sub>' = √(2<em>W</em>(<em>g</em><sub>0</sub>)), <em>g</em><sub>0</sub>(0) = 0,
-        </div>
-
-        <p>where <em>g</em><sub>0</sub> is actually the unique minimizer of <em>J<sub>ε</sub></em> in 1 dimension and is increasing. It is also useful to note that <em>g</em><sub>0</sub> is bounded since <em>W</em> is double-well. Particularly, if <em>W</em>=¼(1-<em>s</em><sup>2</sup>)<sup>2</sup>,<em>ε</em>=1, then <em>g</em><sub>0</sub>=tanh(<em>x</em>/√2), which is exactly the particular solution of Allen-Cahn equation in 1 dimension, namely</p>
-
-        <div class="center">
-            <em>g</em><sub>0</sub>'' + <em>g</em><sub>0</sub> - <em>g</em><sub>0</sub><sup>3</sup> = 0.
-        </div>
-
-        <p>Thus, one may rewrite the conjecture more precisely.</p>
-
-        <div class="conjecture">
-            <strong>Conjecture (De Giorgi, 1978)</strong><br>
-            Let <em>u</em> be a bounded entire solution of Allen-Cahn equation<br>
-            Δ<em>u</em> + <em>u</em> - <em>u</em><sup>3</sup> = 0, in ℝ<sup><em>n</em></sup>,<br>
-            which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Furthermore, precisely, <em>u</em> must have the form<br>
-            <em>u</em>(<em>x</em>) = tanh((<em>a</em>·<em>x</em>-<em>b</em>)/√2),<br>
-            where <em>a</em>∈ℝ<sup><em>n</em></sup> is unit vector and <em>b</em>∈ℝ.
-        </div>
-
+        
         <div class="remark">
             <strong>Remark</strong><br>
-            Indeed, by the argument above, one may ask a analogous but more general question for any double-well potential <em>W</em>, which are much more difficult.
-            <div class="conjecture" style="margin-top: 1em;">
-                <strong>Conjecture (General case)</strong><br>
-                Let <em>u</em> be a bounded entire solution of semilinear elliptic equation<br>
-                Δ<em>u</em> - <em>W'</em>(<em>u</em>) = 0, in ℝ<sup><em>n</em></sup>, where <em>W</em> is double-well,<br>
-                which is monotone in one direction, say ∂<em>u</em>/∂<em>x<sub>n</sub></em> > 0. Then <em>u</em> depends on one variable at least <em>n</em> ≤ 8. Furthermore, precisely, <em>u</em> must have the form<br>
-                <em>v</em>(<em>x</em>) = <em>g</em><sub>0</sub>(<em>d</em><sub>Σ<sub>0</sub></sub>(<em>x</em>)/√2),<br>
-                where <em>g</em><sub>0</sub>' = √(2<em>W</em>(<em>g</em><sub>0</sub>)), <em>g</em><sub>0</sub>(0) = 0.
+            $p_S$ is called <em>critical</em> index.
+        </div>
+        
+        <div class="remark">
+            <strong>Remark</strong><br>
+            The study of problems in half-spaces is also significant, as half-spaces are not only the simplest unbounded domains (recall the concept of <em>coercive epigraphs</em>, which can be regarded as bounded domains to some extent; see <a href="#ref-berestycki1997further">[Berestycki97]</a>), but they also serve as <em>blow-up</em> profiles for so-called <em>singular perturbation</em> models in smooth bounded domains:
+            <div class="center">
+                $\epsilon^2\Delta u+f(u)=0,\quad \text{in}\ \Omega.$
             </div>
         </div>
-
-        <p>Now, we present several milestone works on the De Giorgi conjecture. Firstly, inspired by the methods established by Berestycki, Caffarelli and Nirenberg in <a href="#ref-berestycki1997further">[Berestycki97]</a>, <a href="https://en.wikipedia.org/wiki/Nassif_Ghoussoub">Ghoussoub</a> and <a href="https://www.fst.um.edu.mo/people/changfenggui/">Gui</a> <a href="#ref-ghoussoub1998conjecture">[Ghoussoub98]</a> proved it for general <em>W</em> in <em>n</em>=2. Subsequently, by observing "one dimensional gap" of energy estimate in previous work, <a href="https://www.sns.it/en/persona/luigi-ambrosio">Ambrosio</a> and Cabré <a href="#ref-ambrosio2000entire">[Ambrosio00]</a> proved it in <em>n</em>=3; and furthermore, <a href="https://pagine.dm.unipi.it/alberti/">Alberti</a>, Ambrosio and Cabré <a href="#ref-alberti2001long">[Alberti01]</a> proved it for general <em>W</em> in the same dimension by the argument of <em>calibration</em>. Motivated by the argument of <em>asymptotic flatness</em> in <a href="#ref-alberti2001long">[Alberti01]</a>, Savin <a href="#ref-savin2009regularity">[Savin09]</a> solved it as 4≤<em>n</em>≤8 under a technical assumption,</p>
-
+        
+        <p>Therefore, the classification (or Liouville-type theorems) of semilinear equations in unbounded domains can be roughly divided into two main categories: those in the entire space and those in half-spaces, namely</p>
+        
         <div class="center">
-            lim<sub><em>x<sub>n</sub></em>→±∞</sub> <em>u</em>(<em>x</em>) = ±1, in pointwise sense,
+            $\Delta u+f(u)=0,\quad \text{in}\ \mathbb{R}^N$
         </div>
-
-        <p>by modifying a flatness convergence theorem from De Giorgi (see more details in <a href="#ref-giusti1984minimal">[Giusti84]</a>), derived from <a href="https://it.wikipedia.org/wiki/Luciano_Modica">Modica</a> <a href="#ref-modica1978convergence">[Modica78]</a>. Finally, <a href="https://samba.ac.uk/staff/manuel-del-pino/">del Pino</a>, <a href="https://www.math.kent.edu/~kowalcyk/">Kowalczyk</a> and <a href="https://personal.math.ubc.ca/~jcwei/">Wei</a> <a href="#ref-del2011giorgi">[DelPino11]</a> established a counterexample as <em>n</em>≥9 which was long believed to exist, based on Bombieri, De Giorgi and Simons' work (<a href="#ref-bombieri1969minimal">[Bombieri69]</a>). Up to this day, the conjecture is still <strong>OPEN</strong> as 4≤<em>n</em>≤8 for dropping the technical condition above.</p>
-
-        <p>However, one may ask a weaker question by strengthening the technical assumption to <em>uniform</em> convergence, which is called the <strong>Gibbons conjecture</strong> that was solved completely by <a href="https://www.lamfa.u-picardie.fr/farina/">Farina</a> <a href="#ref-farina1999symmetry">[Farina99]</a> and <a href="https://personal.math.ubc.ca/~barlow/">Barlow</a>, <a href="https://r-bass.scholar.uconn.edu">Bass</a> and Gui <a href="#ref-barlow2000liouville">[Barlow00]</a> and Berestycki, <a href="https://www.i2m.univ-amu.fr/perso/francois.hamel/">Hamel</a>, and <a href="https://cermics.enpc.fr/~monneau/">Monneau</a> <a href="#ref-berestycki2000one">[Berestycki00]</a>, independently.</p>
-
-        <h3>Convergence by mean curvature flow</h3>
-        <p>Thanks to the rescaling of <em>u</em> by <em>u<sub>ε</sub></em> and the blow-down as <em>ε</em>↘0<sup>+</sup>, we obtain the dynamical equation in scaling version, i.e., ∂<sub><em>t</em></sub><em>u</em>=<em>ε</em>Δ<em>u</em>-1/<em>ε</em><em>W'</em>(<em>u</em>)=<em>ε</em>Δ<em>u</em>+1/<em>ε</em>(<em>u</em>-<em>u</em><sup>3</sup>), which is in fact the typical Reaction-diffusion equation <a href="#ref-rubinstein1989fast">[Rubinstein89]</a><a href="#ref-rubinstein1989reaction">[Rubinstein89b]</a>. By an evident scaling, we have</p>
-
+        
+        <p>and</p>
+        
         <div class="center">
-            ∂<sub><em>t</em></sub><em>u</em> = Δ<em>u</em> - 1/<em>ε</em><sup>2</sup><em>W'</em>(<em>u</em>) = Δ<em>u</em> + 1/<em>ε</em><sup>2</sup>(<em>u</em>-<em>u</em><sup>3</sup>).
+            $\begin{cases}
+                \Delta u+f(u)=0,&\text{in}\ \mathbb{R}_+^N\\
+                u=0,&\text{on}\ \partial\mathbb{R}_+^N,
+            \end{cases}$
         </div>
-
-        <p>We are interested in the asymptotic behavior of <em>u</em> by the flow above as <em>ε</em>↘0<sup>+</sup>, which has been studied by Modica <a href="#ref-modica1977limite">[Modica77]</a><a href="#ref-modica1978convergence">[Modica78]</a><a href="#ref-modica1987gradient">[Modica87]</a> in steady case, namely Δ<em>u</em>-1/<em>ε</em><sup>2</sup><em>W'</em>(<em>u</em>)=0. However, thanks to the argument of De Giorgi's conjecture, we hope that the asymptotic behavior of <em>u</em> by the flow performs as the same profile as the static case, namely</p>
-
-        <div class="center">
-            <em>u</em>(<em>x</em>) ∼ <em>g</em><sub>0</sub>(<em>d</em><sub>Σ<sup><em>t</em></sup></sub>(<em>x</em>)/(√2<em>ε</em>)), <em>ε</em>↘0<sup>+</sup>,
+        
+        <p>The essential method used here is the <em>moving plane</em> method, which is based on the so-called <em>maximum principle</em> (also known as the <em>comparison principle</em>). The original application of the moving plane method can be traced back to Alexandrov <a href="#ref-alexandrov1962characteristic">[Alexandrov62]</a> and Serrin <a href="#ref-serrin1971symmetry">[Serrin71]</a>. This method was further developed and applied by Gidas, <a href="https://sse.cuhk.edu.cn/en/faculty/niweiming">Ni</a>, and Nirenberg <a href="#ref-gidas1979symmetry">[Gidas79]</a>, <a href="#ref-gidas1981symmetry">[Gidas81c]</a>, who used it to prove certain <em>monotonicity</em> and <em>radial symmetry</em> properties for semilinear equations. Subsequently, Berestycki and Nirenberg <a href="#ref-berestycki1991method">[Berestycki91]</a> refined the method. Later, Dancer <a href="#ref-dancer1992some">[Dancer92]</a> utilized this enhanced approach to demonstrate the nonexistence of <em>bounded</em> <em>positive</em> solutions to the half-space Lane-Emden equation for $1 < p < p_D := \frac{N+1}{N-3}$. Moreover, following a series of studies by Berestycki, Caffarelli, and Nirenberg <a href="#ref-berestycki1993symmetry">[Berestycki93]</a>, <a href="#ref-berestycki1994principal">[Berestycki94]</a>, <a href="#ref-berestycki1996inequalities">[Berestycki96]</a>, <a href="#ref-berestycki1997monotonicity">[Berestycki97a]</a>, <a href="#ref-berestycki1997further">[Berestycki97]</a>, the authors established both <em>monotonicity</em> and <em>one-dimensional symmetry</em> results of the half-space problem in certain unbounded domains as well as in bounded domains. Briefly, we present two well-known results from <a href="#ref-berestycki1997further">[Berestycki97]</a>, which inspired research on the monotonicity and one-dimensional symmetry of the half-space problem. These findings also motivated the study of rigidity properties of semilinear equations in half-spaces over the following thirty years and constitute one of the main subjects of the first part of my thesis.</p>
+        
+        <div class="proposition">
+            <strong>Proposition (Berestycki-Caffarelli-Nirenberg, 1993)</strong><br>
+            Suppose that $u$ be a classical <span class="text-red">bounded</span> positive solution to the half-space problem with $f\in C^{0,1}$ and
+            <div class="center">
+                $M=\sup u<\infty.$
+            </div>
+            Then if $f(M)\le 0$, then $u$ is one-dimensional symmetric, i.e. $u=u(x_N)$ and it is also increasing. Furthermore, $f(M)=0$.
         </div>
-
-        <p>where Σ<sup><em>t</em></sup> means the interface Σ<sub>0</sub> at time <em>t</em> and <em>d</em><sub>Σ<sup><em>t</em></sup></sub>(<em>t</em>) is the signed distance from <em>x</em> to the surface Σ<sup><em>t</em></sup>. By calculation, one may obtain the following mean curvature flow with respect to <em>d</em><sub>Σ<sup><em>t</em></sup></sub>(<em>x</em>), i.e.,</p>
-
-        <div class="center">
-            ∂<sub><em>t</em></sub><em>d</em><sub>Σ<sup><em>t</em></sup></sub>(<em>x</em>) = Δ<em>d</em><sub>Σ<sup><em>t</em></sup></sub>(<em>x</em>), on interface Σ<sup><em>t</em></sup>.
+        
+        <div class="remark">
+            <strong>Remark</strong><br>
+            The condition <span class="text-red">boundedness</span> is necessary. For example, if we take $f(s)=-s$, then $u=x_1 e^{x_N}$.
         </div>
-
-        <p>Geometrically, the <em>velocity</em> of the surface Σ<sup><em>t</em></sup> is exactly equal to the <a href="https://en.wikipedia.org/wiki/Mean_curvature"><em>mean curvature</em></a> (vector). There are plenty of seminal works in such dynamical case, such as <a href="#ref-bronsard1991motion">[Bronsard91]</a><a href="#ref-chen1992generation">[Chen92]</a><a href="#ref-evans1992phase">[Evans92]</a><a href="#ref-ilmanen1993convergence">[Ilmanen93]</a>.</p>
-
-        <h3>Vector-value Allen-Cahn equation</h3>
-        <p>Finally, we extend the Allen-Cahn equation to vector-value case, which was first introduced in <a href="#ref-bronsard1998singular">[Bronsard98]</a>. Generally, let <em>u</em>:Ω ⊂ ℝ<sup><em>n</em></sup>→ℝ<sup><em>m</em></sup> be a vector-value function and <em>W</em>:ℝ<sup><em>m</em></sup>→ℝ<sub>≥0</sub> be a double-well potential in ℝ<sup><em>m</em></sup>, which vanishes on two disjoint connected <a href="https://en.wikipedia.org/wiki/Submanifold"><em>submanifolds</em></a>, say <em>M</em><sub>1</sub>,<em>M</em><sub>2</sub>, namely</p>
-
-        <div class="center">
-            <em>W</em>(<em>M</em><sub>1</sub>) = <em>W</em>(<em>M</em><sub>2</sub>) = 0.
+        
+        <div class="proposition">
+            <strong>Proposition (Berestycki-Caffarelli-Nirenberg, 1996-97)</strong><br>
+            Suppose that $u$ be a classical <span class="text-blue">positive</span> solution to the half-space problem with $f\in C^{0,1}$ and
+            <span class="text-blue">
+                <div class="center">
+                    $f(0)\ge 0.$
+                </div>
+            </span>
+            Then $u$ is increasing with respect to $x_N$.
         </div>
-
-        <p>Hence, we obtain the phase transition model in vector-valued version, i.e.,</p>
-
-        <div class="center">
-            ∂<sub><em>t</em></sub><em>u</em> = Δ<em>u</em> - 1/<em>ε</em><sup>2</sup>∂<sub><em>u</em></sub><em>W</em>(<em>u</em>).
+        
+        <div class="remark">
+            <strong>Remark</strong><br>
+            The condition <span class="text-blue">positiveness</span> and <span class="text-blue">$f(0)\ge 0$</span> is necessary. For example, if we take $f(s)=s-1$, then $u=1+\cos x_N$.
         </div>
-
-        <p>The interface (still denoted by Σ<sup><em>t</em></sup>) flows by the mean curvature flow, while <em>u</em> performs as a <a href="https://en.wikipedia.org/wiki/Richard_S._Hamilton#Harmonic_map_heat_flow"><em>harmonic map heat flow</em></a> away from the interface to the submanifolds (phases) either <em>M</em><sub>1</sub> or <em>M</em><sub>2</sub> by formal calculation in <a href="#ref-rubinstein1989fast">[Rubinstein89]</a><a href="#ref-rubinstein1989reaction">[Rubinstein89b]</a>. However, this result lacks a rigorous proof, hence, the problem is still <strong>OPEN</strong>, known as so-called <strong>Keller-Rubinstein-Sternberg problem</strong>, see <a href="#ref-fei2023matrix">[Fei23]</a>.</p>
-
+        
+        <div class="theorem">
+            <strong>Theorem (Berestycki-Caffarelli-Nirenberg, 1997)</strong><br>
+            Suppose that $u$ be a classical <span class="text-red">bounded</span> positive solution to the half-space problem, then
+            <ol>
+                <li>(i) if $f\in C^{0,1}$, $u$ is one-dimensional symmetric as $N=2$;</li>
+                <li>(ii) if $f\in C^1$ and $f(0)\ge 0$ (the blue condition), the same conclusion holds as $N=3$.</li>
+            </ol>
+        </div>
+        
+        <p>This result is based on following contribution:</p>
+        
+        <div class="theorem">
+            <strong>Theorem (Berestycki-Caffarelli-Nirenberg, 1997)</strong><br>
+            Suppose that $u$ be a classical <span class="text-blue">positive</span> solution to the half-space problem, with $f\in C^{0,1}$, then
+            <ol>
+                <li>(i) $u$ is increasing with respect to $x_N$ as $N=2$;</li>
+                <li>(ii) the same conclusion holds as $N\ge 3$ if, $f(0)\ge 0$ (the blue condition).</li>
+            </ol>
+        </div>
+        
+        <div class="remark">
+            <strong>Remark</strong><br>
+            These results were improved by Farina <a href="#ref-farina2020some">[Farina20]</a>, who extended them to locally Lipschitz nonlinear terms, specifically $f\in C^{0,1}_{loc}$, with the additional assumption that $u$ is bounded on any finite strip. More recently, Sciunzi and Vuono <a href="#ref-sciunzi2025monotonicity">[Sciunzi25]</a> further relaxed the requirement on $u$, allowing it to be bounded only on two-codimensional finite strips. However, the condition imposed on the nature of $f$ at the origin, namely $f(0)\ge 0$ (the blue condition), still can <strong>NOT</strong> be dropped.
+        </div>
+        
+        <p>Both theorems lead to the first two conjectures in the case of half-spaces.</p>
+        
         <div class="conjecture">
-            <strong>Conjecture (Keller-Rubinstein-Sternberg, 1989)</strong><br>
-            let <em>ε</em>→0 in the vector-valued phase transition model<br>
-            ∂<sub><em>t</em></sub><em>u</em> = Δ<em>u</em> - 1/<em>ε</em><sup>2</sup>∂<sub><em>u</em></sub><em>W</em>(<em>u</em>).<br>
-            Then the interface Σ<sup><em>t</em></sup> moves by the mean curvature flow, while <em>u</em> performs as the harmonic map heat flow away from the interface to the submanifolds either <em>M</em><sub>1</sub> or <em>M</em><sub>2</sub>.
+            <strong>Conjecture (Berestycki-Caffarelli-Nirenberg, 1993-1997)</strong><br>
+            If a <span class="text-red">bounded</span> positive solution $u$ of the half-space problem exists, then $u$ is one-dimensional symmetric and necessarily $f(M)=0$, where $M=\sup u$.
         </div>
-
-        <p>There are some milestone results on this problem. For example, firstly, Bronsard and Stoth <a href="#ref-bronsard1998singular">[Bronsard98]</a> considered the <em>W</em> as follows,</p>
-
+        
+        <div class="conjecture">
+            <strong>Conjecture (Berestycki-Caffarelli-Nirenberg, 1997)</strong><br>
+            If a <span class="text-blue">positive</span> solution $u$ of the half-space problem with
+            <span class="text-purple">
+                <div class="center">
+                    $f(0)<0,$
+                </div>
+            </span>
+            exists, then $u$ is increasing with respect to $x_N$ as $N\ge 3$.
+        </div>
+        
+        <p>However, the situation when $f(0)<0$ (the purple condition) is different and still <strong>OPEN</strong> in higher dimensions. Fortunately, the case $f(0)>0$ has been fully classified; see <a href="#ref-dupaigne2022liouville">[Dupaigne22]</a>. Conjecture 1 (BCN conjecture 1) was proved by the authors themselves for $N=2, 3$, and by Farina and Valdinoci <a href="#ref-farina2010flattening">[Farina10]</a> for $N\leq5$ under certain conditions on $f$. For $N\geq6$, to the best of our knowledge, the problem remains <strong>OPEN</strong>. Conjecture 2 (BCN conjecture 2) was extended by Farina and Sciunzi <a href="#ref-farina2016qualitative">[Farina16]</a>, <a href="#ref-farina2017monotonicity">[Farina17]</a> to the case of a locally Lipschitz nonlinear term, and they also classified the nonnegative solutions. Notably, one should pay attention to the nonnegative periodic solution $u=1-\cos x_2$ for $\Delta u+u-1=0$ when $N=2$. Therefore, thanks to <a href="#ref-farina2016qualitative">[Farina16]</a>, <a href="#ref-farina2017monotonicity">[Farina17]</a>, <a href="#ref-beuvin2026one">[Beuvin26]</a>, for $N=2$, there is no issue remaining.</p>
+        
+        <p>To simplify, we present a special case, i.e. Lane-Emden equation that has been mentioned above, which is linked to a Dancer's conjecture on half-spaces.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (Dancer, 1992)</strong><br>
+            There is no nontrivial nonnegative solution to the half-space Lane-Emden equation.
+        </div>
+        
+        <p>It remains an <strong>OPEN</strong> problem; see <a href="#ref-sciunzi2025monotonicity">[Sciunzi25]</a>, but several significant contributions have been made; see <a href="#ref-dancer1992some">[Dancer92]</a>, <a href="#ref-chen2014monotonicity">[Chen14]</a>, <a href="#ref-farina2020some">[Farina20]</a>. The weaker case for positive solutions was solved by Dupaigne, Sirakov, and Souplet <a href="#ref-dupaigne2022liouville">[Dupaigne22]</a>, who proved the nonexistence of positive monotone solutions. Indeed, combined with Theorem 2 (BCN theorem 2) for $f(s)=s^p$, this result fully resolves the weaker version of the problem. More recently, there are several works; see <a href="#ref-dupaigne2023liouville">[Dupaigne23]</a>, <a href="#ref-sciunzi2025monotonicity">[Sciunzi25]</a>.</p>
+        
+        <p>Regarding the case in the entire space, we focus on so-called <em>stable</em> solutions</p>
+        
         <div class="center">
-            <em>W</em>(<em>u</em>) := (|<em>u</em>|-<em>a</em>)<sup>2</sup>(<em>b</em>-|<em>u</em>|)<sup>2</sup>, <em>u</em>∈ℝ<sup>2</sup>.
+            $\int f'(s)\varphi^2\le \int|\nabla\varphi|^2,\quad \forall \varphi\in C_c^\infty$
         </div>
+        
+        <p>and solutions with finite <em>Morse index</em>, seeing <a href="#ref-wang2021recent">[Wang21]</a>.</p>
+        
+        <p>For research in this area, we refer readers to Dancer's survey <a href="#ref-dancer2010finite">[Dancer10]</a>, the monographs <a href="#ref-dupaigne2011stable">[Dupaigne11]</a>, <a href="#ref-quittner2019superlinear">[Quittner19]</a>, and other surveys <a href="#ref-chan2018giorgi">[Chan18]</a>, <a href="#ref-takahashi2021topics">[Takahashi21]</a>, <a href="#ref-wang2021recent">[Wang21]</a>. Since this topic (the entire space case) is closely connected to the Bernstein problem and the De Giorgi conjecture discussed below, we primarily present results for general nonlinearities $f$, and reserve the discussion of special cases for subsequent sections.</p>
+        
+        <p>Firstly, we present Dancer's conjecture about stable solutions in entire spaces.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (Dancer, 2010)</strong><br>
+            Assume $N\le 7$ and $u$ is a <span class="text-red">bounded</span> <strong>stable</strong> solutions of the entire space problem. Then either $u$ is constant on $\mathbb{R}^N$ or, after a <em>rotation</em> of axis, $u=u(x_N)$.
+        </div>
+        
+        <p>The investigation of this conjecture can be separated into two distinct cases: when the nonlinear term $f$ is <em>nonnegative</em>, and when the nonlinear term $f$ is <em>sign-changing</em>. While results concerning the latter case are scarce, we direct readers to the seminal work of <a href="https://faculty.ustc.edu.cn/liuyong1/zh_CN/index.htm">Liu</a>, <a href="https://jszy.whu.edu.cn/wangkelei/en/index.htm">Wang</a>, Wei, and Wu <a href="#ref-liu2024dancer">[Liu24]</a>.</p>
+        
+        <p>In the following discussions, we merely talk about the nonnegative nonlinear term, namely $f\ge0$ (noting that $f(0)\ge0$), noting that Cabré, Figalli, Ros-Oton, and Joaquim <a href="#ref-cabre2020stable">[Cabré20]</a> and Cabré <a href="#ref-cabre2022quantitative">[Cabré22]</a> obtained a prior estimate for stable solutions that was further used in further works. For example, Dupaigne and Farina <a href="#ref-dupaigne2022classification">[Dupaigne22b]</a> used these estimates to establish the following Liouville theorem that partially answered Dancer's conjecture.</p>
+        
+        <div class="theorem">
+            <strong>Theorem (Dupaigne-Farina, 2022)</strong><br>
+            Assume that $f$ is nonnegative and locally Lipschitz. Suppose $u$ is a stable solution of the entire space problem and it is bounded below. If $N\le 10$, then $u$ is constant.
+        </div>
+        
+        <p>We refer the readers to <a href="#ref-farina2007classification">[Farina07]</a>, <a href="#ref-beuvin2026one">[Beuvin26]</a> and reference therein for more recent works.</p>
+    </div>
 
-        <p>They rigorously proved the conjecture in this special case. Subsequently, <a href="https://math.nyu.edu/people/profiles/LIN_Fang-Hua.html">Lin</a>, <a href="https://math.ecnu.edu.cn/~xbpan/intro.html?id=96">Pan</a> and <a href="https://www.math.purdue.edu/~wang2482/">Wang</a> <a href="#ref-lin2012phase">[Lin12]</a> studied the case for <em>W</em> attaining the global minimum at two disjoint compact connected submanifolds <em>N</em><sup>±</sup> in ℝ<sup><em>m</em></sup> and showed that the energy functional</p>
-
+    <div class="section">
+        <h2>Bernstein problem and De Giorgi conjecture</h2>
+        
+        <p>We now turn to a specific model.</p>
+        
+        <p>In 1978, De Giorgi <a href="#ref-de1979convergence">[DeGiorgi79]</a> conjectured that any bounded, monotone entire solution to the Allen–Cahn equation depends on only <strong>one</strong> variable for $n \le 8$. Since $u$ is monotone, all its level sets $\{u=s\}_{-1\le s\le1}$ are evidently <em>graphs</em>. We will later explain why De Giorgi believed these level sets are <em>flat</em>, which is equivalent to the solution depending on one variable for $n \le 8$. First, we state the conjecture formally.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (De Giorgi, 1978)</strong><br>
+            Let $u$ be a <span class="text-red"><em>bounded</em></span> entire solution of the Allen–Cahn equation (ACE)
+            <div class="center">
+                $\Delta u+u-u^3=0,\quad\text{in}\ \mathbb{R}^n,$
+            </div>
+            which is monotone in one direction, say $\frac{\partial u}{\partial x_n}>0$. Then $u$ depends on only one variable for $n\le 8$. Equivalently, all level sets of $u$ are hyperplanes.
+        </div>
+        
+        <p>To understand this conjecture, we introduce a more intuitive and geometric problem known as the <strong>Bernstein problem</strong>, which was fully resolved in the 20th century.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (Bernstein, 1914)</strong><br>
+            Let $\Sigma$ be an entire minimal graph in $\mathbb{R}^N$. Then $\Sigma$ is a hyperplane.
+        </div>
+        
+        <p>This problem was initially solved by Bernstein for $N\le 3$ <a href="#ref-bernstein1917theoreme">[Bernstein17]</a>, <a href="#ref-bernstein1927geometrisches">[Bernstein27]</a>. Specifically, the surface $\Sigma$ is the graph of an entire solution $v$ to the <em>minimal surface equation</em> (MSE),</p>
+        
         <div class="center">
-            <em>E<sub>ε</sub></em>(<em>u</em>) = ∫<sub>Ω</sub>|∇<em>u</em>|<sup>2</sup> + 1/<em>ε</em><sup>2</sup><em>W</em>(<em>u</em>) d<em>x</em>
+            $\mathrm{div}\left(\frac{\nabla v}{\sqrt{1+|\nabla v|^2}}\right)=0,\quad\text{in}\ \mathbb{R}^N,$
         </div>
-
-        <p>has the first term approximation as <em>ε</em>↘0<sup>+</sup> like</p>
-
+        
+        <p>which arises from the variation of the area functional,</p>
+        
         <div class="center">
-            <em>E<sub>ε</sub></em> = <em>c</em>/<em>ε</em> <em>H</em><sup><em>n</em>-1</sup>(Σ<sup><em>t</em></sup>) + <em>D</em> + <em>O</em>(1),
+            $A(v,\mathbb{R}^N)=\int_{\mathbb{R}^N}\sqrt{1+|\nabla v|^2}\,\mathrm{d}x.$
         </div>
+        
+        <p>However, applying Bernstein's cutoff method encounters difficulties in higher dimensions. After about five decades, Fleming <a href="#ref-fleming1962oriented">[Fleming62]</a> introduced a groundbreaking approach using <em>blowing-down</em> and <em>minimal cones</em> to address the problem in higher dimensions. This work not only motivated subsequent research in the 1960s to fully solve the problem but also gave rise to the seminal field of <strong>geometric measure theory</strong>. Subsequently, De Giorgi <a href="#ref-de1965estensione">[DeGiorgi65]</a> discovered a "one-dimensional gap" property for minimal cones<span class="footnote-ref">3</span>, which implied that the Bernstein problem holds in $\mathbb{R}^4$. Then, from 1966 to 1968, Almgren <a href="#ref-almgren1966some">[Almgren66]</a> and Simons <a href="#ref-simons1968minimal">[Simons68]</a> proved it for $N=5$ and $N\le 7$, respectively. Finally, in 1969, Bombieri, De Giorgi, and Simons <a href="#ref-bombieri1969minimal">[Bombieri69]</a> demonstrated the existence of non-flat minimal cones in $\mathbb{R}^N$ for $N\ge 9$, such as the <em>Simons cone</em>. Thus, the Bernstein problem was completely settled. We refer readers to <a href="#ref-giusti1984minimal">[Giusti84]</a> for more detailed historical perspectives and discussions.</p>
+        
+        <div class="footnote">3 If no non-flat minimal cone exists in $\mathbb{R}^{N-1}$, then the analogue of Bernstein's theorem holds for graphs in $\mathbb{R}^N$.</div>
+        
+        <p>Returning to De Giorgi's conjecture, we recall the <em>Ginzburg–Landau</em> energy</p>
+        
+        <div class="center">
+            $J(u,\Omega)=\int_\Omega \frac{1}{2}|\nabla u|^2+W(u)\,\mathrm{d}x,$
+        </div>
+        
+        <p>where $W$ is a <em>double-well</em> potential. We say $u$ is a <em>local minimizer</em> of $J(\cdot,\Omega)$ if</p>
+        
+        <div class="center">
+            $J(u,\Omega)\le J(u+\varphi,\Omega),\quad \forall \varphi\in C^\infty_c(\Omega),$
+        </div>
+        
+        <p>and a <em>global minimizer</em> if $\Omega=\mathbb{R}^n$.</p>
+        
+        <p>For simplicity, let $\Omega=B_1=\{x\in\mathbb{R}^n:|x|<1\}$. Introduce the rescaling $u_\epsilon(x):=u\left(x/\epsilon\right)$ for $x\in B_1$ and $\epsilon>0$. If $u$ minimizes $J(\cdot,B_{\epsilon^{-1}})$, then $u_\epsilon$ minimizes the rescaled functional $J_\epsilon$ in $B_1$, defined by</p>
+        
+        <div class="center">
+            $J_\epsilon(v,B_1)=\int_{B_1}\frac{\epsilon}{2}|\nabla v|^2+\frac{1}{\epsilon}W(v)\,\mathrm{d}x.$
+        </div>
+        
+        <p>Intuitively, for fixed $v$, the main contribution to $J_\epsilon$ as $\epsilon\searrow 0^+$ comes from the potential $W(v)$, which is minimized when $v$ equals either $1$ or $-1$. Hence, $v$ may transition sharply from the region where $v=1$ to where $v=-1$ across an <em>interface</em>.</p>
+        
+        <p>Let $\Sigma_s:=\{v=s\}$. By the Cauchy–Schwarz inequality and the co-area formula, we obtain</p>
+        
+        <div class="center">
+            $J_\epsilon(v,B_1)\ge\int_{B_1}\sqrt{2W(v)}\cdot|\nabla v|\,\mathrm{d}x=\int_{-1}^1\sqrt{2W(v)}\cdot\mathcal{H}^{n-1}(\Sigma_s)\,\mathrm{d}s,$
+        </div>
+        
+        <p>where $\mathcal{H}^{n-1}(\Sigma_s)$ is the $(n-1)$-dimensional Hausdorff measure of the level set $\Sigma_s$. Minimizing $J_\epsilon$ requires each level set $\Sigma_s$ to be a minimal surface minimizing $\mathcal{H}^{n-1}(\Sigma_s)$. This provides a heuristic justification for conjecturing that all level sets of $u$ are flat for $n\le 8$.</p>
+        
+        <p>Furthermore, equality in the above inequality holds if $\epsilon|\nabla v|=\sqrt{2W(v)}$. Let</p>
+        
+        <div class="center">
+            $g_0\left(\frac{d_{\Sigma_0}(x)}{\sqrt{2}\epsilon}\right):=v(x),$
+        </div>
+        
+        <p>where $d_{\Sigma_0}:B_1\to \mathbb{R}_{\ge0}$ is the <em>signed</em> distance function from $x$ to the level set $\Sigma_0$. Then clearly</p>
+        
+        <div class="center">
+            $g_0'=\sqrt{2W(g_0)},\quad g_0(0)=0,$
+        </div>
+        
+        <p>where $g_0$ is the unique one-dimensional minimizer of $J_\epsilon$ and is increasing. Note also that $g_0$ is bounded since $W$ is a double-well potential. In particular, if $W(s)=\frac{1}{4}(1-s^2)^2$ and $\epsilon=1$, then $g_0(x)=\tanh{(x/\sqrt{2})}$, which is precisely the unique (up to translation) one-dimensional solution to the Allen–Cahn equation,</p>
+        
+        <div class="center">
+            $g_0''+g_0-g_0^3=0.$
+        </div>
+        
+        <p>Thus, the conjecture can be restated more precisely as follows.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (De Giorgi, 1978)</strong><br>
+            Let $u$ be a <span class="text-red">bounded</span> entire solution of the Allen–Cahn equation
+            <div class="center">
+                $\Delta u+u-u^3=0,\quad\text{in}\ \mathbb{R}^n,$
+            </div>
+            which is monotone in one direction, say $\frac{\partial u}{\partial x_n}>0$. Then $u$ depends on only one variable for $n\le 8$. More precisely, $u$ must have the form
+            <div class="center">
+                $u(x)=\tanh\left(\frac{a\cdot x-b}{\sqrt{2}}\right),$
+            </div>
+            where $a\in \mathbb{R}^n$ is a unit vector and $b\in\mathbb{R}$.
+        </div>
+        
+        <p>Motivated by the preceding discussion, one can pose an analogous but more general question for an arbitrary double-well potential $W$.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (General case)</strong><br>
+            Let $u$ be a bounded entire solution of the semilinear elliptic equation
+            <div class="center">
+                $\Delta u-W'(u)=0,\quad\text{in}\ \mathbb{R}^n,\quad \text{where $W$ is a double-well potential},$
+            </div>
+            which is monotone in one direction, say $\frac{\partial u}{\partial x_n}>0$. Then $u$ depends on only one variable for $n\le 8$. More precisely, $u$ must have the form
+            <div class="center">
+                $v(x)=g_0\left(\frac{d_{\Sigma_0}(x)}{\sqrt{2}}\right),$
+            </div>
+            where $g_0'=\sqrt{2W(g_0)}$ and $g_0(0)=0$.
+        </div>
+        
+        <p>We now present several milestone results on De Giorgi's conjecture (Conjecture 1). First, inspired by the methods of Berestycki, Caffarelli, and Nirenberg <a href="#ref-berestycki1997further">[Berestycki97]</a>, Ghoussoub and Gui <a href="#ref-ghoussoub1998conjecture">[Ghoussoub98]</a> proved the conjecture for general $W$ in dimension $n=2$. Subsequently, by exploiting an "<em>energy</em> gap" estimate, Ambrosio and Cabré <a href="#ref-ambrosio2000entire">[Ambrosio00]</a> proved it for $n=3$; later, Giovanni Alberti, Ambrosio, and Cabré <a href="#ref-alberti2001long">[Alberti01]</a> extended the proof to general $W$ in the same dimension using a <em>calibration</em> argument. Building on the idea of <em>asymptotic flatness</em> from <a href="#ref-alberti2001long">[Alberti01]</a>, Savin <a href="#ref-savin2009regularity">[Savin09]</a> resolved the conjecture for $4\le n\le 8$ under the technical assumption</p>
+        
+        <div class="center">
+            $\lim_{x_n\to\pm\infty}u(x)=\pm1,\quad \text{pointwise}.$
+        </div>
+        
+        <p>by refining a flatness convergence theorem of De Giorgi (see <a href="#ref-giusti1984minimal">[Giusti84]</a>), originally derived from the work of Modica <a href="#ref-modica1978convergence">[Modica78]</a>. Finally, del Pino, Kowalczyk, and Wei <a href="#ref-kowalczyk2011giorgi">[Kowalczyk11]</a> constructed a counterexample for $n\ge 9$, which had long been anticipated based on the work of Bombieri, De Giorgi, and Simons <a href="#ref-bombieri1969minimal">[Bombieri69]</a>. Subsequently, Wang <a href="#ref-wang2017new">[Wang17]</a> provided a new proof for Savin's flatness theorem by improved Allard regularity and Savin <a href="#ref-savin2017some">[Savin17]</a> simplified the original proof. More recently, Savin and <a href="https://www.coursicle.com/columbia/professors/Chilin+Zhang/">Zhang</a> <a href="#ref-savin2025density">[Savin25]</a>, <a href="#ref-savin2025minimizers">[Savin25b]</a> extended the results to nonlocal models and the rigidity results with sub-quadratic growth assumption (recall the corresponding condition in Bernstein problem). To this day, the conjecture remains <strong>OPEN</strong> for $4\le n\le 8$ without the assumption of pointwise convergence at infinity. We refer the readers to Wei's survey <a href="#ref-wei2012geometrization">[Wei12]</a> for more discussions about the connection between Bernstein problem and De Giorgi conjecture.</p>
+        
+        <p>A weaker version of the problem, obtained by strengthening the pointwise convergence to <em>uniform</em> convergence, is known as the <em>Gibbons conjecture</em>. This was completely solved independently by Farina <a href="#ref-farina1999symmetry">[Farina99]</a>, Barlow, Bass and Gui <a href="#ref-barlow2000liouville">[Barlow00]</a>, and by Berestycki, Hamel and Monneau <a href="#ref-berestycki2000one">[Berestycki00]</a>.</p>
+        
+        <p>Finally, there are plenty of extensions on Allen-Cahn equation and De Giorgi conjecture, such as stable De Giorgi conjecture, finite Morse index, fractional Allen-Cahn equation, and nonlocal equations, etc. We refer the readers to Wang's survey <a href="#ref-wang2021recent">[Wang21]</a>.</p>
+    </div>
 
-        <p>where <em>c</em> represents the energy of the minimal connected orbit between <em>N</em><sup>+</sup> and <em>N</em><sup>-</sup>; and <em>D</em> is the energy of the minimal harmonic mapping to <em>N</em><sup>±</sup>. After that, there are many seminal works for the special <em>W</em>, such that <a href="#ref-fei2018isotropic">[Fei18]</a><a href="#ref-lin2019harmonic">[Lin19]</a><a href="#ref-laux2021nematic">[Laux21]</a><a href="#ref-lin2023isotropic">[Lin23]</a><a href="#ref-fei2023matrix">[Fei23]</a>. For the latest results, we refer the readers to <a href="https://huandong12.github.io">Dong</a> and <a href="https://person.zju.edu.cn/en/wangw07">Wang</a>'s paper <a href="#ref-dong2025asymptotic">[Dong25]</a>.</p>
+    <div class="section">
+        <h2>Rubinstein-Sternberg-Keller conjecture and mean curvature flow</h2>
+        
+        <p>The rescaling $u_\epsilon$ and the blow-down limit as $\epsilon\searrow 0^+$ lead to the scaled version of equation $\partial_tu=\epsilon \Delta u-\frac{1}{\epsilon}W'(u)=\epsilon\Delta u+\frac{1}{\epsilon}(u-u^3)$. This is a typical <em>reaction–diffusion</em> equation <a href="#ref-rubinstein1989fast">[Rubinstein89]</a>, <a href="#ref-rubinstein1989reaction">[Rubinstein89b]</a>. Under a simple scaling, we obtain</p>
+        
+        <div class="center">
+            $\partial_tu=\Delta u-\frac{1}{\epsilon^2}W'(u)=\Delta u+\frac{1}{\epsilon^2}(u-u^3).$
+        </div>
+        
+        <p>We are interested in the asymptotic behavior of $u$ under this flow as $\epsilon\searrow 0^+$, which was studied for the steady case $\Delta u-1/\epsilon^2W'(u)=0$ by Modica <a href="#ref-modica1977limite">[Modica77]</a>, <a href="#ref-modica1978convergence">[Modica78]</a>, <a href="#ref-modica1987gradient">[Modica87]</a>. In light of De Giorgi's conjecture, we expect the asymptotic profile of $u$ under the flow to match the static case, namely</p>
+        
+        <div class="center">
+            $u(x)\sim g_0\left(\frac{d_{\Sigma^t}(x)}{\sqrt{2}\epsilon}\right),\quad \epsilon\searrow0^+,$
+        </div>
+        
+        <p>where $\Sigma^t$ denotes the interface $\Sigma_0$ at time $t$ and $d_{\Sigma^t}(x)$ is the signed distance from $x$ to $\Sigma^t$. Formal calculation yields the following <em>mean curvature flow</em> for $d_{\Sigma^t}(x)$:</p>
+        
+        <div class="center">
+            $\partial_td_{\Sigma^t}(x)=\Delta d_{\Sigma^t}(x),\quad \text{on the interface $\Sigma^t$}.$
+        </div>
+        
+        <p>Geometrically, the <em>velocity</em> of the surface $\Sigma^t$ equals its <em>mean curvature</em> vector. The rigorous proof was given by de Mottoni and Schatzman <a href="#ref-de1995geometrical">[DeMottoni95]</a> (by <em>extension</em> method), Bronsard and Kohn <a href="#ref-bronsard1991motion">[Bronsard91]</a> (in <em>radial</em> version), Evans, Soner and Souganidis <a href="#ref-evans1992phase">[Evans92]</a> (by <em>viscosity</em> solution) and Ilmanen <a href="#ref-ilmanen1993convergence">[Ilmanen93]</a> (by geometric measure theory), etc.</p>
+        
+        <p>Finally, we extend the Allen–Cahn equation to the <em>vector-valued</em> case. Let $u:\Omega\subset \mathbb{R}^n\to \mathbb{R}^m$ be a vector-valued function and $W:\mathbb{R}^m\to \mathbb{R}_{\ge0}$ be a double-well potential that vanishes on two disjoint connected <em>submanifolds</em> $M_1$ and $M_2$, i.e.,</p>
+        
+        <div class="center">
+            $W(M_1)=W(M_2)=0.$
+        </div>
+        
+        <p>This gives the vector-valued phase transition model:</p>
+        
+        <div class="center">
+            $\partial_tu=\Delta u-\frac{1}{\epsilon^2}\partial_uW(u).$
+        </div>
+        
+        <p>Formal calculations <a href="#ref-rubinstein1989fast">[Rubinstein89]</a>, <a href="#ref-rubinstein1989reaction">[Rubinstein89b]</a> suggest that the interface $\Sigma^t$ evolves by mean curvature flow, while away from the interface, $u$ behaves as a <em>harmonic map heat flow</em> into either $M_1$ or $M_2$. However, a rigorous proof of this result is lacking, and the problem remains <strong>open</strong>, known as the <strong>Rubinstein-Sternberg-Keller problem</strong>; see <a href="#ref-fei2023matrix">[Fei23]</a>.</p>
+        
+        <div class="conjecture">
+            <strong>Conjecture (Rubinstein–Sternberg-Keller, 1989)</strong><br>
+            As $\epsilon\to 0$ in the vector-valued phase transition model
+            <div class="center">
+                $\partial_tu=\Delta u-\frac{1}{\epsilon^2}\partial_uW(u),$
+            </div>
+            the interface $\Sigma^t$ moves by mean curvature flow, while $u$ behaves as a harmonic map heat flow away from the interface into either $M_1$ or $M_2$.
+        </div>
+        
+        <p>Several milestone results exist for this problem. For example, Bronsard and Stoth <a href="#ref-bronsard1998singular">[Bronsard98]</a> considered</p>
+        
+        <div class="center">
+            $W(u):=(|u|-a)^2(b-|u|)^2,\quad u\in\mathbb{R}^2,$
+        </div>
+        
+        <p>and rigorously proved the conjecture in this special case. Subsequently, Lin, Pan, and Wang <a href="#ref-lin2012phase">[Lin12]</a> studied $W$ attaining its global minimum at two disjoint compact connected submanifolds $N^{\pm}$ in $\mathbb{R}^m$. They showed that the energy functional</p>
+        
+        <div class="center">
+            $E_\epsilon(u)=\int_\Omega|\nabla u|^2+\frac{1}{\epsilon^2}W(u)\,\mathrm{d}x$
+        </div>
+        
+        <p>has the leading-order asymptotic expansion as $\epsilon\searrow0^+$:</p>
+        
+        <div class="center">
+            $E_\epsilon\sim\frac{c}{\epsilon}\mathcal{H}^{n-1}(\Sigma^t)+D+O(1),$
+        </div>
+        
+        <p>where $c$ represents the energy of the minimal connecting orbit between $N^+$ and $N^-$, and $D$ is the energy of the minimal harmonic map into $N^{\pm}$. Many subsequent works have addressed special forms of $W$, such as <a href="#ref-fei2018isotropic">[Fei18]</a>, <a href="#ref-lin2019harmonic">[Lin19]</a>, <a href="#ref-laux2021nematic">[Laux21]</a>, <a href="#ref-lin2023isotropic">[Lin23]</a>, <a href="#ref-fei2023matrix">[Fei23]</a>. For the latest results, we refer readers to the work of Dong and Wang <a href="#ref-dong2025asymptotic">[Dong25]</a>.</p>
     </div>
 
     <div class="references">
         <h2>References</h2>
         
-        <div class="reference-item" id="ref-alberti2001long"><span class="reference-id">[Alberti01]</span> Alberti, G., Ambrosio, L., & Cabré, X. (2001). On a long-standing conjecture of E. De Giorgi: symmetry in 3D for general nonlinearities and a local minimality property. Acta Applicandae Mathematica, 65, 9-33.</div>
+        <!-- Survey and history -->
+        <div class="reference-item" id="ref-cahn1958free"><span class="reference-id">[Cahn58]</span> Cahn, J. W., & Hilliard, J. E. (1958). Free energy of a nonuniform system. I. Interfacial free energy. <em>The Journal of Chemical Physics</em>, 28(2), 258–267.</div>
+        <div class="reference-item" id="ref-cahn1959freea"><span class="reference-id">[Cahn59]</span> Cahn, J. W. (1959). Free energy of a nonuniform system. II. Thermodynamic basis. <em>Journal of Chemical Physics</em>, 30(5), 1121–1124.</div>
+        <div class="reference-item" id="ref-cahn1959freeb"><span class="reference-id">[Cahn59b]</span> Cahn, J. W., & Hilliard, J. E. (1959). Free energy of a nonuniform system. III. Nucleation in a two-component incompressible fluid. <em>The Journal of Chemical Physics</em>, 31(3), 688–699.</div>
+        <div class="reference-item" id="ref-allen1979microscopic"><span class="reference-id">[Allen79]</span> Allen, S. M., & Cahn, J. W. (1979). A microscopic theory for antiphase boundary motion and its application to antiphase domain coarsening. <em>Acta Metallurgica</em>, 27(6), 1085–1095.</div>
+        <div class="reference-item" id="ref-ginzburg2009superconductivity"><span class="reference-id">[Ginzburg09]</span> Ginzburg, V. L., & Landau, L. D. (2009). On superconductivity and superfluidity. <em>Physik Journal</em>, 8(11), 56.</div>
+        <div class="reference-item" id="ref-de1979convergence"><span class="reference-id">[DeGiorgi79]</span> De Giorgi, E., & Spagnolo, S. (1979). Convergence problems for functionals and operators. <em>Ennio De Giorgi</em>, 487.</div>
+        <div class="reference-item" id="ref-dancer2010finite"><span class="reference-id">[Dancer10]</span> Dancer, E. N. (2010). Finite Morse index and linearized stable solutions on bounded and unbounded domains. In <em>Proceedings of the International Congress of Mathematicians 2010 (ICM 2010) (In 4 Volumes) Vol. I: Plenary Lectures and Ceremonies Vols. II–IV: Invited Lectures</em> (pp. 1901–1909). World Scientific.</div>
+        <div class="reference-item" id="ref-wei2012geometrization"><span class="reference-id">[Wei12]</span> Wei, J. (2012). Geometrization program of semilinear elliptic equations. <em>AMS/IP Stud. Adv. Math</em>, 51, 831–857.</div>
+        <div class="reference-item" id="ref-chan2018giorgi"><span class="reference-id">[Chan18]</span> Chan, H., & Wei, J. (2018). On De Giorgi’s conjecture: recent progress and open problems. <em>Science China Mathematics</em>, 61(11), 1925–1946.</div>
+        <div class="reference-item" id="ref-takahashi2021topics"><span class="reference-id">[Takahashi21]</span> Takahashi, F. (2021). Topics of stable solutions to elliptic equations. <em>Sugaku Expositions</em>, 34(1), 35–59.</div>
+        <div class="reference-item" id="ref-wang2021recent"><span class="reference-id">[Wang21]</span> Wang, K. (2021). Recent progress on stable and finite Morse index solutions of semilinear elliptic equations. <em>Electronic Research Archive</em>, 29(6).</div>
         
-        <div class="reference-item" id="ref-allen1979microscopic"><span class="reference-id">[Allen79]</span> Allen, S. M., & Cahn, J. W. (1979). A microscopic theory for antiphase boundary motion and its application to antiphase domain coarsening. Acta metallurgica, 27(6), 1085-1095.</div>
+        <!-- Part I: PDEs -->
+        <div class="reference-item" id="ref-alexandrov1962characteristic"><span class="reference-id">[Alexandrov62]</span> Alexandrov, A. D. (1962). A characteristic property of spheres. <em>Annali di Matematica Pura ed Applicata</em>, 58(1), 303–315.</div>
+        <div class="reference-item" id="ref-serrin1971symmetry"><span class="reference-id">[Serrin71]</span> Serrin, J. (1971). A symmetry problem in potential theory. <em>Archive for Rational Mechanics and Analysis</em>, 43(4), 304–318.</div>
+        <div class="reference-item" id="ref-gidas1979symmetry"><span class="reference-id">[Gidas79]</span> Gidas, B., Ni, W.-M., & Nirenberg, L. (1979). Symmetry and related properties via the maximum principle. <em>Communications in Mathematical Physics</em>, 68(3), 209–243.</div>
+        <div class="reference-item" id="ref-gidas1981global"><span class="reference-id">[Gidas81]</span> Gidas, B., & Spruck, J. (1981). Global and local behavior of positive solutions of nonlinear elliptic equations. <em>Communications on Pure and Applied Mathematics</em>, 34(4), 525–598.</div>
+        <div class="reference-item" id="ref-gidas1981priori"><span class="reference-id">[Gidas81b]</span> Gidas, B., & Spruck, J. (1981). A priori bounds for positive solutions of nonlinear elliptic equations. <em>Communications in Partial Differential Equations</em>, 6(8), 883–901.</div>
+        <div class="reference-item" id="ref-gidas1981symmetry"><span class="reference-id">[Gidas81c]</span> Gidas, B. (1981). Symmetry of positive solutions of nonlinear elliptic equations in R^n, Part A. <em>Advances in Math. Suppl. Studies' A</em>, 369–402.</div>
+        <div class="reference-item" id="ref-caffarelli1989asymptotic"><span class="reference-id">[Caffarelli89]</span> Caffarelli, L., Gidas, B., & Spruck, J. (1989). Asymptotic symmetry and local behavior of semilinear elliptic equations with critical Sobolev growth. <em>Comm. Pure Appl. Math.</em>, XLII, 271–297.</div>
+        <div class="reference-item" id="ref-berestycki1991method"><span class="reference-id">[Berestycki91]</span> Berestycki, H., & Nirenberg, L. (1991). On the method of moving planes and the sliding method. <em>Boletim da Sociedade Brasileira de Matemática-Bulletin/Brazilian Mathematical Society</em>, 22(1), 1–37.</div>
+        <div class="reference-item" id="ref-dancer1992some"><span class="reference-id">[Dancer92]</span> Dancer, E. N. (1992). Some notes on the method of moving planes. <em>Bulletin of the Australian Mathematical Society</em>, 46(3), 425–434.</div>
+        <div class="reference-item" id="ref-berestycki1993symmetry"><span class="reference-id">[Berestycki93]</span> Berestycki, H., Caffarelli, L. A., & Nirenberg, L. (1993). Symmetry for elliptic equations in a half space. <em>Boundary value problems for partial differential equations and applications</em>, 29, 27–42.</div>
+        <div class="reference-item" id="ref-berestycki1994principal"><span class="reference-id">[Berestycki94]</span> Berestycki, H., Nirenberg, L., & Varadhan, S. R. S. (1994). The principal eigenvalue and maximum principle for second-order elliptic operators in general domains. <em>Communications on Pure and Applied Mathematics</em>, 47(1), 47–92.</div>
+        <div class="reference-item" id="ref-berestycki1996inequalities"><span class="reference-id">[Berestycki96]</span> Berestycki, H., Caffarelli, L. A., & Nirenberg, L. (1996). Inequalities for second-order elliptic equations with applications to unbounded domains I. <em>Duke Math. J.</em>, 85(1), 467–494.</div>
+        <div class="reference-item" id="ref-berestycki1997monotonicity"><span class="reference-id">[Berestycki97a]</span> Berestycki, H., Caffarelli, L. A., & Nirenberg, L. (1997). Monotonicity for elliptic equations in unbounded Lipschitz domains. <em>Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences</em>, 50(11), 1089–1111.</div>
+        <div class="reference-item" id="ref-berestycki1997further"><span class="reference-id">[Berestycki97]</span> Berestycki, H., Caffarelli, L., & Nirenberg, L. (1997). Further qualitative properties for elliptic equations in unbounded domains. <em>Annali della Scuola Normale Superiore di Pisa-Classe di Scienze</em>, 25(1-2), 69–94.</div>
+        <div class="reference-item" id="ref-barlow1998liouville"><span class="reference-id">[Barlow98]</span> Barlow, M. T. (1998). On the Liouville property for divergence form operators. <em>Canadian Journal of Mathematics</em>, 50(3), 487–496.</div>
+        <div class="reference-item" id="ref-farina2007classification"><span class="reference-id">[Farina07]</span> Farina, A. (2007). On the classification of solutions of the Lane–Emden equation on unbounded domains of R^N. <em>Journal de Mathématiques Pures et Appliquées</em>, 87(5), 537–561.</div>
+        <div class="reference-item" id="ref-farina2010flattening"><span class="reference-id">[Farina10]</span> Farina, A., & Valdinoci, E. (2010). Flattening results for elliptic PDEs in unbounded domains with applications to overdetermined problems. <em>Archive for Rational Mechanics and Analysis</em>, 195(3), 1025–1058.</div>
+        <div class="reference-item" id="ref-dupaigne2011stable"><span class="reference-id">[Dupaigne11]</span> Dupaigne, L. (2011). <em>Stable solutions of elliptic partial differential equations</em>. CRC press.</div>
+        <div class="reference-item" id="ref-chen2014monotonicity"><span class="reference-id">[Chen14]</span> Chen, Z., Lin, C.-S., & Zou, W. (2014). Monotonicity and nonexistence results to cooperative systems in the half space. <em>Journal of Functional Analysis</em>, 266(2), 1088–1105.</div>
+        <div class="reference-item" id="ref-farina2016qualitative"><span class="reference-id">[Farina16]</span> Farina, A., & Sciunzi, B. (2016). Qualitative properties and classification of nonnegative solutions to -Δu= f(u) in unbounded domains when f(0)< 0. <em>Revista Matematica Iberoamericana</em>, 32(4), 1311–1331.</div>
+        <div class="reference-item" id="ref-farina2017monotonicity"><span class="reference-id">[Farina17]</span> Farina, A., & Sciunzi, B. (2017). Monotonicity and Symmetry of Nonnegative Solutions to -Δ u= f (u) in Half-Planes and Strips. <em>Advanced Nonlinear Studies</em>, 17(2), 297–310.</div>
+        <div class="reference-item" id="ref-quittner2019superlinear"><span class="reference-id">[Quittner19]</span> Quittner, P., & Souplet, P. (2019). <em>Superlinear Parabolic Problems: Blow-up, Global Existence and Steady States</em>. Springer.</div>
+        <div class="reference-item" id="ref-farina2020some"><span class="reference-id">[Farina20]</span> Farina, A. (2020). Some results about semilinear elliptic problems on half-spaces. <em>Math. Eng</em>, 2(4), 709–721.</div>
+        <div class="reference-item" id="ref-cabre2020stable"><span class="reference-id">[Cabré20]</span> Cabré, X., Figalli, A., Ros-Oton, X., & Serra, J. (2020). Stable solutions to semilinear elliptic equations are smooth up to dimension 9. <em>Acta Mathematica</em>, 224(2), 187–252.</div>
+        <div class="reference-item" id="ref-dupaigne2022classification"><span class="reference-id">[Dupaigne22b]</span> Dupaigne, L., & Farina, A. (2022). Classification and Liouville-type theorems for semilinear elliptic equations in unbounded domains. <em>Analysis & PDE</em>, 15(2), 551–566.</div>
+        <div class="reference-item" id="ref-dupaigne2023liouville"><span class="reference-id">[Dupaigne23]</span> Dupaigne, L., Farina, A., & Petitt, T. (2023). Liouville-type theorems for the Lane-Emden equation in the half-space and cones. <em>Journal of Functional Analysis</em>, 284(10), 109906.</div>
+        <div class="reference-item" id="ref-dupaigne2022liouville"><span class="reference-id">[Dupaigne22]</span> Dupaigne, L., Sirakov, B., & Souplet, P. (2022). A Liouville-type theorem for the Lane–Emden equation in a half-space. <em>International Mathematics Research Notices</em>, 2022(12), 9024–9043.</div>
+        <div class="reference-item" id="ref-liu2024dancer"><span class="reference-id">[Liu24]</span> Liu, Y., Wang, K., Wei, J., & Wu, K. (2024). On Dancer’s conjecture for stable solutions with sign-changing nonlinearity. <em>Proceedings of the American Mathematical Society</em>, 152(08), 3485–3497.</div>
+        <div class="reference-item" id="ref-qian2025note"><span class="reference-id">[Qian25]</span> Qian, Z. (2025). Note on Regularity theory for Nonlinear elliptic equations. <em>arXiv preprint arXiv:2512.03012</em>.</div>
+        <div class="reference-item" id="ref-beuvin2026one"><span class="reference-id">[Beuvin26]</span> Beuvin, N., & Farina, A. (2026). One-dimensional symmetry results for semilinear equations and inequalities on half-spaces. <em>Nonlinear Analysis</em>, 264, 113983.</div>
+        <div class="reference-item" id="ref-sciunzi2025monotonicity"><span class="reference-id">[Sciunzi25]</span> Sciunzi, B., & Vuono, D. (2025). Monotonicity and Liouville-type theorems for semilinear elliptic problems in the half space. <em>arXiv preprint arXiv:2510.01865</em>.</div>
+        <div class="reference-item" id="ref-cabre2022quantitative"><span class="reference-id">[Cabré22]</span> Cabre, X. (2022). A quantitative proof of the Hölder regularity of stable solutions to semilinear elliptic equations. <em>arXiv preprint arXiv:2205.11352</em>.</div>
         
-        <div class="reference-item" id="ref-almgren1966some"><span class="reference-id">[Almgren66]</span> Almgren, F. J. (1966). Some interior regularity theorems for minimal surfaces and an extension of Bernstein's theorem. Annals of Mathematics, 84(2), 277-292.</div>
+        <!-- De Giorgi in lower dimension -->
+        <div class="reference-item" id="ref-ghoussoub1998conjecture"><span class="reference-id">[Ghoussoub98]</span> Ghoussoub, N., & Gui, C. (1998). On a conjecture of De Giorgi and some related problems. <em>Mathematische Annalen</em>, 311(3), 481–491.</div>
+        <div class="reference-item" id="ref-ambrosio2000entire"><span class="reference-id">[Ambrosio00]</span> Ambrosio, L., & Cabré, X. (2000). Entire solutions of semilinear elliptic equations in R^3 and a conjecture of De Giorgi. <em>Journal of the American Mathematical Society</em>, 13(4), 725–740.</div>
+        <div class="reference-item" id="ref-alberti2001long"><span class="reference-id">[Alberti01]</span> Alberti, G., Ambrosio, L., & Cabré, X. (2001). On a long-standing conjecture of E. De Giorgi: symmetry in 3D for general nonlinearities and a local minimality property. <em>Acta Applicandae Mathematica</em>, 65(1-3), 9–33.</div>
         
-        <div class="reference-item" id="ref-ambrosio2000entire"><span class="reference-id">[Ambrosio00]</span> Ambrosio, L., & Cabré, X. (2000). Entire solutions of semilinear elliptic equations in ℝ³ and a conjecture of De Giorgi. Journal of the American Mathematical Society, 13(4), 725-739.</div>
+        <!-- Part II: Bernstein -->
+        <div class="reference-item" id="ref-bernstein1917theoreme"><span class="reference-id">[Bernstein17]</span> Bernstein, S. (1917). Sur un théorème de géométrie et ses applications aux équations aux dérivées partielles du type elliptique. <em>Comm. de la Soc. Math. de Kharkov (2ème sér.)</em>, 15, 38–45.</div>
+        <div class="reference-item" id="ref-bernstein1927geometrisches"><span class="reference-id">[Bernstein27]</span> Bernstein, S. (1927). Über ein geometrisches Theorem und seine Anwendung auf die partiellen Differentialgleichungen vom elliptischen Typus. <em>Mathematische Zeitschrift</em>, 26, 551–558.</div>
+        <div class="reference-item" id="ref-fleming1962oriented"><span class="reference-id">[Fleming62]</span> Fleming, W. H. (1962). On the oriented Plateau problem. <em>Rendiconti del Circolo Matematico di Palermo</em>, 11(1), 69–90.</div>
+        <div class="reference-item" id="ref-de1965estensione"><span class="reference-id">[DeGiorgi65]</span> De Giorgi, E. (1965). Una estensione del teorema di Bernstein. <em>Annali della Scuola Normale Superiore di Pisa-Scienze Fisiche e Matematiche</em>, 19(1), 79–85.</div>
+        <div class="reference-item" id="ref-almgren1966some"><span class="reference-id">[Almgren66]</span> Almgren, F. J. (1966). Some interior regularity theorems for minimal surfaces and an extension of Bernstein's theorem. <em>Annals of Mathematics</em>, 84(2), 277–292.</div>
+        <div class="reference-item" id="ref-simons1968minimal"><span class="reference-id">[Simons68]</span> Simons, J. (1968). Minimal varieties in Riemannian manifolds. <em>Annals of Mathematics</em>, 88(1), 62–105.</div>
+        <div class="reference-item" id="ref-bombieri1969minimal"><span class="reference-id">[Bombieri69]</span> Bombieri, E., De Giorgi, E., & Giusti, E. (1969). Minimal cones and the Bernstein problem. <em>Ennio De Giorgi</em>, 291.</div>
         
-        <div class="reference-item" id="ref-barlow2000liouville"><span class="reference-id">[Barlow00]</span> Barlow, M. T., Bass, R. F., & Gui, C. (2000). The Liouville property and a conjecture of De Giorgi. Communications on Pure and Applied Mathematics, 53(8), 1007-1038.</div>
+        <!-- De Giorgi in higher dimension -->
+        <div class="reference-item" id="ref-savin2009regularity"><span class="reference-id">[Savin09]</span> Savin, O. (2009). Regularity of flat level sets in phase transitions. <em>Annals of Mathematics</em>, 169(1), 41–78.</div>
+        <div class="reference-item" id="ref-kowalczyk2011giorgi"><span class="reference-id">[Kowalczyk11]</span> Kowalczyk, M., Wei, J., & del Pino, M. (2011). On De Giorgi's conjecture in dimension N> 9. <em>Annals of mathematics</em>, 174(3), 1485–1569.</div>
         
-        <div class="reference-item" id="ref-berestycki1991method"><span class="reference-id">[Berestycki91]</span> Berestycki, H., & Nirenberg, L. (1991). On the method of moving planes and the sliding method. Boletim da Sociedade Brasileira de Matemática, 22(1), 1-37.</div>
+        <!-- Gibbons -->
+        <div class="reference-item" id="ref-farina1999symmetry"><span class="reference-id">[Farina99]</span> Farina, A. (1999). Symmetry for solutions of semilinear elliptic equations in R^N and related conjectures. <em>ATTI-ACCADEMIA NAZIONALE DEI LINCEI RENDICONTI LINCEI CLASSE DI SCIENZE FISICHE MATEMAICHE E NATURALI SERIE 9 MATEMATICA E APPLICAZIONI</em>, 10(4), 255–266.</div>
+        <div class="reference-item" id="ref-barlow2000liouville"><span class="reference-id">[Barlow00]</span> Barlow, M. T., Bass, R. F., & Gui, C. (2000). The Liouville property and a conjecture of De Giorgi. <em>Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences</em>, 53(8), 1007–1038.</div>
+        <div class="reference-item" id="ref-berestycki2000one"><span class="reference-id">[Berestycki00]</span> Berestycki, H., Hamel, F., & Monneau, R. (2000). One-dimensional symmetry of bounded entire solutions of some elliptic equations. <em>Duke Math. J.</em>, 104(1), 375–396.</div>
         
-        <div class="reference-item" id="ref-berestycki1997further"><span class="reference-id">[Berestycki97]</span> Berestycki, H., Caffarelli, L., & Nirenberg, L. (1997). Further qualitative properties for elliptic equations in unbounded domains. Annali della Scuola Normale Superiore di Pisa-Classe di Scienze, 25(1-2), 69-94.</div>
+        <!-- GMT -->
+        <div class="reference-item" id="ref-giusti1984minimal"><span class="reference-id">[Giusti84]</span> Giusti, E., & Williams, G. H. (1984). <em>Minimal surfaces and functions of bounded variation</em>. Springer.</div>
+        <div class="reference-item" id="ref-braides2002gamma"><span class="reference-id">[Braides02]</span> Braides, A. (2002). <em>Gamma-convergence for Beginners</em>. Clarendon Press.</div>
+        <div class="reference-item" id="ref-modica1977limite"><span class="reference-id">[Modica77]</span> Modica, L. (1977). Il limite nella Γ-convergenza di una famiglia di funzionali ellittici. <em>(Italian) Boll. Un. Mat. Ital. A (5)</em>, 14(3), 526–529.</div>
+        <div class="reference-item" id="ref-modica1978convergence"><span class="reference-id">[Modica78]</span> Modica, L. (1978). Convergence to minimal surfaces problem and global solutions of Δ u= 2 (u^3- u). In <em>Proceedings of the International Meeting on Recent Methods in Nonlinear Analysis (Rome, 1978)</em> (pp. 223–244).</div>
+        <div class="reference-item" id="ref-modica1987gradient"><span class="reference-id">[Modica87]</span> Modica, L. (1987). The gradient theory of phase transitions and the minimal interface criterion. <em>Archive for Rational Mechanics and Analysis</em>, 98(2), 123–142.</div>
+        <div class="reference-item" id="ref-caffarelli1995uniform"><span class="reference-id">[Caffarelli95]</span> Caffarelli, L. A., & Córdoba, A. (1995). Uniform convergence of a singular perturbation problem. <em>Communications on Pure and Applied Mathematics</em>, 48(1), 1–12.</div>
+        <div class="reference-item" id="ref-savin2010phase"><span class="reference-id">[Savin10]</span> Savin, O. (2010). Phase transitions, minimal surfaces and a conjecture of De Giorgi. In <em>Current developments in mathematics, 2009</em> (Vol. 2009, pp. 59–114). International Press of Boston.</div>
+        <div class="reference-item" id="ref-wang2017new"><span class="reference-id">[Wang17]</span> Wang, K. (2017). A new proof of Savin's theorem on Allen–Cahn equations. <em>Journal of the European Mathematical Society</em>, 19(10), 2997–3051.</div>
+        <div class="reference-item" id="ref-savin2017some"><span class="reference-id">[Savin17]</span> Savin, O. (2017). Some remarks on the classification of global solutions with asymptotically flat level sets. <em>Calculus of Variations and Partial Differential Equations</em>, 56(5), 141.</div>
+        <div class="reference-item" id="ref-savin2025minimizers"><span class="reference-id">[Savin25]</span> Savin, O., & Zhang, C. (2025). Minimizers of the Allen-Cahn energy with sub-quadratic growth. <em>arXiv preprint arXiv:2503.02029</em>.</div>
+        <div class="reference-item" id="ref-savin2025density"><span class="reference-id">[Savin25b]</span> Savin, O., & Zhang, C. (2025). Density estimates for Ginzburg-Landau energies with degenerate double-well potentials. <em>arXiv preprint arXiv:2506.17000</em>.</div>
         
-        <div class="reference-item" id="ref-berestycki2000one"><span class="reference-id">[Berestycki00]</span> Berestycki, H., Hamel, F., & Monneau, R. (2000). One-dimensional symmetry of bounded entire solutions of some elliptic equations. Duke Mathematical Journal, 104(3), 375-396.</div>
+        <!-- Part III: MSF -->
+        <div class="reference-item" id="ref-de1995geometrical"><span class="reference-id">[DeMottoni95]</span> De Mottoni, P., & Schatzman, M. (1995). Geometrical evolution of developed interfaces. <em>Transactions of the American Mathematical Society</em>, 347(5), 1533–1589.</div>
+        <div class="reference-item" id="ref-bronsard1991motion"><span class="reference-id">[Bronsard91]</span> Bronsard, L., & Kohn, R. V. (1991). Motion by mean curvature as the singular limit of Ginzburg-Landau dynamics. <em>Journal of differential equations</em>, 90(2), 211–237.</div>
+        <div class="reference-item" id="ref-chen1992generation"><span class="reference-id">[Chen92]</span> Chen, X. (1992). Generation and propagation of interfaces for reaction-diffusion equations. <em>Journal of Differential equations</em>, 96(1), 116–141.</div>
+        <div class="reference-item" id="ref-evans1992phase"><span class="reference-id">[Evans92]</span> Evans, L. C., Soner, H. M., & Souganidis, P. E. (1992). Phase transitions and generalized motion by mean curvature. <em>Communications on Pure and Applied Mathematics</em>, 45(9), 1097–1123.</div>
+        <div class="reference-item" id="ref-ilmanen1993convergence"><span class="reference-id">[Ilmanen93]</span> Ilmanen, T. (1993). Convergence of the Allen-Cahn equation to Brakke's motion by mean curvature. <em>Journal of Differential Geometry</em>, 38(2), 417–461.</div>
+        <div class="reference-item" id="ref-ilmanen1994elliptic"><span class="reference-id">[Ilmanen94]</span> Ilmanen, T. (1994). <em>Elliptic regularization and partial regularity for motion by mean curvature</em> (Vol. 520). American Mathematical Soc.</div>
+        <div class="reference-item" id="ref-chen1999uniqueness"><span class="reference-id">[Chen99]</span> Chen, Y.-G., Giga, Y., & Goto, S. (1999). Uniqueness and existence of viscosity solutions of generalized mean curvature flow equations. In <em>Fundamental Contributions to the Continuum Theory of Evolving Phase Interfaces in Solids: A Collection of Reprints of 14 Seminal Papers</em> (pp. 375–412). Springer.</div>
         
-        <div class="reference-item" id="ref-bernstein1927geometrisches"><span class="reference-id">[Bernstein27]</span> Bernstein, S. (1927). Über ein geometrisches Theorem und seine Anwendung auf die partiellen Differentialgleichungen vom elliptischen Typus. Mathematische Zeitschrift, 26(1), 551-558.</div>
-        
-        <div class="reference-item" id="ref-bombieri1969minimal"><span class="reference-id">[Bombieri69]</span> Bombieri, E., De Giorgi, E., & Giusti, E. (1969). Minimal cones and the Bernstein problem. Inventiones Mathematicae, 7, 243-268.</div>
-        
-        <div class="reference-item" id="ref-braides2002gamma"><span class="reference-id">[Braides02]</span> Braides, A. (2002). Gamma-convergence for Beginners. Oxford University Press.</div>
-        
-        <div class="reference-item" id="ref-bronsard1991motion"><span class="reference-id">[Bronsard91]</span> Bronsard, L., & Kohn, R. V. (1991). Motion by mean curvature as the singular limit of Ginzburg-Landau dynamics. Journal of Differential Equations, 90(2), 211-237.</div>
-        
-        <div class="reference-item" id="ref-bronsard1998singular"><span class="reference-id">[Bronsard98]</span> Bronsard, L., & Stoth, B. (1998). The singular limit of a vector-valued reaction-diffusion process. Transactions of the American Mathematical Society, 350(12), 4931-4953.</div>
-        
-        <div class="reference-item" id="ref-cahn1958free"><span class="reference-id">[Cahn58]</span> Cahn, J. W., & Hilliard, J. E. (1958). Free energy of a nonuniform system. I. Interfacial free energy. The Journal of Chemical Physics, 28(2), 258-267.</div>
-        
-        <div class="reference-item" id="ref-chan2018giorgi"><span class="reference-id">[Chan18]</span> Chan, H., & Wei, J. (2018). On De Giorgi's conjecture: recent progress and open problems. Science China Mathematics, 61(11), 1925-1946.</div>
-        
-        <div class="reference-item" id="ref-chen1992generation"><span class="reference-id">[Chen92]</span> Chen, X. (1992). Generation and propagation of interfaces for reaction-diffusion equations. Journal of Differential Equations, 96(1), 116-141.</div>
-        
-        <div class="reference-item" id="ref-de1965estensione"><span class="reference-id">[DeGiorgi65]</span> De Giorgi, E. (1965). Una estensione del teorema di Bernstein. Annali della Scuola Normale Superiore di Pisa-Scienze Fisiche e Matematiche, 19(1), 79-85.</div>
-        
-        <div class="reference-item" id="ref-de1979convergence"><span class="reference-id">[DeGiorgi79]</span> De Giorgi, E., & Spagnolo, S. (1979). Convergence problems for functionals and operators. Ennio De Giorgi, 487.</div>
-        
-        <div class="reference-item" id="ref-del2011giorgi"><span class="reference-id">[DelPino11]</span> Del Pino, M., Kowalczyk, M., & Wei, J. (2011). On De Giorgi's conjecture in dimension N≥ 9. Annals of Mathematics, 174(3), 1485-1569.</div>
-        
-        <div class="reference-item" id="ref-dong2025asymptotic"><span class="reference-id">[Dong25]</span> Dong, H., & Wang, W. (2025). Asymptotic limit of a vector-valued Allen-Cahn equation for phase transition dynamics. arXiv preprint arXiv:2508.18754.</div>
-        
-        <div class="reference-item" id="ref-evans1992phase"><span class="reference-id">[Evans92]</span> Evans, L. C., Soner, H. M., & Souganidis, P. E. (1992). Phase transitions and generalized motion by mean curvature. Communications on Pure and Applied Mathematics, 45(9), 1097-1123.</div>
-        
-        <div class="reference-item" id="ref-farina1999symmetry"><span class="reference-id">[Farina99]</span> Farina, A. (1999). Symmetry for solutions of semilinear elliptic equations in R^N and related conjectures. Atti della Accademia Nazionale dei Lincei. Classe di Scienze Fisiche, Matematiche e Naturali. Rendiconti Lincei. Matematica e Applicazioni, 10(4), 255-266.</div>
-        
-        <div class="reference-item" id="ref-fei2018isotropic"><span class="reference-id">[Fei18]</span> Fei, M., Wang, W., Zhang, P., & Zhang, Z. (2018). On the isotropic--nematic phase transition for the liquid crystal. Peking Mathematical Journal, 1(2), 141-219.</div>
-        
-        <div class="reference-item" id="ref-fei2023matrix"><span class="reference-id">[Fei23]</span> Fei, M., Lin, F., Wang, W., & Zhang, Z. (2023). Matrix-valued Allen--Cahn equation and the Keller--Rubinstein--Sternberg problem. Inventiones Mathematicae, 233(1), 1-80.</div>
-        
-        <div class="reference-item" id="ref-fleming1962oriented"><span class="reference-id">[Fleming62]</span> Fleming, W. H. (1962). On the oriented Plateau problem. Rendiconti del Circolo Matematico di Palermo, 11(1), 69-90.</div>
-        
-        <div class="reference-item" id="ref-ghoussoub1998conjecture"><span class="reference-id">[Ghoussoub98]</span> Ghoussoub, N., & Gui, C. (1998). On a conjecture of De Giorgi and some related problems. Mathematische Annalen, 311(3), 481-491.</div>
-        
-        <div class="reference-item" id="ref-giusti1984minimal"><span class="reference-id">[Giusti84]</span> Giusti, E., & Williams, G. H. (1984). Minimal surfaces and functions of bounded variation. Springer.</div>
-        
-        <div class="reference-item" id="ref-ilmanen1993convergence"><span class="reference-id">[Ilmanen93]</span> Ilmanen, T. (1993). Convergence of the Allen-Cahn equation to Brakke's motion by mean curvature. Journal of Differential Geometry, 38(2), 417-461.</div>
-        
-        <div class="reference-item" id="ref-laux2021nematic"><span class="reference-id">[Laux21]</span> Laux, T., & Liu, Y. (2021). Nematic--isotropic phase transition in liquid crystals: A variational derivation of effective geometric motions. Archive for Rational Mechanics and Analysis, 241(3), 1785-1814.</div>
-        
-        <div class="reference-item" id="ref-lin2012phase"><span class="reference-id">[Lin12]</span> Lin, F., Pan, X. B., & Wang, C. (2012). Phase transition for potentials of high-dimensional wells. Communications on Pure and Applied Mathematics, 65(6), 833-888.</div>
-        
-        <div class="reference-item" id="ref-lin2019harmonic"><span class="reference-id">[Lin19]</span> Lin, F., & Wang, C. (2019). Harmonic maps in connection of phase transitions with higher dimensional potential wells. Chinese Annals of Mathematics, Series B, 40(5), 781-810.</div>
-        
-        <div class="reference-item" id="ref-lin2023isotropic"><span class="reference-id">[Lin23]</span> Lin, F., & Wang, C. (2023). Isotropic-Nematic Phase Transition and Liquid Crystal Droplets. Communications on Pure and Applied Mathematics, 76(8), 1728-1792.</div>
-        
-        <div class="reference-item" id="ref-modica1977limite"><span class="reference-id">[Modica77]</span> Modica, L. (1977). Il limite nella Γ-convergenza di una famiglia di funzionali ellittici. Bollettino dell'Unione Matematica Italiana, 14, 526-529.</div>
-        
-        <div class="reference-item" id="ref-modica1978convergence"><span class="reference-id">[Modica78]</span> Modica, L. (1978). Convergence to minimal surfaces problem and global solutions of Δu=2(u³-u). In Proceedings of the International Meeting on Recent Methods in Nonlinear Analysis (pp. 223-244).</div>
-        
-        <div class="reference-item" id="ref-modica1987gradient"><span class="reference-id">[Modica87]</span> Modica, L. (1987). The gradient theory of phase transitions and the minimal interface criterion. Archive for Rational Mechanics and Analysis, 98(2), 123-142.</div>
-        
-        <div class="reference-item" id="ref-rubinstein1989fast"><span class="reference-id">[Rubinstein89]</span> Rubinstein, J., Sternberg, P., & Keller, J. B. (1989). Fast reaction, slow diffusion, and curve shortening. SIAM Journal on Applied Mathematics, 49(1), 116-133.</div>
-        
-        <div class="reference-item" id="ref-rubinstein1989reaction"><span class="reference-id">[Rubinstein89b]</span> Rubinstein, J., Sternberg, P., & Keller, J. B. (1989). Reaction-diffusion processes and evolution to harmonic maps. SIAM Journal on Applied Mathematics, 49(6), 1722-1733.</div>
-        
-        <div class="reference-item" id="ref-savin2009regularity"><span class="reference-id">[Savin09]</span> Savin, O. (2009). Regularity of flat level sets in phase transitions. Annals of Mathematics, 169(1), 41-78.</div>
-        
-        <div class="reference-item" id="ref-simons1968minimal"><span class="reference-id">[Simons68]</span> Simons, J. (1968). Minimal varieties in Riemannian manifolds. Annals of Mathematics, 88(1), 62-105.</div>
+        <!-- vector-PDEs -->
+        <div class="reference-item" id="ref-bronsard1998singular"><span class="reference-id">[Bronsard98]</span> Bronsard, L., & Stoth, B. (1998). The singular limit of a vector-valued reaction-diffusion process. <em>Transactions of the American Mathematical Society</em>, 350(12), 4931–4953.</div>
+        <div class="reference-item" id="ref-rubinstein1989fast"><span class="reference-id">[Rubinstein89]</span> Rubinstein, J., Sternberg, P., & Keller, J. B. (1989). Fast reaction, slow diffusion, and curve shortening. <em>SIAM Journal on Applied Mathematics</em>, 49(1), 116–133.</div>
+        <div class="reference-item" id="ref-rubinstein1989reaction"><span class="reference-id">[Rubinstein89b]</span> Rubinstein, J., Sternberg, P., & Keller, J. B. (1989). Reaction-diffusion processes and evolution to harmonic maps. <em>SIAM Journal on Applied Mathematics</em>, 49(6), 1722–1733.</div>
+        <div class="reference-item" id="ref-lin2012phase"><span class="reference-id">[Lin12]</span> Lin, F., Pan, X.-B., & Wang, C. (2012). Phase transition for potentials of high-dimensional wells. <em>Communications on Pure and Applied Mathematics</em>, 65(6), 833–888.</div>
+        <div class="reference-item" id="ref-fei2018isotropic"><span class="reference-id">[Fei18]</span> Fei, M., Wang, W., Zhang, P., & Zhang, Z. (2018). On the isotropic–nematic phase transition for the liquid crystal. <em>Peking Mathematical Journal</em>, 1(2), 141–219.</div>
+        <div class="reference-item" id="ref-lin2019harmonic"><span class="reference-id">[Lin19]</span> Lin, F., & Wang, C. (2019). Harmonic maps in connection of phase transitions with higher dimensional potential wells. <em>Chinese Annals of Mathematics, Series B</em>, 40(5), 781–810.</div>
+        <div class="reference-item" id="ref-laux2021nematic"><span class="reference-id">[Laux21]</span> Laux, T., & Liu, Y. (2021). Nematic–isotropic phase transition in liquid crystals: A variational derivation of effective geometric motions. <em>Archive for Rational Mechanics and Analysis</em>, 241(3), 1785–1814.</div>
+        <div class="reference-item" id="ref-lin2023isotropic"><span class="reference-id">[Lin23]</span> Lin, F., & Wang, C. (2023). Isotropic-Nematic Phase Transition and Liquid Crystal Droplets. <em>Communications on Pure and Applied Mathematics</em>, 76(9), 1728–1792.</div>
+        <div class="reference-item" id="ref-fei2023matrix"><span class="reference-id">[Fei23]</span> Fei, M., Lin, F., Wang, W., & Zhang, Z. (2023). Matrix-valued Allen–Cahn equation and the Keller–Rubinstein–Sternberg problem. <em>Inventiones mathematicae</em>, 233(1), 1–80.</div>
+        <div class="reference-item" id="ref-dong2025asymptotic"><span class="reference-id">[Dong25]</span> Dong, H., & Wang, W. (2025). Asymptotic limit of a vector-valued Allen-Cahn equation for phase transition dynamics. <em>arXiv preprint arXiv:2508.18754</em>.</div>
     </div>
 
     <footer>
