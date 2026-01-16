@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qian Zhenye | Mathematics</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- 陶哲轩主页风格的字体组合 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Linux+Libertine:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap">
     <style>
         :root {
             --primary: #222;
             --secondary: #444;
             --accent: #1a73e8;
-            --title-color: #1a73e8;
-            --visited-link: #8a2be2;
+            --title-color: #222;
+            --visited-link: #551a8b;
             --background: #ffffff;
-            --light-bg: #f8f8f8;
+            --light-bg: #f8f9fa;
             --text: #222;
             --light-text: #666;
-            --border: #ddd;
-            --section-spacing: 20px;
-            --subsection-spacing: 12px;
+            --border: #e0e0e0;
+            --section-spacing: 24px;
+            --subsection-spacing: 16px;
         }
         
         * {
@@ -27,18 +28,19 @@
             box-sizing: border-box;
         }
         
+        /* 陶哲轩主页字体风格 */
         body {
-            font-family: 'Merriweather', Georgia, serif;
-            line-height: 1.5;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             color: var(--text);
             background-color: var(--background);
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 15px;
-            font-size: 15px;
+            padding: 40px 30px;
+            font-size: 16px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 25px;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 40px;
         }
         
         /* 左侧栏样式 */
@@ -51,11 +53,11 @@
         header {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border);
-            text-align: center;
+            text-align: left;
         }
         
         /* 竖版照片容器样式 */
@@ -63,8 +65,9 @@
             width: 160px;
             height: 200px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: 1px solid var(--border);
+            border-radius: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -82,59 +85,65 @@
         }
         
         h1 {
-            color: var(--primary);
-            font-size: 2em;
-            margin-bottom: 5px;
+            color: var(--title-color);
+            font-size: 2.2em;
+            margin-bottom: 8px;
             font-weight: 700;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
         
         .subtitle {
             color: var(--light-text);
             font-size: 1.1em;
             margin-top: 5px;
-            font-weight: 300;
+            font-weight: 400;
+            font-style: normal;
         }
         
         /* 联系信息样式 */
         .contact-info {
-            margin-top: 15px;
-            padding: 12px;
+            margin-top: 20px;
+            padding: 16px;
             background-color: var(--light-bg);
             border-radius: 5px;
+            border-left: 4px solid var(--accent);
         }
         
         .contact-info h3 {
             margin-top: 0;
             color: var(--title-color);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 5px;
+            border-bottom: none;
+            padding-bottom: 8px;
             font-size: 1.2em;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         /* 导航栏样式 */
         nav {
             display: flex;
             flex-direction: column;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .nav-link {
-            margin: 4px 0;
+            margin: 6px 0;
             color: var(--primary);
             text-decoration: none;
             font-weight: 500;
-            padding: 8px 12px;
-            font-size: 0.95em;
-            border-left: 3px solid transparent;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-left: 4px solid transparent;
             transition: all 0.2s;
             cursor: pointer;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            border-radius: 0 4px 4px 0;
         }
         
         .nav-link:hover, .nav-link.active {
-            border-left: 3px solid var(--title-color);
+            border-left: 4px solid var(--accent);
             background-color: rgba(26, 115, 232, 0.05);
         }
         
@@ -142,23 +151,23 @@
         .sub-nav {
             display: block;
             padding-left: 20px;
-            margin-top: 3px;
+            margin-top: 5px;
         }
         
         .sub-nav-link {
             display: block;
-            padding: 4px 12px;
+            padding: 6px 15px;
             color: var(--light-text);
             text-decoration: none;
-            font-size: 0.85em;
+            font-size: 0.9em;
             border-left: 2px solid transparent;
             transition: all 0.2s;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         .sub-nav-link:hover, .sub-nav-link.active {
             color: var(--primary);
-            border-left: 2px solid var(--title-color);
+            border-left: 2px solid var(--accent);
         }
         
         /* 主要内容区域样式 */
@@ -169,63 +178,64 @@
         /* 内容区域样式 - 部分间距 */
         .section {
             margin-bottom: var(--section-spacing);
-            padding-bottom: 12px;
-        }
-        
-        /* 最后一个部分不加底部边框 */
-        .section:last-child {
-            border-bottom: none;
+            padding-bottom: 20px;
         }
         
         h2 {
             color: var(--title-color);
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-size: 1.8em;
             font-weight: 700;
-            padding-bottom: 6px;
-            border-bottom: 2px solid var(--title-color);
-            font-family: 'Source Sans Pro', sans-serif;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: -0.3px;
         }
         
         /* 子部分间距小于部分间距 */
         h3 {
             color: var(--primary);
-            margin: var(--subsection-spacing) 0 6px;
+            margin: var(--subsection-spacing) 0 10px;
             font-size: 1.4em;
             font-weight: 600;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         p {
-            margin-bottom: 10px;
-            font-size: 0.95em;
-            line-height: 1.5;
+            margin-bottom: 14px;
+            font-size: 1em;
+            line-height: 1.6;
         }
         
-        /* 链接样式 - 舒适的浅蓝色带下划线 */
+        /* 链接样式 - 陶哲轩风格 */
         a {
             color: var(--accent);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
         }
         
         a:hover {
-            color: var(--primary);
+            color: #0d47a1;
+            border-bottom: 1px solid #0d47a1;
         }
         
-        /* 已访问链接样式 - 舒适的紫色 */
+        /* 已访问链接样式 */
         a:visited {
             color: var(--visited-link);
         }
         
-        /* 预印本和笔记链接样式 - 保持原色 */
+        /* 预印本和笔记链接样式 */
         .paper-link {
             color: inherit;
             text-decoration: none;
             font-weight: normal;
+            border-bottom: none;
         }
         
         .paper-link:hover {
             text-decoration: underline;
+            color: inherit;
         }
         
         /* 邮箱样式 */
@@ -234,12 +244,12 @@
         }
         
         .email {
-            margin: 6px 0;
+            margin: 8px 0;
             font-size: 0.95em;
         }
         
         .email-note {
-            font-size: 0.8em;
+            font-size: 0.85em;
             color: var(--light-text);
             font-style: italic;
             margin-top: 2px;
@@ -247,26 +257,36 @@
         
         /* 列表样式 */
         ul, ol {
-            padding-left: 18px;
-            margin-bottom: 10px;
+            padding-left: 24px;
+            margin-bottom: 14px;
         }
         
         li {
-            margin-bottom: 3px;
-            line-height: 1.4;
-            font-size: 0.95em;
+            margin-bottom: 6px;
+            line-height: 1.5;
+            font-size: 1em;
         }
         
-        /* 学习经历样式 - 减小间距，移除横线 */
+        /* 学习经历样式 */
         .study-item {
-            margin-bottom: 6px;
-            padding-bottom: 4px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+        }
+        
+        .study-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        
+        .study-course {
+            margin-bottom: 4px;
         }
         
         /* 预印本和笔记条目样式 */
         .preprint-item, .note-item {
-            margin-bottom: 6px;
-            padding-bottom: 4px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
         }
         
         .paper-title {
@@ -276,17 +296,16 @@
         
         .paper-date {
             color: var(--light-text);
-            font-style: italic;
             font-size: 0.9em;
         }
         
         /* 奖项样式 */
         .award-item {
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
         
         .award-year {
-            font-weight: bold;
+            font-weight: 600;
             color: var(--primary);
         }
         
@@ -295,32 +314,30 @@
             font-style: italic;
             color: var(--light-text);
             text-align: center;
-            padding: 15px 10px;
+            padding: 20px 10px;
             border: 1px dashed var(--border);
             background-color: var(--light-bg);
-            font-size: 0.9em;
+            font-size: 0.95em;
         }
-        
-        /* 近期想法样式 - 已删除 */
         
         /* 页脚样式 */
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: center;
             color: var(--light-text);
-            font-size: 0.8em;
-            padding-top: 12px;
+            font-size: 0.9em;
+            padding-top: 20px;
             border-top: 1px solid var(--border);
             grid-column: 1 / -1;
         }
         
         /* 响应式设计 */
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
             body {
                 grid-template-columns: 1fr;
-                padding: 15px 10px;
-                font-size: 14px;
-                gap: 20px;
+                padding: 30px 20px;
+                font-size: 15px;
+                gap: 30px;
             }
             
             .sidebar {
@@ -333,14 +350,37 @@
             
             header {
                 flex-direction: column;
-                text-align: center;
+                text-align: left;
             }
             
             .photo-container {
                 margin-right: 0;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 width: 140px;
                 height: 180px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+            }
+            
+            .nav-link {
+                margin: 4px 0;
+            }
+            
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+                font-size: 14px;
             }
             
             h1 {
@@ -348,45 +388,41 @@
             }
             
             h2 {
-                font-size: 1.6em;
-            }
-            
-            .nav-link {
-                margin: 3px 8px;
-            }
-            
-            .section {
-                margin-bottom: 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px 8px;
-                font-size: 13px;
-            }
-            
-            h1 {
-                font-size: 1.6em;
-            }
-            
-            h2 {
                 font-size: 1.4em;
             }
             
             .nav-link {
-                margin: 2px 6px;
-                font-size: 0.9em;
+                margin: 3px 0;
+                font-size: 0.95em;
+            }
+            
+            .photo-container {
+                width: 120px;
+                height: 160px;
             }
         }
 
-        /* MathJax 公式样式优化 */
+        /* MathJax 公式样式优化 - 陶哲轩风格 */
         .MathJax {
             font-size: 1.1em !important;
         }
         
         mjx-container[jax="CHTML"] {
             outline: none;
+        }
+        
+        /* 数学公式样式 */
+        .math {
+            font-family: 'Linux Libertine', 'Times New Roman', serif;
+        }
+        
+        /* 代码样式 */
+        code, pre {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: var(--light-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
         }
     </style>
     <!-- MathJax配置 -->
