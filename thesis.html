@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recent works on my thesis | Qian Zhenye</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- 陶哲轩主页风格的字体组合 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Linux+Libertine:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap">
     <style>
         :root {
             --primary: #222;
             --secondary: #444;
             --accent: #1a73e8;
-            --title-color: #1a73e8;
-            --visited-link: #8a2be2;
+            --title-color: #222;
+            --visited-link: #551a8b;
             --background: #ffffff;
-            --light-bg: #f8f8f8;
+            --light-bg: #f8f9fa;
             --text: #222;
             --light-text: #666;
-            --border: #ddd;
-            --section-spacing: 20px;
-            --subsection-spacing: 12px;
+            --border: #e0e0e0;
+            --section-spacing: 24px;
+            --subsection-spacing: 16px;
         }
         
         * {
@@ -27,82 +28,95 @@
             box-sizing: border-box;
         }
         
+        /* 陶哲轩主页字体风格 */
         body {
-            font-family: 'Merriweather', Georgia, serif;
-            line-height: 1.5;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
             color: var(--text);
             background-color: var(--background);
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 15px;
-            font-size: 15px;
+            padding: 40px 30px;
+            font-size: 16px;
         }
         
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border);
         }
         
         .back-link {
             color: var(--accent);
             text-decoration: none;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.2s;
         }
         
         .back-link:hover {
-            text-decoration: underline;
+            text-decoration: none;
+            background-color: rgba(26, 115, 232, 0.05);
         }
         
         h1 {
             color: var(--title-color);
-            font-size: 2em;
+            font-size: 2.2em;
             font-weight: 700;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
         
         h2 {
             color: var(--title-color);
-            margin: 30px 0 12px;
+            margin: 40px 0 16px;
             font-size: 1.8em;
             font-weight: 700;
-            padding-bottom: 6px;
-            border-bottom: 2px solid var(--title-color);
-            font-family: 'Source Sans Pro', sans-serif;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            letter-spacing: -0.3px;
         }
         
         h3 {
             color: var(--primary);
-            margin: 20px 0 6px;
+            margin: 30px 0 10px;
             font-size: 1.4em;
             font-weight: 600;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         h4 {
             color: var(--primary);
-            margin: 15px 0 5px;
+            margin: 20px 0 5px;
             font-size: 1.2em;
             font-weight: 600;
-            font-family: 'Source Sans Pro', sans-serif;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
         p {
-            margin-bottom: 10px;
-            font-size: 0.95em;
-            line-height: 1.5;
+            margin-bottom: 14px;
+            font-size: 1em;
+            line-height: 1.6;
         }
         
+        /* 陶哲轩风格链接 */
         a {
             color: var(--accent);
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
         }
         
         a:hover {
-            color: var(--primary);
+            color: #0d47a1;
+            border-bottom: 1px solid #0d47a1;
         }
         
         a:visited {
@@ -110,25 +124,26 @@
         }
         
         ul, ol {
-            padding-left: 18px;
-            margin-bottom: 10px;
+            padding-left: 24px;
+            margin-bottom: 14px;
         }
         
         li {
-            margin-bottom: 3px;
-            line-height: 1.4;
-            font-size: 0.95em;
+            margin-bottom: 6px;
+            line-height: 1.5;
+            font-size: 1em;
         }
         
         .section {
             margin-bottom: var(--section-spacing);
-            padding-bottom: 12px;
+            padding-bottom: 20px;
         }
         
         .theorem, .proposition, .conjecture, .problem, .remark {
-            margin: 1em 0;
-            padding: 1em;
-            border-left: 3px solid #ccc;
+            margin: 1.2em 0;
+            padding: 1.2em;
+            border-left: 4px solid #ccc;
+            border-radius: 0 4px 4px 0;
         }
         
         .theorem {
@@ -148,17 +163,18 @@
         
         .remark {
             background-color: var(--light-bg);
-            padding: 1em;
+            padding: 1.2em;
+            border-left-color: #999;
         }
         
         .center {
             text-align: center;
-            margin: 1em 0;
+            margin: 1.2em 0;
         }
         
         .references {
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 50px;
+            padding-top: 25px;
             border-top: 2px solid var(--border);
         }
         
@@ -166,6 +182,7 @@
             margin-bottom: 15px;
             padding-left: 20px;
             text-indent: -20px;
+            line-height: 1.5;
         }
         
         .reference-id {
@@ -174,11 +191,11 @@
         }
         
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: center;
             color: var(--light-text);
-            font-size: 0.8em;
-            padding-top: 12px;
+            font-size: 0.9em;
+            padding-top: 20px;
             border-top: 1px solid var(--border);
         }
         
@@ -196,6 +213,7 @@
             font-size: 0.85em;
             color: var(--light-text);
             margin-top: 5px;
+            font-style: italic;
         }
         
         .footnote-ref {
@@ -209,20 +227,87 @@
         }
         
         strong, b {
-            font-weight: bold;
+            font-weight: 600;
         }
         
         /* Color text */
         .text-red {
-            color: red;
+            color: #d32f2f;
         }
         
         .text-blue {
-            color: blue;
+            color: #1976d2;
         }
         
         .text-purple {
-            color: purple;
+            color: #7b1fa2;
+        }
+        
+        /* 代码样式 */
+        code, pre {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: var(--light-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        /* 数学公式样式 */
+        .math {
+            font-family: 'Linux Libertine', 'Times New Roman', serif;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            body {
+                padding: 30px 20px;
+                font-size: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+                margin: 30px 0 14px;
+            }
+            
+            h3 {
+                font-size: 1.3em;
+                margin: 25px 0 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.4em;
+                margin: 25px 0 12px;
+            }
+            
+            h3 {
+                font-size: 1.2em;
+                margin: 20px 0 8px;
+            }
+            
+            .theorem, .proposition, .conjecture, .problem, .remark {
+                padding: 1em;
+            }
         }
     </style>
     <!-- MathJax配置 -->
@@ -643,12 +728,12 @@
         <div class="reference-item" id="ref-cahn1958free"><span class="reference-id">[Cahn58]</span> Cahn, J. W., & Hilliard, J. E. (1958). Free energy of a nonuniform system. I. Interfacial free energy. <em>The Journal of Chemical Physics</em>, 28(2), 258–267.</div>
         <div class="reference-item" id="ref-cahn1959freea"><span class="reference-id">[Cahn59]</span> Cahn, J. W. (1959). Free energy of a nonuniform system. II. Thermodynamic basis. <em>Journal of Chemical Physics</em>, 30(5), 1121–1124.</div>
         <div class="reference-item" id="ref-cahn1959freeb"><span class="reference-id">[Cahn59b]</span> Cahn, J. W., & Hilliard, J. E. (1959). Free energy of a nonuniform system. III. Nucleation in a two-component incompressible fluid. <em>The Journal of Chemical Physics</em>, 31(3), 688–699.</div>
-        <div class="reference-item" id="ref-allen1979microscopic"><span class="reference-id">[Allen79]</span> Allen, S. M., & Cahn, J. W. (1979). A microscopic theory for antiphase boundary motion and its application to antiphase domain coarsening. <em>Acta Metallurgica</em>, 27(6), 1085–1095.</div>
+        <div class="reference-item" id="ref-allen1979microscopic"><span class="reference-id">[Allen79]</span> Allen, S. M., & Cahn, J. W. (1959). A microscopic theory for antiphase boundary motion and its application to antiphase domain coarsening. <em>Acta Metallurgica</em>, 27(6), 1085–1095.</div>
         <div class="reference-item" id="ref-ginzburg2009superconductivity"><span class="reference-id">[Ginzburg09]</span> Ginzburg, V. L., & Landau, L. D. (2009). On superconductivity and superfluidity. <em>Physik Journal</em>, 8(11), 56.</div>
         <div class="reference-item" id="ref-de1979convergence"><span class="reference-id">[DeGiorgi79]</span> De Giorgi, E., & Spagnolo, S. (1979). Convergence problems for functionals and operators. <em>Ennio De Giorgi</em>, 487.</div>
         <div class="reference-item" id="ref-dancer2010finite"><span class="reference-id">[Dancer10]</span> Dancer, E. N. (2010). Finite Morse index and linearized stable solutions on bounded and unbounded domains. In <em>Proceedings of the International Congress of Mathematicians 2010 (ICM 2010) (In 4 Volumes) Vol. I: Plenary Lectures and Ceremonies Vols. II–IV: Invited Lectures</em> (pp. 1901–1909). World Scientific.</div>
         <div class="reference-item" id="ref-wei2012geometrization"><span class="reference-id">[Wei12]</span> Wei, J. (2012). Geometrization program of semilinear elliptic equations. <em>AMS/IP Stud. Adv. Math</em>, 51, 831–857.</div>
-        <div class="reference-item" id="ref-chan2018giorgi"><span class="reference-id">[Chan18]</span> Chan, H., & Wei, J. (2018). On De Giorgi’s conjecture: recent progress and open problems. <em>Science China Mathematics</em>, 61(11), 1925–1946.</div>
+        <div class="reference-item" id="ref-chan2018giorgi"><span class="reference-id">[Chan18]</span> Chan, H., & Wei, J. (2018). On De Giorgi's conjecture: recent progress and open problems. <em>Science China Mathematics</em>, 61(11), 1925–1946.</div>
         <div class="reference-item" id="ref-takahashi2021topics"><span class="reference-id">[Takahashi21]</span> Takahashi, F. (2021). Topics of stable solutions to elliptic equations. <em>Sugaku Expositions</em>, 34(1), 35–59.</div>
         <div class="reference-item" id="ref-wang2021recent"><span class="reference-id">[Wang21]</span> Wang, K. (2021). Recent progress on stable and finite Morse index solutions of semilinear elliptic equations. <em>Electronic Research Archive</em>, 29(6).</div>
         
@@ -680,7 +765,7 @@
         <div class="reference-item" id="ref-dupaigne2022classification"><span class="reference-id">[Dupaigne22b]</span> Dupaigne, L., & Farina, A. (2022). Classification and Liouville-type theorems for semilinear elliptic equations in unbounded domains. <em>Analysis & PDE</em>, 15(2), 551–566.</div>
         <div class="reference-item" id="ref-dupaigne2023liouville"><span class="reference-id">[Dupaigne23]</span> Dupaigne, L., Farina, A., & Petitt, T. (2023). Liouville-type theorems for the Lane-Emden equation in the half-space and cones. <em>Journal of Functional Analysis</em>, 284(10), 109906.</div>
         <div class="reference-item" id="ref-dupaigne2022liouville"><span class="reference-id">[Dupaigne22]</span> Dupaigne, L., Sirakov, B., & Souplet, P. (2022). A Liouville-type theorem for the Lane–Emden equation in a half-space. <em>International Mathematics Research Notices</em>, 2022(12), 9024–9043.</div>
-        <div class="reference-item" id="ref-liu2024dancer"><span class="reference-id">[Liu24]</span> Liu, Y., Wang, K., Wei, J., & Wu, K. (2024). On Dancer’s conjecture for stable solutions with sign-changing nonlinearity. <em>Proceedings of the American Mathematical Society</em>, 152(08), 3485–3497.</div>
+        <div class="reference-item" id="ref-liu2024dancer"><span class="reference-id">[Liu24]</span> Liu, Y., Wang, K., Wei, J., & Wu, K. (2024). On Dancer's conjecture for stable solutions with sign-changing nonlinearity. <em>Proceedings of the American Mathematical Society</em>, 152(08), 3485–3497.</div>
         <div class="reference-item" id="ref-qian2025note"><span class="reference-id">[Qian25]</span> Qian, Z. (2025). Note on Regularity theory for Nonlinear elliptic equations. <em>arXiv preprint arXiv:2512.03012</em>.</div>
         <div class="reference-item" id="ref-beuvin2026one"><span class="reference-id">[Beuvin26]</span> Beuvin, N., & Farina, A. (2026). One-dimensional symmetry results for semilinear equations and inequalities on half-spaces. <em>Nonlinear Analysis</em>, 264, 113983.</div>
         <div class="reference-item" id="ref-sciunzi2025monotonicity"><span class="reference-id">[Sciunzi25]</span> Sciunzi, B., & Vuono, D. (2025). Monotonicity and Liouville-type theorems for semilinear elliptic problems in the half space. <em>arXiv preprint arXiv:2510.01865</em>.</div>
