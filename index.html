@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Qian Zhenye | CUHK Mathematics</title>
+<meta name="description" content="Qian Zhenye is a Ph.D. student in Mathematics at The Chinese University of Hong Kong, working on partial differential equations and geometric analysis.">
+<meta name="author" content="Qian Zhenye">
+<link rel="canonical" href="https://zhenye03.github.io/">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qian Zhenye | CUHK Mathematics">
+<meta property="og:description" content="Ph.D. student in Mathematics working on partial differential equations and geometric analysis.">
+<meta property="og:url" content="https://zhenye03.github.io/">
+<meta property="og:image" content="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/fa1d069fc8071ee250392c1eff59cb75.png">
 <style>
 :root {
   --bg: #fdf5e6;
@@ -11,6 +20,14 @@
   --link: #0000ee;
   --visited: #551a8b;
   --border: #a0a0a0;
+}
+html {
+  scroll-behavior: smooth;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 body {
   background: var(--bg);
@@ -36,6 +53,23 @@ a:visited {
 a:hover {
   color: var(--link);
   text-decoration: underline;
+}
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  z-index: 1000;
+  padding: 8px 12px;
+  background: var(--bg);
+  border: 1px solid var(--text);
 }
 .sidebar {
   display: flex;
@@ -158,6 +192,10 @@ nav {
   margin-bottom: 24px; /* reduced from 32 */
   padding-bottom: 12px; /* reduced from 16 */
 }
+.section[id],
+h3[id] {
+  scroll-margin-top: 32px;
+}
 h2 {
   color: var(--text);
   margin-bottom: 12px; /* reduced */
@@ -278,6 +316,15 @@ footer {
   border-top: 1px solid var(--border);
   grid-column: 1 / -1;
 }
+@media (min-width: 1001px) {
+  .sidebar {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+  }
+}
 @media (max-width: 1000px) {
   body {
     grid-template-columns: 1fr;
@@ -285,8 +332,10 @@ footer {
     font-size: 15px;
     gap: 25px;
   }
-  .sidebar { order: 2; }
-  .main-content { order: 1; }
+  .sidebar,
+  .main-content {
+    order: initial;
+  }
   header { flex-direction: column; text-align: left; }
   .photo-container {
     margin-right: 0;
@@ -296,6 +345,11 @@ footer {
   }
   h1 { font-size: 2em; }
   h2 { font-size: 1.6em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 @media (max-width: 600px) {
   body {
@@ -347,10 +401,11 @@ window.MathJax = {
 </script>
 </head>
 <body>
-<div class="sidebar">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<aside class="sidebar">
 <header>
 <div class="photo-container">
-<img src="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/fa1d069fc8071ee250392c1eff59cb75.png" alt="Portrait of Qian Zhenye" class="profile-photo">
+<img src="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/main/fa1d069fc8071ee250392c1eff59cb75.png" alt="Portrait of Qian Zhenye" class="profile-photo" width="160" height="200" decoding="async">
 </div>
 <div class="title-container">
 <h1>Qian Zhenye</h1>
@@ -368,8 +423,8 @@ window.MathJax = {
 </div>
 <p><strong>Address:</strong> School of Mathematics, Hangzhou Normal University, Yuhangtang Road, Yuhang District, Hangzhou, Zhejiang, P.R.China 311121 (Office: 勤园21号楼-209 / Qinyuan Building 21-209)</p>
 </address>
-<nav>
-<a href="#about" class="nav-link active">About</a>
+<nav aria-label="Primary navigation">
+<a href="#about" class="nav-link active" aria-current="location">About</a>
 <a href="#research" class="nav-link" id="research-nav">Research</a>
 <div class="sub-nav" id="research-subnav">
 <a href="#research-interests" class="sub-nav-link">Research Interests</a>
@@ -383,8 +438,8 @@ window.MathJax = {
 <a href="#notes" class="nav-link">Notes</a>
 <a href="thesis.html" class="nav-link" target="_blank" rel="noopener noreferrer">Recent works on my thesis</a>
 </nav>
-</div>
-<div class="main-content">
+</aside>
+<main class="main-content" id="main-content">
 <section id="about" class="section">
 <h2>About Me</h2>
 <p>I was born in Zhejiang, China. I am currently a Ph.D. student in <a href="https://www.math.cuhk.edu.hk" target="_blank" rel="noopener noreferrer">Mathematics</a> at <a href="https://www.cuhk.edu.hk/english/index.html" target="_blank" rel="noopener noreferrer">The Chinese University of Hong Kong</a>, under the supervision of Professor <a href="https://personal.math.ubc.ca/~jcwei/" target="_blank" rel="noopener noreferrer">Juncheng Wei</a>.</p>
@@ -422,13 +477,13 @@ Advisor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml" target="_
 <span class="award-year">2022:</span> <a href="http://www.cmathc.cn" target="_blank" rel="noopener noreferrer">The Chinese Mathematics Competitions (CMC)</a> (First Prize)
 </div>
 <h3>Curriculum Vitae</h3>
-<p>You can view and download my complete CV here: <a href="https://raw.githubusercontent.com/Zhenye03/Zhenye03.github.io/blob/main/CV.pdf" target="_blank" rel="noopener noreferrer">Qian Zhenye's CV (PDF)</a></p>
+<p>You can view and download my complete CV here: <a href="https://github.com/Zhenye03/Zhenye03.github.io/blob/main/CV.pdf" target="_blank" rel="noopener noreferrer">Qian Zhenye's CV (PDF)</a></p>
 </section>
 <section id="research" class="section">
 <h2>Research</h2>
 <h3 id="research-interests">Research Interests</h3>
 <p><strong><a href="https://en.wikipedia.org/wiki/Partial_differential_equation" target="_blank" rel="noopener noreferrer">Partial Differential Equations</a></strong> and <strong><a href="https://en.wikipedia.org/wiki/geometric_analysis" target="_blank" rel="noopener noreferrer">Geometric Analysis</a></strong>, including nonlinear elliptic PDEs, fluid dynamics, geometric measure theory and curvature flow.</p>
-<p>Recently, I was interested in following topics:</p>
+<p>Recently, I have been interested in the following topics:</p>
 <h4>Elliptic PDEs</h4>
 <ul>
 <li>[September 2025 – present, first part of my thesis] Studying qualitative properties of semilinear elliptic partial differential equations in unbounded domains, including monotonicity, symmetry, Liouville‑type theorems for certain Schrödinger operators, and energy estimates. This work is motivated by <a href="https://www.numdam.org/item/ASNSP_1997_4_25_1-2_69_0.pdf" target="_blank" rel="noopener noreferrer">Berestycki, Caffarelli and Nirenberg (1997)</a> and <a href="https://link.springer.com/article/10.1023/A:1010602715526" target="_blank" rel="noopener noreferrer">Alberti, Ambrosio and Cabré (2001)</a>. The research focuses on two main directions. The first concerns monotonicity of solutions to $\Delta u + f(u) = 0$ on the half‑space with $f$ merely locally Lipschitz. The case $f(0) \geq 0$ was completely resolved by Berestycki–Caffarelli–Nirenberg, while $f(0) < 0$ in dimension $n = 2$ was proved by <a href="https://pubmed.ncbi.nlm.nih.gov/37727771/" target="_blank" rel="noopener noreferrer">Farina & Sciunzi (2017)</a>. The problem remains open for $f(0) < 0$ and $n > 2$, as discussed in <a href="https://link.springer.com/article/10.1007/s00013-024-02040-7" target="_blank" rel="noopener noreferrer">Cortázar, Elgueta, García‑Melián's paper</a>.</li>
@@ -518,7 +573,7 @@ Advisor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml" target="_
 </div>
 <h3 id="seminars">Seminars</h3>
 <div class="study-item">
-<p class="study-date">September 2025 - Janurary 2026</p>
+<p class="study-date">September 2025 - January 2026</p>
 <p class="study-course">Elliptic Partial Differential Equations Seminar</p>
 <p>Sunday 14:00-17:00, Room 101, Building 2, Hainayuan, Zhejiang University (School of Mathematical Sciences)</p>
 <p>with H.J. Chen (ZJU), Z.J. Hu (ZJU), M.T. Zhu (WU), <a href="https://tianyi686.github.io" target="_blank" rel="noopener noreferrer">T.Y. Shen</a> (ShanghaiTech), T.L. Wang (AMSS)</p>
@@ -531,7 +586,7 @@ Advisor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml" target="_
 <ul>
 <li><a href="https://www.bilibili.com/video/BV1PaKGzrEwU/?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8" target="_blank" rel="noopener noreferrer">A simple survey of minimal surfaces and related aspects 6.24 (Zhenye Qian, HZNU)</a></li>
 <li><a href="https://www.bilibili.com/video/BV1MJ3RzEEi4/?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">The minimal surfaces equation and minimal submanifolds 7.5 (Haoyu Pan, HZNU)</a></li>
-<li><a href="https://www.bilibili.com/video/BV15puUzNEAt?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">Applications of the first variation and Bernstein problem in two dimension 7.18 (Tian Zeng, CQU)</a></li>
+<li><a href="https://www.bilibili.com/video/BV15puUzNEAt?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">Applications of the first variation and Bernstein problem in two dimensions 7.18 (Tian Zeng, CQU)</a></li>
 <li><a href="https://www.bilibili.com/video/BV1kvhWzvEgi?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">The second Variation formula and Stability 8.1 (Tian Zeng, CQU)</a></li>
 <li><a href="https://www.bilibili.com/video/BV1NttxzMEkn?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">Bernstein problem I: The fundamental objects of Geometric Measure Theory 8.8 (Mutian Zhu, WU)</a></li>
 <li><a href="https://www.bilibili.com/video/BV1ZcYezxEFL?vd_source=6f9be697e4f7f3e4863ea519e09ea8a8&spm_id_from=333.788.videopod.sections" target="_blank" rel="noopener noreferrer">Bernstein problem II: Regularity theory in Geometric Measure theory 8.15 (Mutian Zhu, WU)</a></li>
@@ -607,7 +662,7 @@ Advisor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml" target="_
 <li>Ideas and Discussions: <a href="https://www.zhihu.com/people/qzy-55-20" target="_blank" rel="noopener noreferrer">Zhihu</a></li>
 </ul>
 </section>
-</div>
+</main>
 <footer>
 <p>&copy; 2023-2026 Qian Zhenye. All rights reserved.</p>
 <p>Department of Mathematics, The Chinese University of Hong Kong & Hangzhou Normal University</p>
@@ -615,74 +670,111 @@ Advisor: <a href="https://sxxy.hznu.edu.cn/c/2021-08-11/2671818.shtml" target="_
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const navLinks = document.querySelectorAll('.nav-link:not([href*=".html"]):not([href^="http"])');
-  const subNavLinks = document.querySelectorAll('.sub-nav-link');
-  const researchSubnav = document.getElementById('research-subnav');
-  researchSubnav.classList.add('active');
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      if (targetSection) {
-        window.scrollTo({
-          top: targetSection.offsetTop - 40,
-          behavior: 'smooth'
-        });
+  const topLevelItems = Array.from(
+    document.querySelectorAll('.nav-link[href^="#"]')
+  ).map(link => ({
+    link,
+    target: document.querySelector(link.getAttribute('href'))
+  })).filter(item => item.target);
+
+  const subNavItems = Array.from(
+    document.querySelectorAll('.sub-nav-link[href^="#"]')
+  ).map(link => ({
+    link,
+    target: document.querySelector(link.getAttribute('href'))
+  })).filter(item => item.target);
+
+  function setActiveNavigation(sectionId, subsectionId = '') {
+    [...topLevelItems, ...subNavItems].forEach(item => {
+      item.link.classList.remove('active');
+      item.link.removeAttribute('aria-current');
+    });
+
+    const sectionItem = topLevelItems.find(
+      item => item.target.id === sectionId
+    );
+
+    if (sectionItem) {
+      sectionItem.link.classList.add('active');
+      if (!subsectionId) {
+        sectionItem.link.setAttribute('aria-current', 'location');
+      }
+    }
+
+    if (subsectionId) {
+      const subsectionItem = subNavItems.find(
+        item => item.target.id === subsectionId
+      );
+
+      if (subsectionItem) {
+        subsectionItem.link.classList.add('active');
+        subsectionItem.link.setAttribute('aria-current', 'location');
+      }
+    }
+  }
+
+  function updateActiveNavigation() {
+    const marker = window.scrollY + Math.min(140, window.innerHeight * 0.25);
+    let currentSection = topLevelItems[0] || null;
+
+    topLevelItems.forEach(item => {
+      if (item.target.offsetTop <= marker) {
+        currentSection = item;
       }
     });
-  });
-  subNavLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      subNavLinks.forEach(l => l.classList.remove('active'));
-      this.classList.add('active');
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      if (targetSection) {
-        window.scrollTo({
-          top: targetSection.offsetTop - 40,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-  window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('.section');
-    const navLinksAll = document.querySelectorAll('.nav-link');
-    const subNavLinksAll = document.querySelectorAll('.sub-nav-link');
-    let currentSection = '';
-    let currentSubSection = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= (sectionTop - 100)) {
-        currentSection = '#' + section.getAttribute('id');
-      }
-      const subsections = section.querySelectorAll('h3');
-      subsections.forEach(subsection => {
-        const subsectionTop = subsection.offsetTop;
-        if (window.scrollY >= (subsectionTop - 120)) {
-          currentSubSection = '#' + subsection.getAttribute('id');
+
+    let currentSubsection = null;
+    if (currentSection && currentSection.target.id === 'research') {
+      subNavItems.forEach(item => {
+        if (item.target.offsetTop <= marker) {
+          currentSubsection = item;
         }
       });
-    });
-    navLinksAll.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        link.classList.remove('active');
-        if (href === currentSection) {
-          link.classList.add('active');
-        }
-      }
-    });
-    subNavLinksAll.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === currentSubSection) {
-        link.classList.add('active');
-      }
+    }
+
+    if (currentSection) {
+      setActiveNavigation(
+        currentSection.target.id,
+        currentSubsection ? currentSubsection.target.id : ''
+      );
+    }
+  }
+
+  [...topLevelItems, ...subNavItems].forEach(item => {
+    item.link.addEventListener('click', function() {
+      const parentSection = item.target.closest('.section');
+      const sectionId = parentSection ? parentSection.id : item.target.id;
+      const subsectionId = item.link.classList.contains('sub-nav-link')
+        ? item.target.id
+        : '';
+
+      setActiveNavigation(sectionId, subsectionId);
     });
   });
+
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateActiveNavigation();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('hashchange', function() {
+    const targetId = window.location.hash.slice(1);
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const parentSection = target.closest('.section');
+    const sectionId = parentSection ? parentSection.id : target.id;
+    const subsectionId = target.matches('h3[id]') ? target.id : '';
+    setActiveNavigation(sectionId, subsectionId);
+  });
+
+  updateActiveNavigation();
 });
 </script>
 </body>
